@@ -1,1 +1,60 @@
-Hi! 这是一个我的测试界面, 如果成功了就成功了, 失败了就失败了 (((
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<meta charset="utf-8">
+    	<meta name="viewport" content="width=device-width">
+    	<title>Ordinal</title>
+    	<link href="ordinal.css" rel="stylesheet" type="text/css" />
+    	<script src="ordinal_base5.js" defer></script>
+    	<script src="./ExpantaNum.js"></script>
+		<script src="./format-expantanum.js"></script> 
+  	</head>
+  	<body>
+  		<div id = "brs"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+    	<p id="ordinum">0</p>
+    	<p id="ordinal">0</p>
+    	<p style="display: inline-block;">Auto Run&ensp;</p><input id="setMode" type="checkbox" checked="checked" onclick="autoRun()"/>
+      <script>
+        ordinum = document.getElementById("ordinum");
+        ordinal = document.getElementById("ordinal");
+        celm = document.getElementById('setMode');
+        displayInterval = setInterval(display, 20);
+        const epsilon = EN(3).tetr(3)
+        function EN(x){
+          return ExpantaNum(x);
+        }
+        // 判断 "不小于一"
+        // 其实按照代码逻辑应该是判断 "减一不是负数"
+        function NZ(x){
+          return !x.sub(1).isneg();
+        }
+        var ordivar = EN(0);
+        function display(){
+          ordinum.innerHTML = formatWhole(number(ordivar));
+          ordinal.innerHTML = formaty(number(ordivar));
+          ordivar = ordivar.plus(1);
+
+        }
+
+        function number(x){
+          return ExpantaNum.arrow(x.div(5e6).plus(1.001).plus(x.mul(0.01)).pow(x.div(1e3).plus(1)).sub(1),5,1+1e-7);
+        }
+
+        function et(o){
+          return o.floor().lte(2)?0:o.floor().lte(8)&&!NZ(o.floor().mod(3))?0:o.floor().lte(26)&&!NZ(o.floor().mod(9))?0:o.floor().lte(epsilon.sub(1))&&o.floor().gte(27)&&!NZ(o.floor().mod(EN(3).pow(o.logBase(3).floor())))?0:1
+        }
+
+        function formaty(o){
+          return o.floor().lte(2)?format(o,0):o.floor().lte(8)?"ω"+(NZ(o.div(3).sub(1))?o.div(3).floor():"")+(NZ(o.mod(3))?"+"+o.mod(3).floor():""):o.floor().lte(26)?"ω<sup>2</sup>"+(1!=o.div(9).floor()?o.div(9).floor():"")+(NZ(o.mod(9))?"+":"")+(NZ(o.mod(9))?formaty(o.mod(9)):""):o.floor().lte(19682)?"ω<sup>ω"+(1!=o.logBase(3).floor().div(3).floor()?o.logBase(3).floor().div(3).floor():"")+(NZ(o.logBase(3).floor().sub(3).mod(3))?"+"+o.logBase(3).floor().sub(3).mod(3)+"</sup>":"</sup>")+(NZ(o.div(EN(3).pow(o.logBase(3).floor())).floor().sub(1))?o.div(EN(3).pow(o.logBase(3).floor())).floor():"")+(NZ(o.mod(EN(3).pow(o.logBase(3).floor())))?"+"+formaty(o.mod(EN(3).pow(o.logBase(3).floor()))):""):o.floor().lte(epsilon.sub(1))?"ω<sup>ω<sup>2</sup>"+(1!=o.logBase(3).floor().div(9).floor()?o.logBase(3).floor().div(9).floor():"")+(NZ(o.logBase(3).floor().sub(9).mod(9))?"+"+formaty(o.logBase(3).floor().sub(9).mod(9))+"</sup>":"</sup>")+(NZ(o.div(EN(3).pow(o.logBase(3).floor())).sub(1))?o.div(EN(3).pow(o.logBase(3).floor())).floor():"")+(NZ(o.mod(EN(3).pow(o.logBase(3).floor())))?"+"+formaty(o.mod(EN(3).pow(o.logBase(3).floor()))):""):o.floor().lte(epsilon.pow(2).sub(1))?"ε<sub>0</sub>"+(et(o.div(epsilon))?"(":"")+(1!=o.div(epsilon).floor()?formaty(o.div(epsilon).floor()):"")+(et(o.div(epsilon))?")":"")+(NZ(o.mod(epsilon))?"+"+formaty(o.mod(epsilon)):""):o.floor().lte(epsilon.tetr(3).sub(1))?"ε<sub>0</sub><sup>"+formaty(o.logBase(epsilon).floor())+"</sup>"+(et(o.div(epsilon.pow(o.logBase(epsilon).floor())))?"(":"")+(1!=o.div(epsilon.pow(o.logBase(epsilon).floor())).floor()?formaty(o.div(epsilon.pow(o.logBase(epsilon).floor()))):"")+(et(o.div(epsilon.pow(o.logBase(epsilon).floor())))?")":""):void 0;
+        }
+
+        function autoRun(){
+          if (celm.checked){
+            displayInterval=setInterval(display,20)
+          } else {
+            clearInterval(displayInterval,20)
+          }
+        }
+      </script>
+  	</body>
+</html>
