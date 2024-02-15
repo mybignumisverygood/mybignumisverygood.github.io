@@ -1,6 +1,6 @@
 #showing_text_effect
 {
-	animation:showing_text_effect 2s both;
+	animation:showing_text_effect 2s infinite;
 }
 
 @keyframes showing_text_effect
