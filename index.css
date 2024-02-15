@@ -1,0 +1,10 @@
+#showing_text_effect
+{
+	animation:showing_text_effect 2s both;
+}
+
+@keyframes showing_text_effect
+{
+	from {color: white;}
+	to {color: black;}
+}
