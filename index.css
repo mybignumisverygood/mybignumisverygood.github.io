@@ -1,6 +1,6 @@
 #showing_text_effect
 {
-	animation:showing_text_effect 2s forwards;
+	animation:showing_text_effect 2s both;
 }
 
 @keyframes showing_text_effect
