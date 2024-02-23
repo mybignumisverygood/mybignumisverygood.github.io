@@ -1,8 +1,21 @@
-#showing_text_effect {
+.showing_text_effect {
 	animation: showing_text_effect 2s both;
+}
+
+#sphase1{
+	animation: phase1 2s both;
+	/*margin: 10px;*/
+}
+
+.phase1{
+	animation: showing_text_effect 2s both, phase1 2s both;
 }
 
 @keyframes showing_text_effect {
 	from {color: white;}
 	to {color: black;}
+}
+
+@keyframes phase1 {
+	to {transform:translateX(5%)}
 }
