@@ -32,7 +32,7 @@ function judgement(){
 			new_msg.innerHTML = "你好！";
 		} else if (myth_pwd.substring(0,2) == "再见"){
 			new_msg.innerHTML = "再见……!";
-			setInterval("history.back()", 2500);
+			setInterval("window.open('', '_self').close();", 2500);
 		} else if ((myth_pwd.substring(0,2) == "我是" || myth_pwd.substring(0,2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
 			your_name = myth_pwd.slice(2);
 			if (my_names.includes(your_name)) new_msg.innerHTML = "哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/";
