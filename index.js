@@ -49,6 +49,8 @@ function judgement(){
 		} else if (myth_pwd.substring(0,3) == "我是谁"){
 			if (your_name) new_msg.innerHTML = "你是" + your_name + "///";
 			else new_msg.innerHTML = "嗯……我不知道啊, 不过你可以告诉我";
+		} else if (myth_pwd.substring(0,3) == "你是谁"){
+			new_msg.innerHTML = "你可以叫我" + my_names.join("或");
 		} else {
 			new_msg.innerHTML = "抱歉暂时还没有这么多对话呢/ 其实算上这个只有十个左右而已";
 		}
