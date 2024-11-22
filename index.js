@@ -34,10 +34,18 @@ function judgement(){
 			new_msg.innerHTML = "再见……!";
 			setInterval("window.open('', '_self').close();", 2500);
 		} else if ((myth_pwd.substring(0,2) == "我是" || myth_pwd.substring(0,2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
+			let k1 = false;
+			if (your_name){
+				let new_name_temp= document.createElement("h2");
+				new_name_temp.setAttribute("class", "showing_text_effect");
+				if (your_name == myth_pwd.slice(2)) {new_name_temp.innerHTML = "我知道呢, 你不是说过吗?"; k1 = true;}
+				else new_name_temp.innerHTML = "哇你改名了吗? 总之我会记住这个最新的名字的——";
+				document.body.appendChild(new_name_temp);
+			}
 			your_name = myth_pwd.slice(2);
 			if (my_names.includes(your_name)) new_msg.innerHTML = "哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/";
-			else if (your_name == "") new_msg.innerHTML = "嗯……你确定你叫这个吗?";
-			else new_msg.innerHTML = "你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/";
+			else if (your_name == "") new_msg.innerHTML = "嗯……你是什么……?";
+			else if (!k1) new_msg.innerHTML = "你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/";
 		} else if (myth_pwd.substring(0,3) == "我是谁"){
 			if (your_name) new_msg.innerHTML = "你是" + your_name + "///";
 			else new_msg.innerHTML = "嗯……我不知道啊, 不过你可以告诉我";
