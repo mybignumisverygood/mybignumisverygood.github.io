@@ -50,7 +50,6 @@ function judgement(){
 }
 
 function next_phrase(){
-	
-	
+	return ;
 }
 
