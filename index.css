@@ -12,8 +12,8 @@
 }
 
 @keyframes showing_text_effect {
-	from {color: white;}
-	to {color: black;}
+	from {opacity: 0;}
+	to {opacity: 1;;}
 }
 
 @keyframes phase1 {
