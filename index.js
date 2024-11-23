@@ -27,7 +27,7 @@ function judgement(){
 		new_msg.setAttribute("id", "msg_" + ordmsg);
 		new_msg.setAttribute("class", "showing_text_effect");
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion"];
-		const meaningless = ["!", "！", ".", "。", "/", ";", "啊", "呀", "呢"];
+		const meaningless = ["!", "！", ".", "。", "/", " ", ";", "啊", "呀", "呢"];
 		for(let i = myth_pwd.length - 1; i >= 0; i--){
 			if(!meaningless.includes(myth_pwd[i])) {break;}
 			else myth_pwd = myth_pwd.slice(0, -1);
