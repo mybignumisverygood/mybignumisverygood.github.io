@@ -66,7 +66,7 @@ function judgement(){
 		} else if (myth_pwd == "你是谁"){
 			new_msg.innerHTML = "你可以叫我" + my_names.join("或");
 		} else if (["普朗西斯语", "普朗西斯", "Plantheas", "plantheas"].includes(myth_pwd)){
-			new_msg.innerHTML = "Yearing! 原来你也<u><font color: linear-gradient(to right, blue, pink)>Plantheas</font></u>!";
+			new_msg.innerHTML = "Yearing! 原来你也<u style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</u>!";
 		} else {
 			new_msg.innerHTML = "抱歉暂时还没有这么多对话呢/ 其实算上这个只有十个左右而已";
 		}
