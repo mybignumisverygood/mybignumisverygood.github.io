@@ -67,6 +67,12 @@ function judgement(){
 			new_msg.innerHTML = "你可以叫我" + my_names.join("或");
 		} else if (["普朗西斯语", "普朗西斯", "Plantheas", "plantheas"].includes(myth_pwd)){
 			new_msg.innerHTML = "Yearing! 原来你也<u style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</u>!";
+		} else if (["涨到", "张导", "张轩宁", "zhang萱琳"].includes(myth_pwd)){
+			new_msg.innerHTML = "哇你是涨到吗?";
+		} else if (["Wissea", "wissea", "吴亦萱", "物以轩"].includes(myth_pwd)){
+			new_msg.innerHTML = "这位是邪恶的人类😈!";
+		} else if (["Grace", "Harper", "圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "虹屿怀", "好与坏"].includes(myth_pwd)){
+			new_msg.innerHTML = "你是圆规小姐吗?/";
 		} else {
 			new_msg.innerHTML = "抱歉暂时还没有这么多对话呢/ 其实算上这个只有十个左右而已";
 		}
