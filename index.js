@@ -46,13 +46,11 @@ function judgement(){
 			// 自我介绍
 			let k1 = false;
 			if (your_name){ // 你已经有名字了啊……
-				createNewMsg();
 				if (your_name == myth_pwd.slice(2)) {createNewMsg("我知道呢, 你不是说过吗?"); k1 = true;}
 				else createNewMsg("哇你改名了吗? 总之我会记住这个最新的名字的——");
 			}
 			your_name = myth_pwd.slice(2); // 你的名字!
 			if (plantheases(your_name)){
-				createNewMsg();
 				createNewMsg(plantheases(your_name));
 			}	
 			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/");
