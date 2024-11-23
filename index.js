@@ -20,17 +20,31 @@ function judgement(){
 	myth_pwd = document.getElementById("pwd").value;
 	console.log(myth_pwd);
 	if(myth_pwd == "3yAG7x=="){
-		next_phrase();
+		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		let new_msg = document.createElement("h2");
+		let what1 = false;
 		new_msg.setAttribute("id", "msg_" + ordmsg);
 		new_msg.setAttribute("class", "showing_text_effect");
-		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion"]
-		if (my_names.includes(myth_pwd)){
+		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion"];
+		const meaningless = ["!", "！", ".", "。", "/", ";", "啊", "呀", "呢"];
+		for(let i = myth_pwd.length - 1; i >= 0; i--){
+			if(!meaningless.includes(myth_pwd[i])) {break;}
+			else myth_pwd = myth_pwd.slice(0, -1);
+		}
+		if (!myth_pwd){
+			new_msg.innerHTML = "你说了什么吗……?";
+		} else if (myth_pwd == "我"){
+			what1 = true;
+			new_msg.innerHTML = "你……!" + (what1 ? "又" : "") + "怎么了吗?";
+		} else if (myth_pwd == "你"){
+			what1 = true;
+			new_msg.innerHTML = "我……!" + (what1 ? "又" : "") + "怎么了吗?";
+		} else if (my_names.includes(myth_pwd)){
 			new_msg.innerHTML = myth_pwd + "，在此!/.";
-		} else if (myth_pwd.substring(0,2) == "你好"){
+		} else if (myth_pwd == "你好"){
 			new_msg.innerHTML = "你好！";
-		} else if (myth_pwd.substring(0,2) == "再见"){
+		} else if (myth_pwd == "再见"){
 			new_msg.innerHTML = "再见……!";
 			setInterval("window.open('', '_self').close();", 2500);
 		} else if ((myth_pwd.substring(0,2) == "我是" || myth_pwd.substring(0,2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
@@ -60,7 +74,13 @@ function judgement(){
 	return "哇你是能看到这条消息的人类！";
 }
 
-function next_phrase(){
+function next_phase(){
+	var d1 = document.createElement("div");
+	var c1 = document.createElement("h2");
+	c1.innerHTML = "!你竟然输入了我的密文!";
+	d1.setAttribute("class", "p1_text_effect");
+	d1.appendChild(c1);
+	document.body.appendChild(d1);
 	return ;
 }
 
