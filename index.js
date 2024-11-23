@@ -27,7 +27,7 @@ function judgement(){
 		new_msg.setAttribute("id", "msg_" + ordmsg);
 		new_msg.setAttribute("class", "showing_text_effect");
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion"];
-		const meaningless = ["!", "！", ".", "。", "/", " ", ";", "啊", "呀", "呢"];
+		const meaningless = ["!", "！", ".", "。", "/", " ", ";", "啊", "呀", "呢", "哈"];
 		for(let i = myth_pwd.length - 1; i >= 0; i--){
 			if (!meaningless.includes(myth_pwd[i])) {break;}
 			else myth_pwd = myth_pwd.slice(0, -1);
@@ -56,15 +56,17 @@ function judgement(){
 				else new_name_temp.innerHTML = "哇你改名了吗? 总之我会记住这个最新的名字的——";
 				document.body.appendChild(new_name_temp);
 			}
-			your_name = myth_pwd.slice(2);
+			your_name = myth_pwd.slice(2); //你的名字!
 			if (my_names.includes(your_name)) new_msg.innerHTML = "哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/";
 			else if (your_name == "") new_msg.innerHTML = "嗯……你是什么……?";
 			else if (!k1) new_msg.innerHTML = "你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/";
-		} else if (myth_pwd.substring(0,3) == "我是谁"){
+		} else if (myth_pwd == "我是谁"){
 			if (your_name) new_msg.innerHTML = "你是" + your_name + "///";
 			else new_msg.innerHTML = "嗯……我不知道啊, 不过你可以告诉我";
-		} else if (myth_pwd.substring(0,3) == "你是谁"){
+		} else if (myth_pwd == "你是谁"){
 			new_msg.innerHTML = "你可以叫我" + my_names.join("或");
+		} else if (["普朗西斯语", "普朗西斯", "Plantheas", "plantheas"].includes(myth_pwd)){
+			new_msg.innerHTML = "Yearing! 原来你也<u><font color: linear-gradient(to right, blue, pink)>Plantheas</font></u>!";
 		} else {
 			new_msg.innerHTML = "抱歉暂时还没有这么多对话呢/ 其实算上这个只有十个左右而已";
 		}
