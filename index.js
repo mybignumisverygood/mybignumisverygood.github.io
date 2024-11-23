@@ -22,14 +22,14 @@ function judgement(){
 	if(myth_pwd == "3yAG7x=="){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
-		let new_msg = document.createElement("h2");
-		let what1 = false;
+		var new_msg = document.createElement("h2");
+		var what1 = false;
 		new_msg.setAttribute("id", "msg_" + ordmsg);
 		new_msg.setAttribute("class", "showing_text_effect");
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion"];
 		const meaningless = ["!", "！", ".", "。", "/", " ", ";", "啊", "呀", "呢"];
 		for(let i = myth_pwd.length - 1; i >= 0; i--){
-			if(!meaningless.includes(myth_pwd[i])) {break;}
+			if (!meaningless.includes(myth_pwd[i])) {break;}
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
 		if (!myth_pwd){
