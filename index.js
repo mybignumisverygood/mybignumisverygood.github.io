@@ -5,6 +5,8 @@ var what1 = false; // 我又怎么了?
 var what2 = 0; // 人类的听话程度
 var what3 = false; // 你在说什么?
 
+document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
+
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
 		if (f12 == 16){
@@ -93,7 +95,12 @@ function judgement(){
 		} else if (myth_pwd.includes("彩蛋")){
 			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的人类有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
-			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
+			var startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
+			var subjectLove = myth_pwd[startLoving - 1]; // 谁喜欢
+			var objectLove = myth_pwd[startLoving + (myth_pwd.includes("喜欢") ? 2 : 1)]; // 谁被喜欢
+			if (subjectLove == "我"){
+				if (objectLove == "你") createNewMsg("……!!");
+			}
 		} else if (!regEng.test(myth_pwd)){
 			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
 			what3 = true;
@@ -126,6 +133,8 @@ function createNewMsg(x){
 	document.getElementById("msgs").appendChild(msg[ordmsg]);
 	ordmsg++;
 }
+
+// Phase 1: 在一切开始之前
 
 function next_phase(){
 	d1 = document.createElement("div");
