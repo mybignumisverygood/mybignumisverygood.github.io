@@ -1,12 +1,14 @@
 var msg = [];
 var ordmsg = f12 = 0;
 var your_name;
-var what1 = what2 = false;
+var what1 = false;
+var what2 = 0;
+var what3 = false;
 
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
 		if (f12 == 16){
-			createNewMsg("好好好, 这么喜欢F12是吧, 直接送你去 GitHub~");
+			createNewMsg("好好好, 这么喜欢F12是吧🫘, 直接送你去 GitHub~");
 			msg[ordmsg - 1].style.color = "red";
 			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
 		} else if (f12 > 16){
@@ -30,7 +32,7 @@ function judgement(){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
-		const meaningless = ["!", "！", ".", "。", "/", " ", ";", "…", "啊", "呀", "呢", "哈", "吖", "哦"];
+		const meaningless = ["!", "！", "?", "？", ".", "。", "/", " ", ";", "…", "啊", "呀", "呢", "哈", "吖", "哦"];
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
 			if (!meaningless.includes(myth_pwd[i])) break;
@@ -46,16 +48,19 @@ function judgement(){
 		} else if (myth_pwd == "你"){
 			createNewMsg("我……! " + (what1 ? "又" : "") + "怎么了吗?");
 			what1 = true;
-		} else if (my_names.includes(myth_pwd)){
-			createNewMsg(myth_pwd + "，在此!/.");
+		} else if (["有什么东西都可以", "有什么东西都", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
+			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
+			what2 = 1;
+		} else if (["点别的", "别的"].includes(myth_pwd)){
+			if (!what2) createNewMsg("……别的? 别的什么");
+			else if (what2 == 1) createNewMsg("哇你真的是听话的人类! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!");
+			else createNewMsg("快点输入吧听话的人类.")
+			what2 = 2;
 		} else if (myth_pwd == "你好"){
 			createNewMsg("你好！");
 		} else if (myth_pwd == "再见"){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
-		} else if (!regEng.test(myth_pwd)){
-			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
-			what2 = true;
 		} else if (myth_pwd.includes("杀")){
 			// 主语是谁?
 			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){
@@ -63,13 +68,14 @@ function judgement(){
 				else if (subject == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
 				if (!i) createNewMsg("不是发生什么了.?");
 			}
-		} else if (["普朗西斯语", "普朗西斯", "Plantheas", "plantheas"].includes(myth_pwd)){
-			createNewMsg("Yearing! 原来你也<u style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</u>!");
+		} else if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
+			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
 		} else if ((myth_pwd.substring(0, 2) == "我是" || myth_pwd.substring(0, 2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
 			// 自我介绍
 			var k1 = false;
 			if (your_name){ // 你已经有名字了啊……
-				createNewMsg(your_name == myth_pwd.slice(2) ? ("我知道呢, 你不是说过吗?", k1 = true) : "哇你改名了吗? 总之我会记住这个最新的名字的——");
+				if (your_name == myth_pwd.slice(2)){createNewMsg("我知道呢, 你不是说过吗?"); k1 = true;}
+				else createNewMsg("哇你改名了吗? 总之我会记住这个最新的名字的——");
 			}
 			your_name = myth_pwd.slice(2); // 你的名字!
 			if (plantheases(your_name)) createNewMsg(plantheases(your_name));
@@ -80,9 +86,12 @@ function judgement(){
 			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
 		} else if (myth_pwd == "你是谁"){
 			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>"));
+		} else if (!regEng.test(myth_pwd)){
+			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
+			what3 = true;
 		} else { // 你在说什么我听不懂
-			if (!what2) createNewMsg("抱歉我暂时还听不懂 '" + myth_pwd + "'……/ 其实算上这个我总共只有 27 个对话呢");
-			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what2 = false;}
+			if (!what3) createNewMsg("抱歉我暂时还听不懂 '" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
+			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what3 = false;}
 		}
 	}
 	return "哇你是能看到这条消息的人类！";
@@ -90,7 +99,7 @@ function judgement(){
 
 function plantheases(x){
 	for(let i = 0; i <= 3; i++){
-		if(x.includes(["涨到", "张导", "张轩宁", "zhang萱琳"][i])) return "哇你是涨到吗?";
+		if(x.includes(["涨到", "张导", "张轩宁", "zhang萱琳"][i])) return "哇你是涨到吗!";
 	} 
 	for(let i = 0; i <= 3; i++){
 		if(x.includes(["Wissea", "wissea", "吴亦萱", "物以轩"][i])) return "这位是邪恶的人类😈!";
