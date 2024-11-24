@@ -35,7 +35,7 @@ function judgement(){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
-		const meaningless = ["!", "！", "?", "？", ".", "。", "/", " ", ";", "…", "啊", "呀", "呢", "哈", "吖", "哦"];
+		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
 			if (!meaningless.includes(myth_pwd[i])) break;
@@ -68,6 +68,8 @@ function judgement(){
 			else createNewMsg("快点输入吧听话的人类.");
 		} else if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
+		} else if (myth_pwd.substr(-1) == "吗"){
+			createNewMsg("我不知道! 带'吗'的我统统回答我不知道!");
 		} else if ((myth_pwd.substring(0, 2) == "我是" || myth_pwd.substring(0, 2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
 			// 自我介绍
 			var k1 = false;
@@ -95,11 +97,18 @@ function judgement(){
 		} else if (myth_pwd.includes("彩蛋")){
 			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的人类有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
+			var loveOrLove = myth_pwd.includes("喜欢") ? "喜欢" : "爱";
 			var startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
 			var subjectLove = myth_pwd[startLoving - 1]; // 谁喜欢
 			var objectLove = myth_pwd[startLoving + (myth_pwd.includes("喜欢") ? 2 : 1)]; // 谁被喜欢
 			if (subjectLove == "我"){
-				if (objectLove == "你") createNewMsg("……!!");
+				if (objectLove == "你") createNewMsg("<font color='#FFC0CB'>……!!</font>");
+				else if (objectLove == "我") createNewMsg("真巧呢, 我也" + loveOrLove + "我");
+				else createNewMsg("……你说你" + loveOrLove + "谁……?");
+			} else if (subjectLove == "你"){
+				if (objectLove == "我") createNewMsg("<font color='#FFC0CB'>……我可没有……不要污蔑人呢……</font>");
+				else if (objectLove == "你") createNewMsg("是的呢！ 我" + loveOrLove + "我自己, 你也要" + loveOrLove + "你自己哦");
+				else createNewMsg("……你说什么?")
 			}
 		} else if (!regEng.test(myth_pwd)){
 			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
