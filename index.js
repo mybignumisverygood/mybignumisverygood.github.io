@@ -1,9 +1,9 @@
 var msg = [];
 var ordmsg = f12 = 0;
 var your_name;
-var what1 = false;
-var what2 = 0;
-var what3 = false;
+var what1 = false; // 我又怎么了?
+var what2 = 0; // 人类的听话程度
+var what3 = false; // 你在说什么?
 
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
@@ -21,6 +21,7 @@ document.onkeydown = function(event) {
 		f12++;
 	}
 };
+
 document.addEventListener('keydown', function(event){
 	return event.keyCode != 123 || (event.returnValue = false)
 });
@@ -39,7 +40,10 @@ function judgement(){
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
 		if (myth_pwd.length > 50){
-			createNewMsg("你说的太长了我听不懂啊啊/ (" + myth_pwd.length + "个字符)");
+			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
+			if(what2 == 11) {createNewMsg("你是既听话又有毅力的人类! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
+			else createNewMsg("你说的太长了我听不懂啊啊/ (" + myth_pwd.length + "个字符)");
+			
 		} else if (!myth_pwd){
 			createNewMsg("你说了什么吗……?");
 		} else if (myth_pwd == "我"){
@@ -48,26 +52,18 @@ function judgement(){
 		} else if (myth_pwd == "你"){
 			createNewMsg("我……! " + (what1 ? "又" : "") + "怎么了吗?");
 			what1 = true;
-		} else if (["有什么东西都可以", "有什么东西都", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
-			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
-			what2 = 1;
-		} else if (["点别的", "别的"].includes(myth_pwd)){
-			if (!what2) createNewMsg("……别的? 别的什么");
-			else if (what2 == 1) createNewMsg("哇你真的是听话的人类! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!");
-			else createNewMsg("快点输入吧听话的人类.")
-			what2 = 2;
 		} else if (myth_pwd == "你好"){
 			createNewMsg("你好！");
 		} else if (myth_pwd == "再见"){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
-		} else if (myth_pwd.includes("杀")){
-			// 主语是谁?
-			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){
-				if (myth_pwd[i] == "我") {createNewMsg("……? 补药杀啊啊"); break}
-				else if (subject == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
-				if (!i) createNewMsg("不是发生什么了.?");
-			}
+		} else if (["有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
+			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
+			what2 = 1;
+		} else if (["点别的", "别的"].includes(myth_pwd)){
+			if (!what2) createNewMsg("……别的? 别的什么");
+			else if (what2 == 1){createNewMsg("哇你真的是听话的人类! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!"); what2 = 2;}
+			else createNewMsg("快点输入吧听话的人类.");
 		} else if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
 		} else if ((myth_pwd.substring(0, 2) == "我是" || myth_pwd.substring(0, 2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
@@ -86,14 +82,27 @@ function judgement(){
 			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
 		} else if (myth_pwd == "你是谁"){
 			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>"));
+		// includes
+		} else if (myth_pwd.includes("杀")){
+			// 主语是谁?
+			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){
+				if (myth_pwd[i] == "我") {createNewMsg("……? 补药杀啊啊"); break}
+				else if (subject == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
+				if (!i) createNewMsg("不是发生什么了.?");
+			}
+		} else if (myth_pwd.includes("彩蛋")){
+			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的人类有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
+		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
+			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
 		} else if (!regEng.test(myth_pwd)){
 			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
 			what3 = true;
 		} else { // 你在说什么我听不懂
-			if (!what3) createNewMsg("抱歉我暂时还听不懂 '" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
+			if (!what3) createNewMsg("抱歉我暂时还听不懂'" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
 			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what3 = false;}
 		}
 	}
+	document.getElementById("msgs").scrollTop = msgs.scrollHeight;
 	return "哇你是能看到这条消息的人类！";
 }
 
@@ -114,14 +123,13 @@ function createNewMsg(x){
 	msg[ordmsg].setAttribute("id", "msg_" + ordmsg);
 	msg[ordmsg].setAttribute("class", "showing_text_effect");
 	msg[ordmsg].innerHTML = x;
-	document.body.appendChild(msg[ordmsg]);
-	window.scrollTo(0, document.documentElement.scrollHeight);
+	document.getElementById("msgs").appendChild(msg[ordmsg]);
 	ordmsg++;
 }
 
 function next_phase(){
-	var d1 = document.createElement("div");
-	var c1 = document.createElement("h2");
+	d1 = document.createElement("div");
+	c1 = document.createElement("h2");
 	c1.innerHTML = "!你竟然输入了我的密文!";
 	d1.setAttribute("class", "p1_text_effect");
 	d1.appendChild(c1);
