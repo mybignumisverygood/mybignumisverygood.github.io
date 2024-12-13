@@ -1,4 +1,5 @@
 .showing_text_effect {
+	font-family: "Microsoft YaHei", 微软雅黑;
 	animation: showing_text_effect 2s both;
 	font-size:20px;
 }
