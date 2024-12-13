@@ -106,7 +106,7 @@ function judgement(){
 				if (!i) createNewMsg("不是发生什么了.?");
 			}
 		} else if (myth_pwd.includes("死")){
-			createNewMsg("……提醒你哦, 生与死的话题还是要好好考虑呢, 而且我可是一个很抠字眼的旁白…");
+			createNewMsg("……提醒你哦, 生与死的话题还是要好好考虑呢, 而且我可是一个很抠字眼的…");
 		} else if (myth_pwd.includes("彩蛋")){
 			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的人类有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
