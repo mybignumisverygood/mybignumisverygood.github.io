@@ -3,7 +3,8 @@ var ordmsg = f12 = 0; // 信息序号; 按 f12 的次数
 var your_name; // 你的名字是……?
 var what1 = false; // 我又怎么了?
 var what2 = 0; // 人类的听话程度
-var what3 = false; // 你在说什么我听不懂
+var what3 = 0; // 人类的伤心程度
+var what4 = false; // 你在说什么我听不懂
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -35,8 +36,9 @@ function judgement(){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
-		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵";
+		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
+		var ordmsg_ = ordmsg;
 		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
@@ -58,6 +60,10 @@ function judgement(){
 		} if (myth_pwd == "再见"){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
+		} if (myth_pwd == "我是谁"){
+			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
+		} if (myth_pwd == "你是谁"){
+			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>"));
 		} if (["有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
 			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
 			what2 = 1;
@@ -69,13 +75,16 @@ function judgement(){
 			if (what2 < 3) createNewMsg("什么……? 你是听话的人类吗!");
 			else if(what2 == 3) createNewMsg("……人类你是不是有点过于听话了, 快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'!");
 			else createNewMsg("快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧…… 不要再这样了w");
+		} if (/^(w|呜)+$/.test(myth_pwd)){
+			createNewMsg(["……怎么了人类 补药哭啊啊啊", "你你你你还好吗…", "不过人类就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<font style = 'color : grey;  opacity: 0.5'>呜呜呜呜……</font>"][Math.min(what3, 5)]);
+			what3++;
 		} if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
 		} if (["你在干嘛", "你在干什么", "你干什么"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
 		} 
 		// 全等完
-		  else if (myth_pwd.substr(-1) == "吗"){
+		if (myth_pwd.substr(-1) == "吗"){
 			createNewMsg("我不知道! 带'吗'的我统统回答我不知道!");
 		} else if ((myth_pwd.substring(0, 2) == "我是" || myth_pwd.substring(0, 2) == "我叫") && myth_pwd.slice(2).substring(0,1) != "谁"){
 			// 自我介绍
@@ -89,16 +98,18 @@ function judgement(){
 			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/");
 			else if (your_name == "") createNewMsg("嗯……你是什么……?");
 			else if (!k1) createNewMsg("你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/");
-		} else if (myth_pwd == "我是谁"){
-			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
-		} else if (myth_pwd == "你是谁"){
-			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>"));
-		// includes
 		} else if (myth_pwd.includes("杀")){
 			// 主语是谁?
 			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){
 				if (myth_pwd[i] == "我") {createNewMsg("……? 补药杀啊啊"); break}
-				else if (subject == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
+				else if (myth_pwd[i] == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
+				if (!i) createNewMsg("不是发生什么了.?");
+			}
+		} else if (myth_pwd.includes("死")){
+			// 主语是谁?
+			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){
+				if (myth_pwd[i] == "我") {createNewMsg("……? 补药杀啊啊"); break}
+				else if (myth_pwd[i] == "你") {createNewMsg("……这种事情不要拿我当主语啊啊"); break;}
 				if (!i) createNewMsg("不是发生什么了.?");
 			}
 		} else if (myth_pwd.includes("彩蛋")){
@@ -117,12 +128,12 @@ function judgement(){
 				else if (objectLove == "你") createNewMsg("是的呢！ 我" + loveOrLove + "我自己, 你也要" + loveOrLove + "你自己哦");
 				else createNewMsg("……你说什么?");
 			}
-		} else if (!regEng.test(myth_pwd)){
+		} else if (!/^(w|呜)+$/.test(myth_pwd) && !regEng.test(myth_pwd)){
 			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
-			what3 = true;
-		} else { // 你在说什么我听不懂
-			if (!what3) createNewMsg("抱歉我暂时还听不懂'" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
-			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what3 = false;}
+			what4 = true;
+		} if(ordmsg == ordmsg_){ // 你在说什么我听不懂
+			if (!what4) createNewMsg("抱歉我暂时还听不懂'" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
+			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what4 = false;}
 		}
 	}
 	document.getElementById("msgs").scrollTop = msgs.scrollHeight;
