@@ -1,10 +1,14 @@
 var msg = []; // 我说的话
-var ordmsg = f12 = 0; // 信息序号; 按 f12 的次数
+var ordmsg = f12 = 0; // 信息序号; 按 f12 的次数;
 var your_name; // 你的名字是……?
 var what1 = false; // 我又怎么了?
 var what2 = 0; // 人类的听话程度
 var what3 = 0; // 人类的伤心程度
 var what4 = false; // 你在说什么我听不懂
+
+var meets = 1; // 见面次数
+var h = [true, true]; // 要听我说完话开场白哦…
+var h1 = [false, false]; // 急躁次数记录表
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -26,8 +30,27 @@ document.onkeydown = function(event) {
 };
 
 document.addEventListener('keydown', function(event){
-	return event.keyCode != 123 || (event.returnValue = false)
+	return event.keyCode != 123 || (event.returnValue = false);
 });
+
+window.onbeforeunload = function() {
+	save();
+};
+
+function hajimete(){
+	if(meets == 1){
+		h[0] = false;
+		setTimeout("createNewMsg('初次见面的人类初次见面, <font color=\"#FC6\">我</font>是这个网站里的旁白!');", 4000);
+		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
+		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h[0] = true;", 8000);
+	}
+	if(meets == 2){
+		h[1] = false;
+		setTimeout("createNewMsg('你好人类, 又见面了!');", 4000);
+		setTimeout("createNewMsg('这是我们第 2 次见面呢, 很高兴你又来我这里了/');", 6000);
+		setTimeout("createNewMsg('这次也要多解锁些对话哦, 再见!'); h[1] = true;", 8000);
+	}
+}
 
 function judgement(){
 	myth_pwd = document.getElementById("pwd").value;
@@ -35,14 +58,16 @@ function judgement(){
 	if(myth_pwd == "3yAG7x=="){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
-		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界彡犭乄丶", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
+		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
-		var ordmsg_ = ordmsg;
+		var ordtmp = ordmsg;
 		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
+		if (!h[0]) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww"); h1[0] = true; return ;}
+		if (!h[1]) {createNewMsg(!h1[0] ? "先听我说完开场白好吗……?" : "又着急…… 补药这么着急啊啊!"); h1[1] = true; return ;}
 		if (myth_pwd.length > 50){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
 			if(what2 == 11) {createNewMsg("你是既听话又有毅力的人类! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
@@ -56,15 +81,15 @@ function judgement(){
 			createNewMsg("我……! " + (what1 ? "又" : "") + "怎么了吗?");
 			what1 = true;
 		} if (myth_pwd == "你好"){
-			createNewMsg("你好！");
+			createNewMsg("你好!");
 		} if (myth_pwd == "再见"){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
-		} if (myth_pwd == "我是谁"){
+		} if (["我是谁", "我叫什么"].includes(myth_pwd)){
 			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
-		} if (myth_pwd == "你是谁"){
-			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>"));
-		} if (["有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
+		} if (["你是谁", "你叫什么"].includes(myth_pwd)){
+			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>") + ", 但这些都不是真的<font color='#FC6'>'我'</font>哦…!");
+		} if (["有什么东西都可以输进去", "有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
 			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
 			what2 = 1;
 		} if (["点别的", "别的"].includes(myth_pwd)){
@@ -72,8 +97,8 @@ function judgement(){
 			else if (what2 == 1){createNewMsg("哇你真的是听话的人类! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!"); what2 = 2;}
 			else createNewMsg("快点输入吧听话的人类.");
 		} if (myth_pwd == "吧听话的人类"){
-			if (what2 < 3) createNewMsg("什么……? 你是听话的人类吗!");
-			else if(what2 == 3) createNewMsg("……人类你是不是有点过于听话了, 快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'!");
+			if (what2 < 2) createNewMsg("什么……? 你是听话的人类吗!");
+			else if(what2 == 2) createNewMsg("……人类你是不是有点过于听话了, 快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'!");
 			else createNewMsg("快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧…… 不要再这样了w");
 		} if (/^(w|呜)+$/.test(myth_pwd)){
 			createNewMsg(["……怎么了人类 补药哭啊啊啊", "你你你你还好吗…", "不过人类就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<font style = 'color : grey;  opacity: 0.5'>呜呜呜呜……</font>"][Math.min(what3, 5)]);
@@ -120,18 +145,20 @@ function judgement(){
 				else createNewMsg("……你说你" + loveOrLove + "谁……?");
 			} else if (subjectLove == "你"){
 				if (objectLove == "我") createNewMsg("<font color='#FFC0CB'>……我可没有……不要污蔑人呢……</font>");
-				else if (objectLove == "你") createNewMsg("是的呢！ 我" + loveOrLove + "我自己, 你也要" + loveOrLove + "你自己哦");
+				else if (objectLove == "你") createNewMsg("是的呢! 我" + loveOrLove + "我自己, 你也要" + loveOrLove + "你自己哦");
 				else createNewMsg("……你说什么?");
+			} else {
+				createNewMsg("……你说什么?");
 			}
-		} else if (!/^(w|呜)+$/.test(myth_pwd) && !regEng.test(myth_pwd)){
+		} else if (ordtmp == ordmsg && !regEng.test(myth_pwd)){
 			createNewMsg("那个……不是中文的话我是看不懂的, 要不还是说中文吧");
 			what4 = true;
-		} if(ordmsg == ordmsg_){ // 你在说什么我听不懂
+		} if (ordtmp == ordmsg){ // 你在说什么我听不懂
 			if (!what4) createNewMsg("抱歉我暂时还听不懂'" + myth_pwd + "'……/ 其实算上这个我总共只有 30 个对话呢");
 			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what4 = false;}
 		}
 	}
-	document.getElementById("msgs").scrollTop = msgs.scrollHeight;
+	document.getElementById("msgs").scrollTop = msgs.scrollHeight; // 自动滚到到底部
 	return "哇你是能看到这条消息的人类！";
 }
 
@@ -167,3 +194,29 @@ function next_phase(){
 	document.body.appendChild(d1);
 	return ;
 }
+
+// 保存与加载
+
+function save(){
+	narr = {meets : meets, h1 : h1};
+	localStorage.setItem("narr", JSON.stringify(narr));
+}
+
+
+function load(){
+	var saves = JSON.parse(localStorage.getItem("narr"));
+	if (saves !== null){
+		narr = {meets : meets, h1 : h1};
+		meets = saves.meets + 1;
+		h1 = saves.h1;
+	} else save();
+	hajimete();
+}
+
+function reset(){
+	meets = 0;
+	h1 = [false, false];
+	save();
+}
+
+load();
