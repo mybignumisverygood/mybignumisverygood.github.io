@@ -217,7 +217,6 @@ function next_phase(){
 function save(){
 	narr = {meets : meets, h1 : h1};
 	localStorage.setItem("narr", btoa(JSON.stringify(narr)));
-	alert("19")
 }
 
 
@@ -235,6 +234,12 @@ function reset(){
 	meets = 0;
 	h1 = [];
 	save();
+}
+
+function n(){
+	meets++;
+	save();
+	alert(atob(localStorage.getItem("narr")));
 }
 
 load();
