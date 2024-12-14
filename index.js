@@ -38,6 +38,7 @@ window.onbeforeunload = function() {
 };
 
 function hajimete(){
+	alert(meets);
 	if(meets == 1){
 		setTimeout("createNewMsg('初次见面的人类初次见面, <font color=\"#FC6\">我</font>是这个网站里的旁白!');", 4000);
 		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
