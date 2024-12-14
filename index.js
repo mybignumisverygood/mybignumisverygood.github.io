@@ -7,8 +7,8 @@ var what3 = 0; // 人类的伤心程度
 var what4 = false; // 你在说什么我听不懂
 
 var meets = 1; // 见面次数
-var h = [true, true]; // 要听我说完话开场白哦…
-var h1 = [false, false]; // 急躁次数记录表
+var h = 0; // 要听我说完开场白哦…
+var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -39,17 +39,20 @@ window.onbeforeunload = function() {
 
 function hajimete(){
 	if(meets == 1){
-		h[0] = false;
 		setTimeout("createNewMsg('初次见面的人类初次见面, <font color=\"#FC6\">我</font>是这个网站里的旁白!');", 4000);
 		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
-		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h[0] = true;", 8000);
+		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1", 8000);
+		if (!h1.length) h1.push(0);
+		return ;
 	}
-	if(meets == 2){
-		h[1] = false;
-		setTimeout("createNewMsg('你好人类, 又见面了!');", 4000);
-		setTimeout("createNewMsg('这是我们第 2 次见面呢, 很高兴你又来我这里了/');", 6000);
-		setTimeout("createNewMsg('这次也要多解锁些对话哦, 再见!'); h[1] = true;", 8000);
-	}
+	setTimeout("createNewMsg('你好人类, 又见面了!');", 4000);
+	setTimeout("createNewMsg('这是我们第 ' + meets + ' 次见面呢, 很高兴你又来我这里了/');", 6000);
+	const hmsgs = ['这次也要多解锁写对话哦, 再见!',
+	'……你会再来这里多少次呢?',
+	'你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……',
+	'(接上次)……但是我并不讨厌这样呢',
+	];
+	setTimeout("createNewMsg(hmsgs[meets - 2]); h = true; if (h1.length != meets) h1.push(0);", 8000);
 }
 
 function judgement(){
@@ -66,8 +69,16 @@ function judgement(){
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
-		if (!h[0]) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww"); h1[0] = true; return ;}
-		if (!h[1]) {createNewMsg(!h1[0] ? "先听我说完开场白好吗……?" : "又着急…… 补药这么着急啊啊!"); h1[1] = true; return ;}
+		if (!h){
+			if (h1.length != meets) h1.push(1);
+			var sumh1 = 0;
+			for (let i = 0; i < meets; i++) sumh1 += h1[i];
+			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
+			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
+			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
+			else createNewMsg("……你已经急了 " + sumh1 + "次了…… 你是没有耐心的人类!!! 虽然又被你触发了一个对话……");
+			return ;
+		}
 		if (myth_pwd.length > 50){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
 			if(what2 == 11) {createNewMsg("你是既听话又有毅力的人类! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
@@ -215,7 +226,7 @@ function load(){
 
 function reset(){
 	meets = 0;
-	h1 = [false, false];
+	h1 = [];
 	save();
 }
 
