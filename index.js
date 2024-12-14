@@ -239,7 +239,7 @@ function reset(){
 function n(){
 	meets++;
 	save();
-	alert(atob(localStorage.getItem("narr")));
+	if(save === null) alert("191");
 }
 
 load();
