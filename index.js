@@ -9,6 +9,7 @@ var what4 = false; // 你在说什么我听不懂
 var meets = 1; // 见面次数
 var h = 0; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
+var pron = "人类"; // 人类喜欢的称呼……
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -44,7 +45,7 @@ function hajimete(){
 		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1; if (!h1.length) h1.push(0);", 8000);
 		return ;
 	}
-	setTimeout("createNewMsg('你好人类, 又见面了!');", 4000);
+	setTimeout("createNewMsg('你好' + pron + ', 又见面了!');", 4000);
 	setTimeout("createNewMsg('这是我们第 ' + meets + ' 次见面呢, 很高兴你又来我这里了/');", 6000);
 	hmsgs = ['这次也要多解锁新对话哦, 再见!',
 	'……你会再来这里多少次呢?',
@@ -56,7 +57,9 @@ function hajimete(){
 	'……',
 	'……啊抱歉, 前两次我是在思考而已…… 话说你不会在一直刷新来看我的开场白吧……? 不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……',
 	'突然很好奇, 你是怎么知道这个网站的呢? 你可以进 note.ms/11stnarr 告诉我哦, 看到了的话我一定会回复你的! 记得要署名——',
-	'似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?'];
+	'似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?',
+	"人类! 你觉得我管你叫人类生硬吗……? 我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢…… 啊啊对了人类! 你喜欢我怎么叫你呢?",
+	""];
 	setTimeout("createNewMsg(hmsgs[meets - 2]); h = true; if (h1.length != meets) h1.push(0);", 8000);
 }
 
@@ -74,6 +77,14 @@ function judgement(){
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
+		if (meets == 13 && ordmsg == 3){
+			pron = myth_pwd;
+			createNewMsg("好的! 那我以后就叫你" + pron + "了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+		}
+		if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
+			pron = myth_pwd.slice(6);
+			createNewMsg("好的! 那我以后就改叫你" + pron + "了! 如果你还想让我改口的话可以继续说 '我喜欢你叫我xxx' 哦!");
+		}
 		if (!h){
 			if (h1.length != meets) h1.push(1);
 			var sumh1 = 0;
@@ -81,12 +92,12 @@ function judgement(){
 			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
 			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
 			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
-			else createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的人类!!! 虽然又被你触发了一个对话……");
+			else createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
 			return ;
 		}
 		if (myth_pwd.length > 50){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
-			if(what2 == 11) {createNewMsg("你是既听话又有毅力的人类! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
+			if(what2 == 11) {createNewMsg("你是既听话又有毅力的" + pron + "! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
 			else createNewMsg("你说的太长了我听不懂啊啊/ (" + myth_pwd.length + "个字符)");
 		} if (!myth_pwd){
 			createNewMsg("你说了什么吗……?");
@@ -106,18 +117,18 @@ function judgement(){
 		} if (["你是谁", "你叫什么"].includes(myth_pwd)){
 			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>") + ", 但这些都不是真的<font color='#FC6'>'我'</font>哦…!");
 		} if (["有什么东西都可以输进去", "有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
-			createNewMsg("好听话的人类呢./ 但我们是不是可以输点别的");
+			createNewMsg("好听话的" + pron + "呢./ 但我们是不是可以输点别的");
 			what2 = 1;
 		} if (["点别的", "别的"].includes(myth_pwd)){
 			if (!what2) createNewMsg("……别的? 别的什么");
-			else if (what2 == 1){createNewMsg("哇你真的是听话的人类! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!"); what2 = 2;}
-			else createNewMsg("快点输入吧听话的人类.");
-		} if (myth_pwd == "吧听话的人类"){
-			if (what2 < 2) createNewMsg("什么……? 你是听话的人类吗!");
-			else if(what2 == 2) createNewMsg("……人类你是不是有点过于听话了, 快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'!");
+			else if (what2 == 1){createNewMsg("哇你真的是听话的" + pron + "! 那现在就输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧!"); what2 = 2;}
+			else createNewMsg("快点输入吧听话的" + pron + ".");
+		} if (myth_pwd == "吧听话的" + pron){
+			if (what2 < 2) createNewMsg("什么……? 你是听话的" + pron + "吗!");
+			else if(what2 == 2) createNewMsg("……" + pron + "你是不是有点过于听话了, 快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'!");
 			else createNewMsg("快点输入'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq'吧…… 不要再这样了w");
 		} if (/^(w|呜)+$/.test(myth_pwd)){
-			createNewMsg(["……怎么了人类 补药哭啊啊啊", "你你你你还好吗…", "不过人类就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<font style = 'color : grey;  opacity: 0.5'>呜呜呜呜……</font>"][Math.min(what3, 5)]);
+			createNewMsg(["……怎么了" + pron + " 补药哭啊啊啊", "你你你你还好吗…", "不过" + pron + "就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<font style = 'color : grey;  opacity: 0.5'>呜呜呜呜……</font>"][Math.min(what3, 5)]);
 			what3++;
 		} if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
@@ -149,7 +160,7 @@ function judgement(){
 		} else if (myth_pwd.includes("死")){
 			createNewMsg("……提醒你哦, 生与死的话题还是要好好考虑呢, 而且我可是很抠字眼的… 总之千万别死!");
 		} else if (myth_pwd.includes("彩蛋")){
-			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的人类有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
+			createNewMsg("彩蛋……? 是有的, 但是得看你的聪明程度了, 听话又有毅力的" + pron + "有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
 			var loveOrLove = myth_pwd.includes("喜欢") ? "喜欢" : "爱";
 			var startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
@@ -215,17 +226,22 @@ function next_phase(){
 // 保存与加载
 
 function save(){
-	narr = {meets : meets, h1 : h1};
-	localStorage.setItem("narr", btoa(JSON.stringify(narr)));
+	init();
+	localStorage.setItem("narr", JSON.stringify(narr));
 }
 
+function init(){
+	narr = {meets : meets, h1 : h1, pron: pron, your_name : your_name};
+}
 
 function load(){
-	saves = JSON.parse(atob(localStorage.getItem("narr")));
+	saves = JSON.parse(localStorage.getItem("narr"));
 	if (saves !== null){
-		narr = {meets : meets, h1 : h1};
+		init();
 		meets = saves.meets + 1;
 		h1 = saves.h1;
+		pron = saves.pron;
+		your_name = saves.your_name;
 		save();
 	}
 	hajimete();
@@ -234,6 +250,7 @@ function load(){
 function reset(){
 	meets = 0;
 	h1 = [];
+	pron = "人类";
 	save();
 }
 
