@@ -33,9 +33,9 @@ document.addEventListener('keydown', function(event){
 	return event.keyCode != 123 || (event.returnValue = false);
 });
 
-window.onbeforeunload = function() {
+/*window.onbeforeunload = function() {
 	save();
-};
+};*/
 
 function hajimete(){
 	alert(meets);
@@ -197,6 +197,7 @@ function createNewMsg(x){
 	msg[ordmsg].setAttribute("class", "showing_text_effect");
 	msg[ordmsg].innerHTML = x;
 	document.getElementById("msgs").appendChild(msg[ordmsg]);
+	save();
 	ordmsg++;
 }
 
@@ -226,7 +227,8 @@ function load(){
 		narr = {meets : meets, h1 : h1};
 		meets = saves.meets + 1;
 		h1 = saves.h1;
-	} else {alert("1");save();}
+		save();
+	}
 	hajimete();
 }
 
@@ -234,13 +236,6 @@ function reset(){
 	meets = 0;
 	h1 = [];
 	save();
-}
-
-function n(){
-	meets++;
-	save();
-	if(saves === null) alert("191");
-	else {alert(JSON.stringify(saves))};
 }
 
 load();
