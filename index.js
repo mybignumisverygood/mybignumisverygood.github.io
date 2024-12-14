@@ -239,8 +239,8 @@ function reset(){
 function n(){
 	meets++;
 	save();
-	if(save === null) alert("191");
-	else alert("919");
+	if(saves === null) alert("191");
+	else {alert(saves)};
 }
 
 load();
