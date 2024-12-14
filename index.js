@@ -215,12 +215,12 @@ function next_phase(){
 
 function save(){
 	narr = {meets : meets, h1 : h1};
-	localStorage.setItem("narr", JSON.stringify(narr));
+	localStorage.setItem("narr", btoa(JSON.stringify(narr)));
 }
 
 
 function load(){
-	var saves = JSON.parse(localStorage.getItem("narr"));
+	var saves = JSON.parse(atob(localStorage.getItem("narr")));
 	if (saves !== null){
 		narr = {meets : meets, h1 : h1};
 		meets = saves.meets + 1;
