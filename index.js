@@ -56,7 +56,7 @@ function hajimete(){
 	'……',
 	'……啊抱歉, 前两次我是在思考而已…… 话说你不会在一直刷新来看我的开场白吧……? 不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……',
 	'突然很好奇, 你是怎么知道这个网站的呢? 你可以进 note.ms/11stnarr 告诉我哦, 看到了的话我一定会回复你的! 记得要署名——',
-	''];
+	'似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?'];
 	setTimeout("createNewMsg(hmsgs[meets - 2]); h = true; if (h1.length != meets) h1.push(0);", 8000);
 }
 
@@ -77,11 +77,11 @@ function judgement(){
 		if (!h){
 			if (h1.length != meets) h1.push(1);
 			var sumh1 = 0;
-			for (let i = 0; i < meets; i++) sumh1 += h1[i];
+			for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
 			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
 			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
 			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
-			else createNewMsg("……你已经急了 " + sumh1 + "次了…… 你是没有耐心的人类!!! 虽然又被你触发了一个对话……");
+			else createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的人类!!! 虽然又被你触发了一个对话……");
 			return ;
 		}
 		if (myth_pwd.length > 50){
