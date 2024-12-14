@@ -217,6 +217,7 @@ function next_phase(){
 function save(){
 	narr = {meets : meets, h1 : h1};
 	localStorage.setItem("narr", btoa(JSON.stringify(narr)));
+	alert("19")
 }
 
 
