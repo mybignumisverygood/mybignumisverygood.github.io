@@ -41,13 +41,12 @@ function hajimete(){
 	if(meets == 1){
 		setTimeout("createNewMsg('初次见面的人类初次见面, <font color=\"#FC6\">我</font>是这个网站里的旁白!');", 4000);
 		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
-		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1", 8000);
-		if (!h1.length) h1.push(0);
+		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1; if (!h1.length) h1.push(0);", 8000);
 		return ;
 	}
 	setTimeout("createNewMsg('你好人类, 又见面了!');", 4000);
 	setTimeout("createNewMsg('这是我们第 ' + meets + ' 次见面呢, 很高兴你又来我这里了/');", 6000);
-	const hmsgs = ['这次也要多解锁写对话哦, 再见!',
+	hmsgs = ['这次也要多解锁新对话哦, 再见!',
 	'……你会再来这里多少次呢?',
 	'你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……',
 	'(接上次)……但是我并不讨厌这样呢',
