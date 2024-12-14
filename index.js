@@ -221,7 +221,7 @@ function save(){
 
 
 function load(){
-	var saves = JSON.parse(atob(localStorage.getItem("narr")));
+	saves = JSON.parse(atob(localStorage.getItem("narr")));
 	if (saves !== null){
 		narr = {meets : meets, h1 : h1};
 		meets = saves.meets + 1;
@@ -240,7 +240,7 @@ function n(){
 	meets++;
 	save();
 	if(saves === null) alert("191");
-	else {alert(saves)};
+	else {alert(JSON.stringify(saves))};
 }
 
 load();
