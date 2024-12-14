@@ -225,7 +225,7 @@ function load(){
 		narr = {meets : meets, h1 : h1};
 		meets = saves.meets + 1;
 		h1 = saves.h1;
-	} else save();
+	} else {alert("1");save();}
 	hajimete();
 }
 
