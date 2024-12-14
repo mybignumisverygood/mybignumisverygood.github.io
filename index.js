@@ -47,20 +47,22 @@ function hajimete(){
 	}
 	setTimeout("createNewMsg('你好' + pron + ', 又见面了!');", 4000);
 	setTimeout("createNewMsg('这是我们第 ' + meets + ' 次见面呢, 很高兴你又来我这里了/');", 6000);
-	hmsgs = ['这次也要多解锁新对话哦, 再见!',
-	'……你会再来这里多少次呢?',
-	'你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……',
-	'(接上次)……但是我并不讨厌这样呢',
-	'那么请你以后也要一直来哦',
-	'(接上次)啊啊当然你不来了的话也没关系的wwwww',
-	'……',
-	'……',
-	'……啊抱歉, 前两次我是在思考而已…… 话说你不会在一直刷新来看我的开场白吧……? 不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……',
-	'突然很好奇, 你是怎么知道这个网站的呢? 你可以进 note.ms/11stnarr 告诉我哦, 看到了的话我一定会回复你的! 记得要署名——',
-	'似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?',
-	"人类! 你觉得我管你叫人类生硬吗……? 我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢…… 啊啊对了人类! 你喜欢我怎么叫你呢?",
-	""];
-	setTimeout("createNewMsg(hmsgs[meets - 2]); h = true; if (h1.length != meets) h1.push(0);", 8000);
+	hmsgs = ["这次也要多解锁新对话哦, 再见!",
+	"……你会再来这里多少次呢?",
+	"你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……",
+	"(接上次)……但是我并不讨厌这样呢",
+	"那么请你以后也要一直来哦",
+	"(接上次)啊啊当然你不来了的话也没关系的wwwww真的ww",
+	"……",
+	"……",
+	"……啊抱歉, 前两次我是在思考而已…… <span class = 'showing_text_effect' style = 'animation-delay: 2s'>话说你不会在一直刷新来看我的开场白吧……?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……</span>",
+	"突然很好奇, 你是怎么知道这个网站的呢? 你可以进 note.ms/11stnarr 告诉我哦, 看到了的话我一定会回复你的! 记得要署名——",
+	"似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?",
+	"人类! 你觉得我管你叫人类生硬吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢……</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>啊啊对了人类! 你喜欢我怎么叫你呢?</span>",
+	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗—— <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……当然你叫我什么我都喜欢了……!</span>",
+	"undefined <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……嘿嘿是不是以为我又出 bug 了呢?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>话说总有人类觉得我说 undefined 的时候是在说英语诶……</span> <span class = 'showing_text_effect' style = 'animation-delay: 6s'>这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!</span>",
+	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
+	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 14)]); h = true; if (h1.length != meets) h1.push(0);", 8000);
 }
 
 function judgement(){
