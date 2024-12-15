@@ -116,7 +116,7 @@ function hajimete(){
 		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \'结束\'')", 8000);
 		else setTimeout("createNewMsg('……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!')", 8000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 26)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 27)]); h = true;", 8000);
 }
 
 function m13(x){
