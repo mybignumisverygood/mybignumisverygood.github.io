@@ -185,7 +185,7 @@ function judgement(){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
 		} if (["我是谁", "我叫什么"].includes(myth_pwd)){
-			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 不过你可以告诉我");
+			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 我是把你的称呼和你的名字分开记的~ 不过你可以告诉我!");
 		} if (["你是谁", "你叫什么"].includes(myth_pwd)){
 			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>") + ", 但这些都不是真的<font color='#FC6'>'我'</font>哦…!");
 		} if (["有什么东西都可以输进去", "有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
@@ -216,7 +216,7 @@ function judgement(){
 			if (your_name){ // 你已经有名字了啊……
 				if (your_name == myth_pwd.slice(2)){createNewMsg("我知道呢, 你不是说过吗?"); k1 = true;}
 				else createNewMsg("哇你改名了吗? 总之我会记住这个最新的名字的——");
-			}
+			} 
 			your_name = myth_pwd.slice(2); // 你的名字!
 			if (plantheases(your_name)) createNewMsg(plantheases(your_name));
 			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和我一样诶! 我记住了呢! 你现在可以问问我你是谁/");
