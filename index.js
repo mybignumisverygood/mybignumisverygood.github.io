@@ -98,27 +98,29 @@ function judgement(){
 				if (myth_pwd.includes("不是")) createNewMsg("哇我就知道不是你—— 你是善良的人类!");
 				else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true;}
 				else createNewMsg("……算了我就当那个人类不是你吧w");
+				return ;
 			}
-			
-			if (meets == 13){
+			else if (meets == 13){
 				pron = myth_pwd;
 				if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 				else if (pron == "老公" || pron == "老婆"){
 					createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
 					setTimeout("createNewMsg('<font color=\"#FFC0CB\">虽然我让你自己选了但是这个也太……w</font>')",2000);
-					setTimeout("createNewMsg('<font color=\"#FFC0CB\">' + '……那我以后就叫你 ' + pron + ' 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>')", 4000);
+					setTimeout("createNewMsg('<font color=\"#FFC0CB\">' + '……那我以后就叫你 ' + pron + ' 了…… 如果你想让我改口就跟我说 \'我喜欢你叫我xxx\'!!</font>')", 4000);
 				}
 				else createNewMsg("好的! 那我以后就叫你" + pron + "了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+				return ;
 			}	
-			if (meets == 16){
+			else if (meets == 16){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what6 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w <span class = 'showing_text_effect' style = 'animation-delay: 2s'>没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!</span>");
+				return ;
 			}
-			if (meets == 18){
+			else if (meets == 18){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what7 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
+				return ;
 			}
-			return ;
 		}
 		if (what5){
 			if (myth_pwd.includes("不是")) createNewMsg("……吓死我了w下次补药这样了");
