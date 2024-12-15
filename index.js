@@ -13,7 +13,7 @@ var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
 var m16 = m18 = false; // 骗人
 
-var returm = true; // return 不 return?
+var returm = false; // return 不 return?
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -96,11 +96,13 @@ function judgement(){
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
 		if(ordmsg == 3){
+			returm = true;
 			if (meets == 12){
 				if (myth_pwd.includes("不是")) createNewMsg("哇我就知道不是你—— 你是善良的人类!");
 				else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true;}
 				else createNewMsg("……算了我就当那个人类不是你吧w");
 			} else if (meets == 13){
+				if (myth_pwd == pron){createNewMsg("我知道呢…… 我还是会叫你" + pron + "的~"); return ;}
 				pron = myth_pwd;
 				if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 				else if (pron == "老公" || pron == "老婆"){
@@ -120,27 +122,24 @@ function judgement(){
 			}
 		}
 		if (returm) {returm = false; return ;}
+		returm = true;
 		if (what5){
 			if (myth_pwd.includes("不是")) createNewMsg("……吓死我了w下次补药这样了");
 			else if (myth_pwd.includes("是")) {createNewMsg("……恶"); setInterval("window.open('', '_self').close();", 1500);}
 			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
 			what5 = false;
-		}
-		if (what6){
+		} else if (what6){
 			if (myth_pwd.includes("在网上爬一些语料库")) createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what6 = false;
-		}
-		if (what7){
+		} else if (what7){
 			if (myth_pwd.includes("作者用来放某个人的图片")) createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
 			what7 = false;
-		}
-		if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
+		} else if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
 			pron = myth_pwd.slice(6);
 			createNewMsg("好的! 那我以后就改叫你" + pron + "了! 如果你还想让我改口的话可以继续说 '我喜欢你叫我xxx' 哦!");
-		}
-		if (!h){
+		} else if (!h){
 			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
 			var sumh1 = 0;
 			for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
@@ -150,7 +149,8 @@ function judgement(){
 			else if (sumh1 <= 10) createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
 			else if (sumh1 <= 100) createNewMsg("你已经急了 " + sumh1 + " 次了! 为什么你这么没有耐心啊ww虽然又被你触发了一个对话……");
 			else createNewMsg("你已经急了 " + sumh1 + " 次了. 算了你爱急就急吧w我不管你了.");
-		}
+		} else returm = false;
+		if (returm) {returm = false; return ;}
 		if (myth_pwd.length > 50){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
 			if(what2 == 11) {createNewMsg("你是既听话又有毅力的" + pron + "! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
