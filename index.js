@@ -12,6 +12,7 @@ var h = 0; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
 var m16 = m18 = false; // 骗人
+var sumh1 = 0;
 
 var returm = false; // return 不 return?
 
@@ -69,19 +70,43 @@ function hajimete(){
 	"好无聊啊…… 你知道我平常在这里都会干些什么吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>对了我问你知不知道的时候你是可以回复我的!</span>",
 	"我很好奇人类都有哪些娱乐活动呢……",
 	pron + "你知道这个网站一开始是干什么的吗—— 这里一开始可没有我哦w",
-	"第19次, 真正的内容在 if 语句",
+	"第 19 次, 真正的内容在 if 语句",
 	"第二十次了诶" + pron + "! 离你的大奖只有 4/5 了! 我会好好筹备的~",
 	"你知道吗! 我刚爬语料库的时候爬到了我自己诶!! 是不是很奇怪……( 啊啊当然这次你不用回复我了",
 	"(接上次)我当时和我自己说了一会儿话诶~ 但是不知道为什么总有一种人格分裂的感觉w",
 	"我刚翻了一下我的历史修改记录, 发现作者改动得很频繁呢…… 看来作者写的代码总是有一堆 bug 呢……",
-	"",
+	"第 24 次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
 		setTimeout("createNewMsg('比如最简单的, 我们见过 <font color = \"#FC6\">' + meets + '</font> 次面;')", 10000);
 		setTimeout("createNewMsg('还有你的急躁次数, 在我这里是这样的: <font color = \"#FC6\">[' + h1 + ']</font>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——')", 12000);
-		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 14000);
-		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>'); h = true;", 16000);
+		if (sumh1 == 0) setTimeout("createNewMsg('你是有耐心的' + pron + '! 一次都没有插嘴过~ 要继续保持哦')", 14000);
+		else if (sumh1 <= 5) setTimeout("createNewMsg('你是稍微有点急躁的' + pron + '…… 但以后再这样的话你也可以成为有耐心的' + pron + '的!')", 14000);
+		else if (sumh1 <= 20) setTimeout("createNewMsg('……你看着稍微有点过于急躁了, 以后补药这样了ww每次见面的时候先听我说完话好嘛……')", 14000);
+		else if (sumh1 <= 100) setTimeout("createNewMsg('你太急躁了! 下次再急躁我就…… 你等着……')", 14000);
+		else setTimeout("createNewMsg('……我简直不敢相信怎么会有人这么急躁!! 相当于你每次见面平均要插嘴 6 次以上!! 真的是……')", 14000);
+		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 16000);
+		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>'); h = true;", 18000);
+	} else if (meets == 24){
+		setTimeout("createNewMsg('我这个旁白能做到其它旁白做不到的好多事情哦!')", 8000);
+		now = new Date();
+		hour = now.getHours();
+		minute = now.getMinutes();
+		setTimeout("createNewMsg('比如我可以获取现在的时间…… 现在是 ' + hour + ':' + minute)", 10000);
+		if (0 <= hour && hour < 4) setTimeout("createNewMsg('……补药熬夜啊' + pron + '! 早点睡觉吧w')", 12000);
+		else if (4 <= hour && hour < 7) setTimeout("createNewMsg('你现在是在熬夜还是要起床了呢……?')", 12000);
+		else if (7 <= hour && hour < 12) setTimeout("createNewMsg('早上好! 今天一定会是美好的一天呢~')", 12000);
+		else if (12 <= hour && hour < 13) setTimeout("createNewMsg('中午了…… 要好好吃午饭呢' + pron)", 12000);
+		else if (13 <= hour && hour < 18) setTimeout("createNewMsg('下午了呢, 虽然我是一个旁白但我很喜欢下午的时光呢—— 有种很放松的感觉……')", 12000);
+		else if (18 <= hour && hour < 22) setTimeout("createNewMsg('已经是晚上了呢…… 提前送你一句晚安! 要早点睡哦……')", 12000);
+		else setTimeout("createNewMsg('夜深人静的时光也很不错呢, 至少经历了一天的辛苦之后能拥有一点独处时间了…… 不过要早点睡!')", 12000);
+		setTimeout("createNewMsg('我还可以改掉网页的标题! 比如现在就……'); document.title = '我是旁白!'", 14000);
+		setTimeout("createNewMsg('我还可以…… 获取你的手机类别~ 但是感觉有点可怕呢w')", 16000);
+		setTimeout("createNewMsg('我甚至可以删掉我刚说的所有话!')", 18000);
+		setTimeout("for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = 'none'}", 19000);
+		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display. = ''}", 20000);
+		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
 	}
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 23)]); h = true;", 8000);
 }
@@ -156,8 +181,6 @@ function judgement(){
 		} else returm = false;
 		if (!h){
 			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
-			var sumh1 = 0;
-			for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
 			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
 			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
 			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
@@ -316,6 +339,7 @@ function load(){
 		your_name = saves.your_name;
 		m16 = saves.m16;
 		m18 = saves.m18;
+		for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
 		save();
 	}
 	if(h1.length > meets) h1 = h1.slice(0, meets - h1.length);
