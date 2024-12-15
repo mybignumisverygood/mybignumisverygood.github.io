@@ -81,6 +81,19 @@ function hajimete(){
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 18)]); h = true;", 8000);
 }
 
+function m13(x){
+	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你" + pron + "的~"); return ;}
+	pron = x;
+	if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+	else if (pron == "老公" || pron == "老婆"){
+		createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
+		setTimeout(`createNewMsg("<font color='#FFC0CB'>虽然我让你自己选了但是这个也太……w</font>")`, 2000);
+		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
+	} else if (pron == "主人"){
+		createNewMsg("好的……! 那我以后就叫你<font color='#6CF'>主人</font>了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
+	}
+}
+
 function judgement(){
 	myth_pwd = document.getElementById("pwd").value;
 	console.log(myth_pwd);
@@ -102,17 +115,7 @@ function judgement(){
 				else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true;}
 				else createNewMsg("……算了我就当那个人类不是你吧w");
 			} else if (meets == 13){
-				if (myth_pwd == pron){createNewMsg("我知道呢…… 我还是会叫你" + pron + "的~"); return ;}
-				pron = myth_pwd;
-				if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
-				else if (pron == "老公" || pron == "老婆"){
-					createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
-					setTimeout(`createNewMsg("<font color='#FFC0CB'>虽然我让你自己选了但是这个也太……w</font>")`, 2000);
-					setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
-				} else if (pron == "主人"){
-					createNewMsg("好的……! 那我以后就叫你<font color='#6CF'>主人</font>了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
-				}
-				else createNewMsg("好的! 那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+				m13(myth_pwd);
 			} else if (meets == 16){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what6 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w <span class = 'showing_text_effect' style = 'animation-delay: 2s'>没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!</span>");
@@ -139,9 +142,9 @@ function judgement(){
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
 			what7 = false;
 		} else if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
-			pron = myth_pwd.slice(6);
-			createNewMsg("好的! 那我以后就改叫你" + pron + "了! 如果你还想让我改口的话可以继续说 '我喜欢你叫我xxx' 哦!");
-		} else if (!h){
+			m13(myth_pwd.slice(6));
+		} else returm = false;
+		if (!h){
 			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
 			var sumh1 = 0;
 			for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
@@ -151,7 +154,8 @@ function judgement(){
 			else if (sumh1 <= 10) createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
 			else if (sumh1 <= 100) createNewMsg("你已经急了 " + sumh1 + " 次了! 为什么你这么没有耐心啊ww虽然又被你触发了一个对话……");
 			else createNewMsg("你已经急了 " + sumh1 + " 次了. 算了你爱急就急吧w我不管你了.");
-		} else returm = false;
+			return ;
+		} 
 		if (returm) {returm = false; return ;}
 		if (myth_pwd.length > 50){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
