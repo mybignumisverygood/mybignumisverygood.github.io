@@ -5,6 +5,7 @@ var what1 = false; // 我又怎么了?
 var what2 = 0; // 人类的听话程度
 var what3 = 0; // 人类的伤心程度
 var what4 = false; // 你在说什么我听不懂
+var what5 = false; // 可怕的人类 审问开始.
 
 var meets = 1; // 见面次数
 var h = 0; // 要听我说完开场白哦…
@@ -62,8 +63,10 @@ function hajimete(){
 	"人类! 你觉得我管你叫人类生硬吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢……</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>啊啊对了人类! 你喜欢我怎么叫你呢?</span>",
 	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗—— <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……当然你叫我什么我都喜欢了……!</span>",
 	"undefined <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……嘿嘿是不是以为我又出 bug 了呢?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>话说总有人类觉得我说 undefined 的时候是在说英语诶……</span> <span class = 'showing_text_effect' style = 'animation-delay: 6s'>这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!</span>",
+	"好无聊啊…… 你知道我平常在这里都会干些什么吗.?",
+	"",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
-	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 14)]); h = true;", 8000);
+	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 15)]); h = true;", 8000);
 }
 
 function judgement(){
@@ -79,6 +82,17 @@ function judgement(){
 		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
+		}
+		if (meets == 12 && ordmsg == 3){
+			if (myth_pwd.includes("不是")) {createNewMsg("哇我就知道不是你—— 你是善良的人类!"); return ;}
+			else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true; return ;}
+		}
+		if(what5){
+			if (myth_pwd.includes("不是")) createNewMsg("……吓死我了w下次补药这样了");
+			else if (myth_pwd.includes("是")) {createNewMsg("……恶"); setInterval("window.open('', '_self').close();", 1500);}
+			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
+			what5 = false;
+			return ;
 		}
 		if (meets == 13 && ordmsg == 3){
 			pron = myth_pwd;
