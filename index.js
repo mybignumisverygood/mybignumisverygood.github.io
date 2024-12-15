@@ -4,13 +4,14 @@ var your_name; // 你的名字是……?
 var what1 = false; // 我又怎么了?
 var what2 = 0; // 人类的听话程度
 var what3 = 0; // 人类的伤心程度
-var what4 = false; // 你在说什么我听不懂
-var what5 = false; // 可怕的人类 审问开始.
+var what4 = what5 = what6 = what7 = false; 
+// 你在说什么我听不懂; 可怕的人类 审问开始; 测试人类有没有骗旁白(旁白的娱乐和网站原本是干什么的)
 
 var meets = 1; // 见面次数
 var h = 0; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
+var m16 = m18 = false; // 骗人
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -63,10 +64,19 @@ function hajimete(){
 	"人类! 你觉得我管你叫人类生硬吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢……</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>啊啊对了人类! 你喜欢我怎么叫你呢?</span>",
 	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗—— <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……当然你叫我什么我都喜欢了……!</span>",
 	"undefined <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……嘿嘿是不是以为我又出 bug 了呢?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>话说总有人类觉得我说 undefined 的时候是在说英语诶……</span> <span class = 'showing_text_effect' style = 'animation-delay: 6s'>这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!</span>",
-	"好无聊啊…… 你知道我平常在这里都会干些什么吗.?",
-	"",
+	"好无聊啊…… 你知道我平常在这里都会干些什么吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>对了我问你知不知道的时候你是可以回复我的!</span>",
+	"我很好奇人类都有哪些娱乐活动呢……",
+	pron + "你知道这个网站一开始是干什么的吗—— 这里一开始可没有我哦w",
+	"第19次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
-	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 15)]); h = true;", 8000);
+	if (meets == 19){
+		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
+		setTimeout("createNewMsg('比如最简单的, 我们见过 ' + <font color = \"#FC6\">meets</font> + ' 次面;')", 10000);
+		setTimeout("createNewMsg('还有你的急躁次数, 在我这里是这样的: ' + <font color = \"#FC6\">h1</font> + ', 其中第 n 个数字表示我们第 n 次见面你急躁了几次——')", 12000);
+		setTimeout("createNewMsg('还有你的偏好称呼…… ' + <font color = \"#FC6\">pron</font> + '之类的我全都记着呢!')", 14000);
+		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……开玩笑的啦我才不会这样~</span>')", 16000);
+	}
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 17)]); h = true;", 8000);
 }
 
 function judgement(){
@@ -83,24 +93,54 @@ function judgement(){
 			if (!meaningless.includes(myth_pwd[i])) break;
 			else myth_pwd = myth_pwd.slice(0, -1);
 		}
-		if (meets == 12 && ordmsg == 3){
-			if (myth_pwd.includes("不是")) {createNewMsg("哇我就知道不是你—— 你是善良的人类!"); return ;}
-			else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true; return ;}
+		if(ordmsg == 3){
+			if (meets == 12){
+				if (myth_pwd.includes("不是")) createNewMsg("哇我就知道不是你—— 你是善良的人类!");
+				else if (myth_pwd.includes("是")) {createNewMsg("……我我我我…… 你你你不是认真的吧ww"); what5 = true;}
+				else createNewMsg("……算了我就当那个人类不是你吧w");
+			}
+			
+			if (meets == 13){
+				pron = myth_pwd;
+				if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+				else if (pron == "老公" || pron == "老婆"){
+					createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
+					setTimeout("createNewMsg('<font color=\"#FFC0CB\">虽然我让你自己选了但是这个也太……w</font>')",2000);
+					setTimeout("createNewMsg('<font color=\"#FFC0CB\">' + '……那我以后就叫你 ' + pron + ' 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>')", 4000);
+				}
+				else createNewMsg("好的! 那我以后就叫你" + pron + "了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+			}	
+			if (meets == 16){
+				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what6 = true;}
+				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w <span class = 'showing_text_effect' style = 'animation-delay: 2s'>没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!</span>");
+			}
+			if (meets == 18){
+				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what7 = true;}
+				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
+			}
+			return ;
 		}
-		if(what5){
+		if (what5){
 			if (myth_pwd.includes("不是")) createNewMsg("……吓死我了w下次补药这样了");
 			else if (myth_pwd.includes("是")) {createNewMsg("……恶"); setInterval("window.open('', '_self').close();", 1500);}
 			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
 			what5 = false;
 			return ;
 		}
-		if (meets == 13 && ordmsg == 3){
-			pron = myth_pwd;
-			createNewMsg("好的! 那我以后就叫你" + pron + "了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+		if (what6){
+			if (myth_pwd.includes("在网上爬一些语料库")) createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");
+			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
+			return ;
+		}
+		if (what6){
+			if (myth_pwd.includes("作者用来放某个人的图片")) createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");
+			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
+			return ;
 		}
 		if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
 			pron = myth_pwd.slice(6);
 			createNewMsg("好的! 那我以后就改叫你" + pron + "了! 如果你还想让我改口的话可以继续说 '我喜欢你叫我xxx' 哦!");
+			return ;
 		}
 		if (!h){
 			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
@@ -250,7 +290,7 @@ function save(){
 }
 
 function init(){
-	narr = {meets : meets, h1 : h1, pron: pron, your_name : your_name};
+	narr = {meets : meets, h1 : h1, pron: pron, your_name : your_name, m16 : m16, m18 : m18};
 }
 
 function load(){
@@ -261,6 +301,8 @@ function load(){
 		h1 = saves.h1;
 		pron = saves.pron;
 		your_name = saves.your_name;
+		m16 = saves.m16;
+		m18 = saves.m18;
 		save();
 	}
 	if(h1.length > meets) h1 = h1.slice(0, meets - h1.length);
@@ -273,6 +315,7 @@ function reset(){
 	h1 = [];
 	pron = "人类";
 	your_name = undefined;
+	m16 = m18 = false;
 	save();
 }
 
