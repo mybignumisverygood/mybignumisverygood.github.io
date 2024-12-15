@@ -91,7 +91,7 @@ function m13(x){
 		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
 	} else if (pron == "主人"){
 		createNewMsg("好的……! 那我以后就叫你<font color='#6CF'>主人</font>了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
-	}
+	} else createNewMsg("好的! 那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 }
 
 function judgement(){
@@ -119,9 +119,11 @@ function judgement(){
 			} else if (meets == 16){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what6 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w <span class = 'showing_text_effect' style = 'animation-delay: 2s'>没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!</span>");
+				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else if (meets == 18){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what7 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
+				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else {
 				returm = false;
 			}
