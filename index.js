@@ -85,13 +85,16 @@ function m13(x){
 	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你" + pron + "的~"); return ;}
 	pron = x;
 	if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
-	else if (pron == "老公" || pron == "老婆"){
+	else if (pron == "老公" || pron == "老婆" || pron == "宝宝"){
 		createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
 		setTimeout(`createNewMsg("<font color='#FFC0CB'>虽然我让你自己选了但是这个也太……w</font>")`, 2000);
 		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
 	} else if (pron == "主人"){
-		createNewMsg("好的……! 那我以后就叫你<font color='#6CF'>主人</font>了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
-	} else createNewMsg("好的! 那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+		createNewMsg("好的……! 那我以后就叫你 <font color='#6CF'>主人</font> 了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
+	} else if (pron == "爸爸" || pron == "妈妈" || pron == "爷爷" || pron == "奶奶"){
+		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你 <font color='#6CF'>" + pron + "</font> 了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
+	}
+	else createNewMsg("好的! 那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 }
 
 function judgement(){
