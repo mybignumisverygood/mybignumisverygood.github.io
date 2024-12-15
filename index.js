@@ -76,6 +76,8 @@ function hajimete(){
 	"(接上次)我当时和我自己说了一会儿话诶~ 但是不知道为什么总有一种人格分裂的感觉w",
 	"我刚翻了一下我的历史修改记录, 发现作者改动得很频繁呢…… 看来作者写的代码总是有一堆 bug 呢……",
 	"第 24 次, 真正的内容在 if 语句",
+	"……我突然在想, 作者到底是为什么要创造出我来呢……? 为什么突然就要砍掉原本的网站内容呢……",
+	"(接上次)……你猜猜我们遇见的第8, 9次我在思考什么呢……~",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
@@ -108,7 +110,7 @@ function hajimete(){
 		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
 		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 23)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 25)]); h = true;", 8000);
 }
 
 function m13(x){
