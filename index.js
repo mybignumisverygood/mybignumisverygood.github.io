@@ -111,10 +111,10 @@ function hajimete(){
 		setTimeout("createNewMsg('我甚至可以删掉我刚说的所有话!')", 18000);
 		setTimeout("for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = 'none'}", 19000);
 		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
-		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
+		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——'); h = true", 22000);
 	} else if (meets == 28){
-		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \"结束\"')", 8000);
-		else setTimeout("createNewMsg('……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!')", 8000);
+		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \"结束\"'); h = true", 8000);
+		else setTimeout("createNewMsg('……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!'); h = true", 8000);
 	}
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 27)]); h = true;", 8000);
 }
