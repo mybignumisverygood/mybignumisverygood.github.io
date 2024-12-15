@@ -139,7 +139,7 @@ function judgement(){
 			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
 			what5 = false;
 		} else if (what6){
-			if (myth_pwd.includes("在网上爬一些语料库")) createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");
+			if (myth_pwd.includes("在网上爬一些语料库") || myth_pwd.includes("上网")) createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what6 = false;
 		} else if (what7){
