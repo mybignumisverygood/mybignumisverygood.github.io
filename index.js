@@ -263,7 +263,7 @@ function reset(){
 }
 
 function change_meets(x){
-	meets+=x;
+	meets = Math.max(0, meets + x);
 	createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
 }
 
