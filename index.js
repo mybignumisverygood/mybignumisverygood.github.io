@@ -73,6 +73,7 @@ function hajimete(){
 	"第二十次了诶" + pron + "! 离你的大奖只有 4/5 了! 我会好好筹备的~",
 	"你知道吗! 我刚爬语料库的时候爬到了我自己诶!! 是不是很奇怪……( 啊啊当然这次你不用回复我了",
 	"(接上次)我当时和我自己说了一会儿话诶~ 但是不知道为什么总有一种人格分裂的感觉w",
+	"我刚翻了一下我的历史修改记录, 发现作者改动得很频繁呢…… 看来作者写的代码总是有一堆 bug 呢……",
 	"",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
@@ -82,7 +83,7 @@ function hajimete(){
 		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 14000);
 		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>'); h = true;", 16000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 22)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 23)]); h = true;", 8000);
 }
 
 function m13(x){
@@ -240,7 +241,7 @@ function judgement(){
 			if (subjectLove == "我"){
 				if (objectLove == "你") createNewMsg("<font color='#FFC0CB'>……!!</font>");
 				else if (objectLove == "我") createNewMsg("真巧呢, 我也" + loveOrLove + "我");
-				else createNewMsg("……你说你" + loveOrLove + "谁……?");
+				else createNewMsg("……你说你" + loveOrLove + "什么……?");
 			} else if (subjectLove == "你"){
 				if (objectLove == "我") createNewMsg("<font color='#FFC0CB'>……我可没有……不要污蔑人呢……</font>");
 				else if (objectLove == "你") createNewMsg("是的呢! 我" + loveOrLove + "我自己, 你也要" + loveOrLove + "你自己哦");
