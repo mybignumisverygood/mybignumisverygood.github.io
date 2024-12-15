@@ -113,7 +113,7 @@ function hajimete(){
 		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
 		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
 	} else if (meets == 28){
-		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \'结束\'')", 8000);
+		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \"结束\"')", 8000);
 		else setTimeout("createNewMsg('……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!')", 8000);
 	}
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 27)]); h = true;", 8000);
@@ -145,13 +145,13 @@ function judgement(){
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
-		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
-			if (!meaningless.includes(myth_pwd[i])) break;
-			else myth_pwd = myth_pwd.slice(0, -1);
-		}
 		if (meets == 28 && m27 && !what8){
 			if (myth_pwd == "结束"){what8 = true; createNewMsg("说完了吗—— 好的! 之后还会有这样的机会的哦~(大概吧w)");}
 			else {createNewMsg(pron + ": " + myth_pwd); return ;}
+		}
+		for (let i = myth_pwd.length - 1; i >= 0; i--){ // 剔除末尾无关的字符
+			if (!meaningless.includes(myth_pwd[i])) break;
+			else myth_pwd = myth_pwd.slice(0, -1);
 		}
 		if(ordmsg == 3){
 			returm = true;
