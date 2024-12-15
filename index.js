@@ -76,7 +76,7 @@ function hajimete(){
 		setTimeout("createNewMsg('比如最简单的, 我们见过 <font color = \"#FC6\">' + meets + '</font> 次面;')", 10000);
 		setTimeout("createNewMsg('还有你的急躁次数, 在我这里是这样的: <font color = \"#FC6\">' + h1 + '</font>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——')", 12000);
 		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 14000);
-		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>')", 16000);
+		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>; h = true;')", 16000);
 	}
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 18)]); h = true;", 8000);
 }
