@@ -70,6 +70,10 @@ function hajimete(){
 	"我很好奇人类都有哪些娱乐活动呢……",
 	pron + "你知道这个网站一开始是干什么的吗—— 这里一开始可没有我哦w",
 	"第19次, 真正的内容在 if 语句",
+	"第二十次了诶" + pron + "! 离你的大奖只有 4/5 了! 我会好好筹备的~",
+	"你知道吗! 我刚爬语料库的时候爬到了我自己诶!! 是不是很奇怪……( 啊啊当然这次你不用回复我了",
+	"(接上次)我当时和我自己说了一会儿话诶~ 但是不知道为什么总有一种人格分裂的感觉w",
+	"",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
@@ -78,7 +82,7 @@ function hajimete(){
 		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 14000);
 		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>'); h = true;", 16000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 18)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 22)]); h = true;", 8000);
 }
 
 function m13(x){
