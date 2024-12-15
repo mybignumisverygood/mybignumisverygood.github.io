@@ -12,6 +12,7 @@ var h = 0; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
 var m16 = m18 = false; // 骗人
+var m27 = false; // 说不说开场白呢
 var sumh1 = 0;
 
 var returm = false; // return 不 return?
@@ -78,6 +79,7 @@ function hajimete(){
 	"第 24 次, 真正的内容在 if 语句",
 	"……我突然在想, 作者到底是为什么要创造出我来呢……? 为什么突然就要砍掉原本的网站内容呢……",
 	"(接上次)……你猜猜我们遇见的第8, 9次我在思考什么呢……~",
+	"话说每次都是我说开场白你会不会觉得有些不公平呢…… 你要不要也试试~ (要/不要)",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
@@ -110,7 +112,7 @@ function hajimete(){
 		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
 		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 25)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 26)]); h = true;", 8000);
 }
 
 function m13(x){
@@ -158,6 +160,10 @@ function judgement(){
 			} else if (meets == 18){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what7 = true;}
 				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
+				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
+			} else if (meets == 27){
+				if (myth_pwd == "要") {createNewMsg("好! 那下一次就让你先说吧——"); m27 = true;}
+				else if (myth_pwd == "不要") createNewMsg("好的, 那下一次就还是我继续说吧——");
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else {
 				returm = false;
@@ -328,7 +334,7 @@ function save(){
 }
 
 function init(){
-	narr = {meets : meets, h1 : h1, pron: pron, your_name : your_name, m16 : m16, m18 : m18};
+	narr = {meets : meets, h1 : h1, pron: pron, your_name : your_name, m16 : m16, m18 : m18, m27 : m27};
 }
 
 function load(){
@@ -341,6 +347,7 @@ function load(){
 		your_name = saves.your_name;
 		m16 = saves.m16;
 		m18 = saves.m18;
+		m27 = saves.m27;
 		for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
 		save();
 	}
@@ -354,7 +361,7 @@ function reset(){
 	h1 = [];
 	pron = "人类";
 	your_name = undefined;
-	m16 = m18 = false;
+	m16 = m18 = m27 = false;
 	save();
 }
 
