@@ -105,7 +105,7 @@ function hajimete(){
 		setTimeout("createNewMsg('我还可以…… 获取你的手机类别~ 但是感觉有点可怕呢w')", 16000);
 		setTimeout("createNewMsg('我甚至可以删掉我刚说的所有话!')", 18000);
 		setTimeout("for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = 'none'}", 19000);
-		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display. = ''}", 20000);
+		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
 		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——')", 22000);
 	}
 	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 23)]); h = true;", 8000);
