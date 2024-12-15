@@ -185,11 +185,11 @@ function judgement(){
 			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
 			what5 = false;
 		} else if (what6){
-			if (myth_pwd.includes("网上爬一些语料库") || myth_pwd.includes("网上爬语料库") || myth_pwd.includes("上网")) createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");
+			if (myth_pwd.includes("网上爬一些语料库") || myth_pwd.includes("网上爬语料库") || myth_pwd.includes("上网")) {m16 = false; createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!")};
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what6 = false;
 		} else if (what7){
-			if (myth_pwd.includes("放某个人的图片")) createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");
+			if (myth_pwd.includes("放某个人的图片")) {m18 = false; createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");}
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
 			what7 = false;
 		} else if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
