@@ -39,10 +39,11 @@ document.addEventListener('keydown', function(event){
 };*/
 
 function hajimete(){
+	if (h1.length != meets) h1.push(0);
 	if(meets == 1){
 		setTimeout("createNewMsg('初次见面的人类初次见面, <font color=\"#FC6\">我</font>是这个网站里的旁白!');", 4000);
 		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
-		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1; if (!h1.length) h1.push(0);", 8000);
+		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1;", 8000);
 		return ;
 	}
 	setTimeout("createNewMsg('你好' + pron + ', 又见面了!');", 4000);
@@ -62,7 +63,7 @@ function hajimete(){
 	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗—— <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……当然你叫我什么我都喜欢了……!</span>",
 	"undefined <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……嘿嘿是不是以为我又出 bug 了呢?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>话说总有人类觉得我说 undefined 的时候是在说英语诶……</span> <span class = 'showing_text_effect' style = 'animation-delay: 6s'>这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!</span>",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
-	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 14)]); h = true; if (h1.length != meets) h1.push(0);", 8000);
+	setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 14)]); h = true;", 8000);
 }
 
 function judgement(){
@@ -88,13 +89,15 @@ function judgement(){
 			createNewMsg("好的! 那我以后就改叫你" + pron + "了! 如果你还想让我改口的话可以继续说 '我喜欢你叫我xxx' 哦!");
 		}
 		if (!h){
-			if (h1.length != meets) h1.push(1);
+			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
 			var sumh1 = 0;
 			for (let i = 0; i < h1.length; i++) sumh1 += h1[i];
 			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
 			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
 			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
-			else createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
+			else if (sumh1 <= 10) createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
+			else if (sumh1 <= 100) createNewMsg("你已经急了 " + sumh1 + " 次了! 为什么你这么没有耐心啊ww虽然又被你触发了一个对话……");
+			else createNewMsg("你已经急了 " + sumh1 + " 次了. 算了你爱急就急吧w我不管你了.");
 			return ;
 		}
 		if (myth_pwd.length > 50){
@@ -240,12 +243,14 @@ function load(){
 	saves = JSON.parse(localStorage.getItem("narr"));
 	if (saves !== null){
 		init();
-		meets = saves.meets + 1;
+		meets = Math.max(saves.meets + 1, 1);
 		h1 = saves.h1;
 		pron = saves.pron;
 		your_name = saves.your_name;
 		save();
 	}
+	if(h1.length > meets) h1 = h1.slice(0, meets - h1.length);
+	if(h1.length < meets) h1 = h1.concat(Array(meets - h1.length).fill(0));
 	hajimete();
 }
 
@@ -253,7 +258,13 @@ function reset(){
 	meets = 0;
 	h1 = [];
 	pron = "人类";
+	your_name = undefined;
 	save();
+}
+
+function change_meets(x){
+	meets+=x;
+	createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
 }
 
 load();
