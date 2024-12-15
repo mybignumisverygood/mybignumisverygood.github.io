@@ -241,7 +241,6 @@ function judgement(){
 			else {createNewMsg("抱歉虽然你这次有中文但我还是看不懂你在说什么……"); what4 = false;}
 		}
 	}
-	document.getElementById("msgs").scrollTop = msgs.scrollHeight; // 自动滚到到底部
 	return "哇你是能看到这条消息的人类！";
 }
 
@@ -263,6 +262,7 @@ function createNewMsg(x){
 	msg[ordmsg].setAttribute("class", "showing_text_effect");
 	msg[ordmsg].innerHTML = x;
 	document.getElementById("msgs").appendChild(msg[ordmsg]);
+	document.getElementById("msgs").scrollTop = msgs.scrollHeight; // 自动滚到到底部
 	save();
 	ordmsg++;
 }
