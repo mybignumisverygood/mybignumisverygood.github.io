@@ -143,7 +143,7 @@ function judgement(){
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what6 = false;
 		} else if (what7){
-			if (myth_pwd.includes("作者用来放某个人的图片")) createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");
+			if (myth_pwd.includes("放某个人的图片")) createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
 			what7 = false;
 		} else if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
