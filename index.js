@@ -171,7 +171,7 @@ function judgement(){
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else if (meets == 27){
 				if (myth_pwd == "要") {m27 = true; createNewMsg("好! 那下一次就让你先说吧——");}
-				else if (myth_pwd == "不要") createNewMsg("好的, 那下一次就还是我继续说吧——");
+				else if (myth_pwd == "不要") {m27 = false; createNewMsg("好的, 那下一次就还是我继续说吧——");}
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else {
 				returm = false;
