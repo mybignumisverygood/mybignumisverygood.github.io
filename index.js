@@ -78,7 +78,7 @@ function hajimete(){
 		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 14000);
 		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>')", 16000);
 	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 17)]); h = true;", 8000);
+	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 18)]); h = true;", 8000);
 }
 
 function judgement(){
