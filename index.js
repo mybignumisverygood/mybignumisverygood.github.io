@@ -170,7 +170,7 @@ function judgement(){
 				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else if (meets == 27){
-				if (myth_pwd == "要") {createNewMsg("好! 那下一次就让你先说吧——"); m27 = true;}
+				if (myth_pwd == "要") {m27 = true; createNewMsg("好! 那下一次就让你先说吧——");}
 				else if (myth_pwd == "不要") createNewMsg("好的, 那下一次就还是我继续说吧——");
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else {
