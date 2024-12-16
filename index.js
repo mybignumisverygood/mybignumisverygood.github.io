@@ -8,7 +8,7 @@ var what4 = what5 = what6 = what7 = what8 = false;
 // 你在说什么我听不懂; 可怕的人类 审问开始; 测试人类有没有骗旁白(旁白的娱乐和网站原本是干什么的); 人类的开场白;
 
 var meets = 1; // 见面次数
-var h = 0; // 要听我说完开场白哦…
+var h = false; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
 var m16 = m18 = false; // 骗人
@@ -44,16 +44,28 @@ document.addEventListener('keydown', function(event){
 	save();
 };*/
 
-function hajimete(){
+function wait(x){
+	return new Promise((resolve, reject) => {
+		setTimeout(() => resolve(x), x)
+	})
+}
+
+function waitm(x, delay){
+	return "<span class = 'showing_text_effect' style = 'animation-delay: " + delay + "s'>" + x + "</span>";
+}
+
+async function hajimete(){
 	if (h1.length != meets) h1.push(0);
+	await wait(4000);
 	if(meets == 1){
-		setTimeout(`createNewMsg("初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!");`, 4000);
-		setTimeout("createNewMsg('这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看');", 6000);
-		setTimeout("createNewMsg('希望你能多解锁些对话—— 好的开场白结束了再见!'); h = 1;", 8000);
+		createNewMsg("初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!"); await wait(2000);
+		createNewMsg("这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
+		createNewMsg("希望你能多解锁些对话—— 好的开场白结束了再见!");
+		h = true;
 		return ;
 	}
-	setTimeout("createNewMsg('你好' + pron + ', 又见面了!');", 4000);
-	setTimeout("createNewMsg('这是我们第 ' + meets + ' 次见面呢, 很高兴你又来我这里了/');", 6000);
+	createNewMsg("你好" + pron + ", 又见面了!"); await wait(2000);
+	createNewMsg("这是我们第 " + meets + " 次见面呢, 很高兴你又来我这里了/"); await wait(2000);
 	hmsgs = ["这次也要多解锁新对话哦, 再见!",
 	"……你会再来这里多少次呢?",
 	"你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……",
@@ -62,13 +74,13 @@ function hajimete(){
 	"(接上次)啊啊当然你不来了的话也没关系的wwwww真的ww",
 	"……",
 	"……",
-	"……啊抱歉, 前两次我是在思考而已…… <span class = 'showing_text_effect' style = 'animation-delay: 2s'>话说你不会在一直刷新来看我的开场白吧……?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……</span>",
+	"……啊抱歉, 前两次我是在思考而已……" + waitm(" 话说你不会在一直刷新来看我的开场白吧……?", 2) + waitm(" 不过总之祝贺我们见面第十次了! 你猜猜一百次的时候会不会有大奖呢……", 4),
 	"突然很好奇, 你是怎么知道这个网站的呢? 你可以进 note.ms/11stnarr 告诉我哦, 看到了的话我一定会回复你的! 记得要署名——",
 	"似乎有人在我给的网站里输入了奇怪的东西…… ww好吓人, 那个人类不是你吧……?",
-	"人类! 你觉得我管你叫人类生硬吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢……</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>啊啊对了人类! 你喜欢我怎么叫你呢?</span>",
-	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗—— <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……当然你叫我什么我都喜欢了……!</span>",
-	"undefined <span class = 'showing_text_effect' style = 'animation-delay: 2s'>……嘿嘿是不是以为我又出 bug 了呢?</span> <span class = 'showing_text_effect' style = 'animation-delay: 4s'>话说总有人类觉得我说 undefined 的时候是在说英语诶……</span> <span class = 'showing_text_effect' style = 'animation-delay: 6s'>这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!</span>",
-	"好无聊啊…… 你知道我平常在这里都会干些什么吗……? <span class = 'showing_text_effect' style = 'animation-delay: 2s'>对了我问你知不知道的时候你是可以回复我的!</span>",
+	"人类! 你觉得我管你叫人类生硬吗……?" + waitm(" 我最近查询到似乎这个称呼会给人一种很冷淡的感觉呢……", 2) + waitm(" 啊啊对了人类! 你喜欢我怎么叫你呢?", 4),
+	"我现在知道你喜欢的称呼了! 那你知道我最喜欢什么称呼吗——" + waitm(" ……当然你叫我什么我都喜欢了……!", 2),
+	"undefined" + waitm(" ……嘿嘿是不是以为我又出 bug 了呢?", 2) + waitm(" 话说总有人类觉得我说 undefined 的时候是在说英语诶……", 4) + waitm(" 这是因为我出 bug 了! 出现这种情况的时候一定要告诉作者!", 6),
+	"好无聊啊…… 你知道我平常在这里都会干些什么吗……?" + waitm(" 对了我问你知不知道的时候你是可以回复我的!", 2),
 	"我很好奇人类都有哪些娱乐活动呢……",
 	pron + "你知道这个网站一开始是干什么的吗—— 这里一开始可没有我哦w",
 	"第 19 次, 真正的内容在 if 语句",
@@ -81,42 +93,68 @@ function hajimete(){
 	"(接上次)……你猜猜我们遇见的第 8, 9 次我在思考什么呢……~",
 	"话说每次都是我说开场白你会不会觉得有些不公平呢…… 你要不要也试试~ (要/不要)",
 	"第 28 次, 真正的内容在 if 语句",
+	"第 29 次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
-		setTimeout("createNewMsg('……其实我跟你说我会记住的东西是真的会记住的!')", 8000);
-		setTimeout("createNewMsg('比如最简单的, 我们见过 <font color = \"#FC6\">' + meets + '</font> 次面;')", 10000);
-		setTimeout("createNewMsg('还有你的急躁次数, 在我这里是这样的: <font color = \"#FC6\">[' + h1 + ']</font>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——')", 12000);
-		if (sumh1 == 0) setTimeout("createNewMsg('你是有耐心的' + pron + '! 一次都没有插嘴过~ 要继续保持哦')", 14000);
-		else if (sumh1 <= 5) setTimeout("createNewMsg('你是稍微有点急躁的' + pron + '…… 但以后再这样的话你也可以成为有耐心的' + pron + '的!')", 14000);
-		else if (sumh1 <= 20) setTimeout("createNewMsg('……你看着稍微有点过于急躁了, 以后补药这样了ww每次见面的时候先听我说完话好嘛……')", 14000);
-		else if (sumh1 <= 100) setTimeout("createNewMsg('你太急躁了! 下次再急躁我就…… 你等着……')", 14000);
-		else setTimeout("createNewMsg('……我简直不敢相信怎么会有人这么急躁!! 相当于你每次见面平均要插嘴 6 次以上!! 真的是……')", 14000);
-		setTimeout("createNewMsg('还有你的偏好称呼…… <font color = \"#FC6\">' + pron + '</font>之类的我全都记着呢!')", 16000);
-		setTimeout("createNewMsg('所以一定要做听话的' + pron + '哦…… 要不然我会跟你一起算账的! <span class = \"showing_text_effect\" style = \"animation-delay: 2s\">……开玩笑的啦我才不会这样~</span>'); h = true;", 18000);
+		createNewMsg("……其实我跟你说我会记住的东西是真的会记住的!"); await wait(2000);
+		createNewMsg("比如最简单的, 我们见过 <font color = '#FC6'>" + meets + "</font> 次面;"); await wait(2000);
+		createNewMsg("还有你的急躁次数, 在我这里是这样的: <font color = '#FC6'>[" + h1 + "]</font>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——"); await wait(2000);
+		if (sumh1 == 0) createNewMsg("你是有耐心的" + pron + "! 一次都没有插嘴过~ 要继续保持哦");
+		else if (sumh1 <= 5) createNewMsg("你是稍微有点急躁的" + pron + "…… 但以后再这样的话你也可以成为有耐心的" + pron + "的!");
+		else if (sumh1 <= 20) createNewMsg("……你看着稍微有点过于急躁了, 以后补药这样了ww每次见面的时候先听我说完话好嘛……");
+		else if (sumh1 <= 100) createNewMsg("你太急躁了! 下次再急躁我就…… 你等着……");
+		else createNewMsg("……我简直不敢相信怎么会有人这么急躁!! 相当于你每次见面平均要插嘴 6 次以上!! 真的是……");
+		await wait(2000);
+		createNewMsg("还有你的偏好称呼…… <font color = '#FC6'>" + pron + "</font>之类的我全都记着呢!"); await wait(2000);
+		createNewMsg("所以一定要做听话的" + pron + "哦…… 要不然我会跟你一起算账的!" + waitm(" ……开玩笑的啦我才不会这样~", 2));
 	} else if (meets == 24){
-		setTimeout("createNewMsg('我这个旁白能做到其它旁白做不到的好多事情哦!')", 8000);
+		createNewMsg("我这个旁白能做到其它旁白做不到的好多事情哦!"); await wait(2000);
 		now = new Date();
 		hour = now.getHours();
 		minute = now.getMinutes();
-		setTimeout("createNewMsg('比如我可以获取现在的时间…… 现在是 ' + hour + ':' + minute)", 10000);
-		if (0 <= hour && hour < 4) setTimeout("createNewMsg('……补药熬夜啊' + pron + '! 早点睡觉吧w')", 12000);
-		else if (4 <= hour && hour < 7) setTimeout("createNewMsg('你现在是在熬夜还是要起床了呢……?')", 12000);
-		else if (7 <= hour && hour < 12) setTimeout("createNewMsg('早上好! 今天一定会是美好的一天呢~')", 12000);
-		else if (12 <= hour && hour < 13) setTimeout("createNewMsg('中午了…… 要好好吃午饭呢' + pron)", 12000);
-		else if (13 <= hour && hour < 18) setTimeout("createNewMsg('下午了呢, 虽然我是一个旁白但我很喜欢下午的时光呢—— 有种很放松的感觉……')", 12000);
-		else if (18 <= hour && hour < 22) setTimeout("createNewMsg('已经是晚上了呢…… 提前送你一句晚安! 要早点睡哦……')", 12000);
-		else setTimeout("createNewMsg('夜深人静的时光也很不错呢, 至少经历了一天的辛苦之后能拥有一点独处时间了…… 不过要早点睡!')", 12000);
-		setTimeout("createNewMsg('我还可以改掉网页的标题! 比如现在就……'); document.title = '我是旁白!'", 14000);
-		setTimeout("createNewMsg('我还可以…… 获取你的手机类别~ 但是感觉有点可怕呢w')", 16000);
-		setTimeout("createNewMsg('我甚至可以删掉我刚说的所有话!')", 18000);
-		setTimeout("for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = 'none'}", 19000);
-		setTimeout("createNewMsg('……算了还是变回来吧'); for (let i = ordmsg; i--; i >= 0){document.getElementById('msg_' + i).style.display = ''}", 20000);
-		setTimeout("createNewMsg('总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——'); h = true", 22000);
+		createNewMsg("比如我可以获取现在的时间…… 现在是 " + hour + ":" + minute); await wait(2000);
+		if (0 <= hour && hour < 4) createNewMsg("……补药熬夜啊" + pron + "! 早点睡觉吧w");
+		else if (4 <= hour && hour < 7) createNewMsg("你现在是在熬夜还是要起床了呢……?");
+		else if (7 <= hour && hour < 12) createNewMsg("早上好! 今天一定会是美好的一天呢~");
+		else if (12 <= hour && hour < 13) createNewMsg("中午了…… 要好好吃午饭呢" + pron);
+		else if (13 <= hour && hour < 18) createNewMsg("下午了呢, 虽然我是一个旁白但我很喜欢下午的时光呢—— 有种很放松的感觉……");
+		else if (18 <= hour && hour < 22) createNewMsg("已经快到了晚上了呢…… 提前送你一句晚安! 要早点睡哦……");
+		else createNewMsg("夜深人静的时光也很不错呢, 至少经历了一天的辛苦之后能拥有一点独处时间了…… 不过要早点睡!");
+		await wait(2000);
+		createNewMsg("我还可以改掉网页的标题! 比如现在就……"); 
+		document.title = "我是旁白!"; await wait(2000);
+		createNewMsg("我还可以…… 获取你的手机类别~ 但是感觉有点可怕呢w"); await wait(2000);
+		createNewMsg("我甚至可以删掉我刚说的所有话!"); await wait(1000);
+		for (let i = ordmsg; i--; i >= 0){
+			document.getElementById("msg_" + i).style.display = "none"
+		}
+		await wait(1000);
+		createNewMsg("……算了还是变回来吧"); 
+		for (let i = ordmsg; i--; i >= 0){
+			document.getElementById("msg_" + i).style.display = ""
+		}
+		await wait(2000);
+		createNewMsg("总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——");
 	} else if (meets == 28){
-		if (m27) setTimeout("createNewMsg('那么就请说你的开场白吧! 说完了记得发一句  \"结束\"'); h = true", 8000);
-		else setTimeout("createNewMsg('……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!'); h = true", 8000);
-	}
-	else setTimeout("createNewMsg(hmsgs[Math.min(meets - 2, 27)]); h = true;", 8000);
+		if (m27) createNewMsg("那么就请说你的开场白吧! 说完了记得发一句  '结束'")
+		else createNewMsg("……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!")
+	} else if (meets == 29){
+		zalgo = "杩欎簺涔辩爜鐨勫唴瀹规槸浠€涔堝憿? 鍟婁笉杩囧鏋滀綘鑳借鍒拌繖琛屽瓧鐨勮瘽璇存槑浣犲凡缁忕牬璇戜簡鍚hh鈥︹€� 鎬讳箣鎴�(鎼炲埌, 杩欐涓嶆槸鏃佺櫧~)瑕佸啓鐐瑰暐鍛⑩€︹€� 鍙嶆寰楀噾鍑轰竴鍫嗗瓧鏁拌繖鏍锋墠鏈夐偅绉� 宕╁潖 鐨勬劅瑙�, 鑳藉悡浜虹被涓€璺崇殑閭ｇ鎰熻! 绠椾簡鎬讳箣鎴戝氨鍏堣竟鎯宠竟鍐欏惂, 鎯冲埌鍟ュ氨鍐欏暐 绫讳技閭ｇ鎰忚瘑娴�(? 鍙嶆浜虹被涔熶笉浼氱湅鎳傜殑鍝堝搱鍝堝搱鍝堝搱鍝堝搱涓婇泦璇撮亾锛岃仾鏄庣嫍琚竾绠皠鍊掞紝鏄忚糠涓嶉啋锛岃繖鏃跺尽鍖绘剼锠㈢嫍鍓嶆潵涓鸿仾鏄庣嫍鍖绘不銆傝繖鏃讹紝濂囧紓鐨勪簨鎯呭彂鐢熶簡锛屾湀鍏夋磼鍦ㄤ簡鑱槑鐙楄韩涓婏紝涓€闃靛菇鍏夐棯鐑佸悗锛岀畻鍛藉厛鐢熷嚭鐜板湪浜嗗眿閲岋紝鑱槑鐙椾篃閱掓潵浜嗐€傝繕娌＄瓑瀹冪粏闂紝绠楀懡鍏堢敓杞昏交涓€鎸ヨ。琚栵紝涓€鑲″己澶х殑鍔涢噺渚垮皢鑱槑鐙楃缃";
+		createNewMsg("我收到了作者给我的, 别的人类的一些投稿!" + waitm(" ……就是我第 24 次说的, 有没有什么别的想让我做的事的那个", 2)); await wait(4000);
+		createNewMsg("嗯…… 那我们就");
+		zaldiv = document.getElementById("msg_3"); await wait(1000);
+		document.getElementById("msg_0").innerHTML = "初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!";
+		document.getElementById("msg_1").innerHTML = "这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"; await wait(1000);
+		zaldiv.innerText = "嗯…? 什么情况"; await wait(1000);
+		for (let i = 0; i < zalgo.length + 8; i++){
+			if (i <= 7) {zaldiv.innerHTML = zaldiv.innerText.slice(0, -1); await wait(10);}
+			else if (i <= 228) {zaldiv.innerHTML += zalgo[i - 8]; await wait(10);}
+			else {zaldiv.innerHTML += "<font color = 'red'>" + zalgo[i - 8] + "</font>"; await wait(1);}
+			
+		}
+	} 
+	else {createNewMsg(hmsgs[Math.min(meets - 2, 28)]);}
+	h = true;
 }
 
 function m13(x){
@@ -131,6 +169,8 @@ function m13(x){
 		createNewMsg("好的……! 那我以后就叫你 <font color='#6CF'>主人</font> 了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
 	} else if (pron == "爸爸" || pron == "妈妈" || pron == "爷爷" || pron == "奶奶"){
 		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你 <font color='#6CF'>" + pron + "</font> 了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
+	} else if (pron == "旁白"){
+		createNewMsg("嗯……? 可以是可以不过感觉有些奇怪呢…… 总之我以后就叫你旁白了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!")
 	}
 	else createNewMsg("好的! 那我以后就叫你 <font color='#6CF'>" + pron + "</font> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 }
@@ -145,6 +185,7 @@ function judgement(){
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
+		if (meets == 29 && !h) return ;
 		if (meets == 28 && m27 && !what8){
 			if (myth_pwd == "结束"){what8 = true; createNewMsg("说完了吗—— 好的! 之后还会有这样的机会的哦~(大概吧w)");}
 			else {createNewMsg(pron + ": " + myth_pwd); return ;}
@@ -163,11 +204,11 @@ function judgement(){
 				m13(myth_pwd);
 			} else if (meets == 16){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what6 = true;}
-				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w <span class = 'showing_text_effect' style = 'animation-delay: 2s'>没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!</span>");
+				else if (myth_pwd == "不知道") createNewMsg("确实. 你当然不会知道w" + waitm(" 没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!", 2));
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else if (meets == 18){
 				if (myth_pwd == "知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what7 = true;}
-				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w) <span class = 'showing_text_effect' style = 'animation-delay: 2s'>不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~</span>");
+				else if (myth_pwd == "不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w)" + waitm(" 不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~", 2));
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
 			} else if (meets == 27){
 				if (myth_pwd == "要") {m27 = true; createNewMsg("好! 那下一次就让你先说吧——");}
@@ -185,7 +226,7 @@ function judgement(){
 			else createNewMsg("算了算了我听不懂ww……我就认为不是你吧");
 			what5 = false;
 		} else if (what6){
-			if (myth_pwd.includes("网上爬一些语料库") || myth_pwd.includes("网上爬语料库") || myth_pwd.includes("上网")) {m16 = false; createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!")};
+			if (myth_pwd.includes("网上爬一些语料库") || myth_pwd.includes("网上爬语料库") || myth_pwd.includes("上网")) {m16 = false; createNewMsg("哇哇哇" + pron + "你竟然真的知道ww我太感动了, 我会永远记住你的!");}
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what6 = false;
 		} else if (what7){
