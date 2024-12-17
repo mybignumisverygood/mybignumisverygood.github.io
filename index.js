@@ -7,15 +7,17 @@ var what3 = 0; // 人类的伤心程度
 var what4 = what5 = what6 = what7 = what8 = false; 
 // 你在说什么我听不懂; 可怕的人类 审问开始; 测试人类有没有骗旁白(旁白的娱乐和网站原本是干什么的); 人类的开场白;
 
-var meets = 1; // 见面次数
+var meets = 1, startmeets; // 见面次数; 刚加载页面时的刷新次数
 var h = false; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
 var m16 = m18 = false; // 骗人
 var m27 = false; // 说不说开场白呢
 var sumh1 = 0;
+var m29m = 1; // 第 29 次见面的奇怪见面次数
 
 var returm = false; // return 不 return?
+var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -57,15 +59,17 @@ function waitm(x, delay){
 async function hajimete(){
 	if (h1.length != meets) h1.push(0);
 	await wait(4000);
-	if(meets == 1){
+	if (meets == 1){
 		createNewMsg("初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!"); await wait(2000);
 		createNewMsg("这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
 		createNewMsg("希望你能多解锁些对话—— 好的开场白结束了再见!");
 		h = true;
 		return ;
 	}
-	createNewMsg("你好" + pron + ", 又见面了!"); await wait(2000);
-	createNewMsg("这是我们第 " + meets + " 次见面呢, 很高兴你又来我这里了/"); await wait(2000);
+	if (meets != 29){
+		createNewMsg("你好" + pron + ", 又见面了!"); await wait(2000);
+		createNewMsg("这是我们第 " + meets + " 次见面呢, 很高兴你又来我这里了/"); await wait(2000);
+	}
 	hmsgs = ["这次也要多解锁新对话哦, 再见!",
 	"……你会再来这里多少次呢?",
 	"你知道吗—— 每次你来的时候都要想一个独特的开场白也是很费我的 CPU 的……",
@@ -139,6 +143,11 @@ async function hajimete(){
 		if (m27) createNewMsg("那么就请说你的开场白吧! 说完了记得发一句  '结束'")
 		else createNewMsg("……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!")
 	} else if (meets == 29){
+		createNewMsg("初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!"); await wait(2000);
+		createNewMsg("这是我们第 1 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
+		createNewMsg("希望你能多解锁些对话—— 好的开场白结束了再见!"); 
+	}
+	/*else if (meets == 30){
 		zalgo = "杩欎簺涔辩爜鐨勫唴瀹规槸浠€涔堝憿? 鍟婁笉杩囧鏋滀綘鑳借鍒拌繖琛屽瓧鐨勮瘽璇存槑浣犲凡缁忕牬璇戜簡鍚hh鈥︹€� 鎬讳箣鎴�(鎼炲埌, 杩欐涓嶆槸鏃佺櫧~)瑕佸啓鐐瑰暐鍛⑩€︹€� 鍙嶆寰楀噾鍑轰竴鍫嗗瓧鏁拌繖鏍锋墠鏈夐偅绉� 宕╁潖 鐨勬劅瑙�, 鑳藉悡浜虹被涓€璺崇殑閭ｇ鎰熻! 绠椾簡鎬讳箣鎴戝氨鍏堣竟鎯宠竟鍐欏惂, 鎯冲埌鍟ュ氨鍐欏暐 绫讳技閭ｇ鎰忚瘑娴�(? 鍙嶆浜虹被涔熶笉浼氱湅鎳傜殑鍝堝搱鍝堝搱鍝堝搱鍝堝搱涓婇泦璇撮亾锛岃仾鏄庣嫍琚竾绠皠鍊掞紝鏄忚糠涓嶉啋锛岃繖鏃跺尽鍖绘剼锠㈢嫍鍓嶆潵涓鸿仾鏄庣嫍鍖绘不銆傝繖鏃讹紝濂囧紓鐨勪簨鎯呭彂鐢熶簡锛屾湀鍏夋磼鍦ㄤ簡鑱槑鐙楄韩涓婏紝涓€闃靛菇鍏夐棯鐑佸悗锛岀畻鍛藉厛鐢熷嚭鐜板湪浜嗗眿閲岋紝鑱槑鐙椾篃閱掓潵浜嗐€傝繕娌＄瓑瀹冪粏闂紝绠楀懡鍏堢敓杞昏交涓€鎸ヨ。琚栵紝涓€鑲″己澶х殑鍔涢噺渚垮皢鑱槑鐙楃缃";
 		createNewMsg("我收到了作者给我的, 别的人类的一些投稿!" + waitm(" ……就是我第 24 次说的, 有没有什么别的想让我做的事的那个", 2)); await wait(4000);
 		createNewMsg("嗯…… 那我们就");
@@ -152,7 +161,7 @@ async function hajimete(){
 			else {zaldiv.innerHTML += "<font color = 'red'>" + zalgo[i - 8] + "</font>"; await wait(1);}
 			
 		}
-	} 
+	} */
 	else {createNewMsg(hmsgs[Math.min(meets - 2, 28)]);}
 	h = true;
 }
@@ -178,7 +187,14 @@ function m13(x){
 function judgement(){
 	myth_pwd = document.getElementById("pwd").value;
 	console.log(myth_pwd);
-	if(myth_pwd == "3yAG7x=="){
+	if (myth_pwd == "撤销重置" || meets == 29){
+		if (reset_){
+			localStorage.setItem("narr", JSON.stringify(saves));
+			load();
+			meets--; save();
+			location.reload();
+		} else createNewMsg("……没有撤销的必要呢~");	
+	} else if (myth_pwd == "3yAG7x=="){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
@@ -390,7 +406,8 @@ function load(){
 	saves = JSON.parse(localStorage.getItem("narr"));
 	if (saves !== null){
 		init();
-		meets = Math.max(saves.meets + 1, 1);
+		startmeets = meets = Math.max(saves.meets + 1, 1);
+		if (meets == 29) setTimeout(`createNewMsg("<font color = 'red'>已重置, 下次输入 '撤消重置' 即可撤销</font>")`, 1000);
 		h1 = saves.h1;
 		pron = saves.pron;
 		your_name = saves.your_name;
@@ -406,17 +423,26 @@ function load(){
 }
 
 function reset(){
-	meets = 0;
-	h1 = [];
-	pron = "人类";
-	your_name = undefined;
-	m16 = m18 = m27 = false;
-	save();
+	if (meets != 29){
+		reset_ = true;
+		meets = 0;
+		h1 = [];
+		pron = "人类";
+		your_name = undefined;
+		m16 = m18 = m27 = false;
+		save();
+	}
+	createNewMsg("<font color = 'red'>已重置, 下次输入 '撤消重置' 即可撤销</font>");
 }
 
 function change_meets(x){
-	meets = Math.max(0, meets + x);
-	createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
+	if (startmeets == 29) {
+		m29m = Math.max(0, m29m + x);
+		createNewMsg("现在的遇见次数: <font color = '#FC6'>" + m29m + "</font>");
+	} else {
+		meets = Math.max(0, meets + x);
+		createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
+	}
 }
 
 load();
