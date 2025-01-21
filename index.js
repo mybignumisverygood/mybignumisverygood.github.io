@@ -410,7 +410,7 @@ function init(){
 	};
 }
 
-function load(){
+function load(k){
 	saves = JSON.parse(localStorage.getItem("narr"));
 	if (saves.meets == 28){ // 吓一下亲爱的人类~
 		m29 = saves; m29__ = true; // 会备份的——
@@ -427,7 +427,7 @@ function load(){
 	}
 	if (saves !== null){
 		init();
-		startmeets = meets = Math.max(saves.meets + 1, 1);
+		startmeets = meets = Math.max(saves.meets + k, k);
 		h1 = saves.h1;
 		pron = saves.pron;
 		your_name = saves.your_name;
@@ -449,7 +449,7 @@ function reset(){
 	your_name = undefined;
 	m16 = m18 = m27 = false;
 	save();
-	load();
+	load(0);
 	createNewMsg("<font color = 'red'>已重置, 下次输入 '撤消重置' 即可撤销</font>");
 }
 
@@ -458,4 +458,4 @@ function change_meets(x){
 	createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
 }
 
-load();
+load(1);
