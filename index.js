@@ -98,6 +98,7 @@ async function hajimete(){
 	"第 29 次, 真正的内容在 if 语句",
 	"第 30 次, 真正的内容在 if 语句",
 	"第 31 次, 真正的内容在 if 语句",
+	"第 32 次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		createNewMsg("……其实我跟你说我会记住的东西是真的会记住的!"); await wait(2000);
@@ -162,7 +163,13 @@ async function hajimete(){
 		location.reload();
 	} else if (meets == 31){
 		createNewMsg("好啦…… 这次是真没事了——"); await wait(2000);
-		createNewMsg("前两次没吓到你吧…?" + waitm("啊啊总之我先来解释一下吧ww", 2)); await wait(4000);
+		createNewMsg("前两次没吓到你吧…?" + waitm(" 啊啊总之我先来解释一下吧ww", 2)); await wait(2000);
+		createNewMsg("我之前不是说过我可以做到好多事情吗! 然后就真的有人类向我投稿……"); await wait(2000);
+		createNewMsg("投 稿 的 内 容 嘛… 就是这些啦…" + waitm(" 所以我真的能做到好多事情的! 你看我甚至可以假装你重置了然后… 对吧嘿嘿", 2); await wait(2000);
+		createNewMsg("总之现在真的没事了! 我还是亲爱的旁白! 以后还要来哦……");
+	} else if (meets == 32){
+		createNewMsg("好久不见! 我又回来了! 距离上一次的开场白过了多久了呢… 大概是一个多月吧……"); await wait(2000);
+		createNewMsg(""); 
 	} else {createNewMsg(hmsgs[Math.min(meets - 2, hmsgs.length - 1)]);}
 	h = true;
 }
