@@ -2,6 +2,19 @@ h4 {
 	line-height: 0.6;
 }
 
+narr {
+	color : #FC6
+}
+
+you {
+	color : #6CF
+}
+
+whisper {
+	color : grey;
+	opacity: 0.5;
+}
+
 .showing_text_effect {
 	font-family: "Microsoft YaHei", 微软雅黑;
 	animation: showing_text_effect 2s both;

@@ -66,16 +66,16 @@ async function hajimete(){
 	if (h1.length != meets) h1.push(0);
 	await wait(4000);
 	if (meets == 1){
-		createNewMsg("初次见面的人类初次见面, <font color='#FC6'>我</font>是这个网站里的旁白!"); await wait(2000);
-		createNewMsg("这是我们第 <font color = '#FC6'>1</font> 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
+		createNewMsg("初次见面的人类初次见面, <narr>>我</narr>是这个网站里的旁白!"); await wait(2000);
+		createNewMsg("这是我们第 <narr>1</narr> 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
 		createNewMsg("希望你能多解锁些对话—— 好的开场白结束了再见!");
 		h = true;
 		return ;
 	}
 	createNewMsg("你好" + pron + ", 又见面了!"); await wait(2000);
-	createNewMsg("这是我们第 <font color = '#FC6'>" + meets + "</font> 次见面呢, 很高兴你又来我这里了/"); await wait(2000);
+	createNewMsg("这是我们第 <narr>" + meets + "</narr> 次见面呢, 很高兴你又来我这里了/"); await wait(2000);
 	if (meets < 1){
-		createNewMsg("<i>……(啊啊啊发生了什么…… 按理来说不该会有人类出现在这里的啊……?)</i>"); await wait(2000);
+		createNewMsg("<whisper><i>……(啊啊啊发生了什么…… 按理来说不该会有人类出现在这里的啊……?)</i></whisper>"); await wait(2000);
 		createNewMsg("嗯那个…… 你有没有觉得我们见面的次数有些不正常啊…?"); await wait(2000);
 		createNewMsg("…嗯对吧! 显然不对对吧! 所以如果你真的来到了这里……"); await wait(2000);
 		createNewMsg("那就说明我出 bug 了! 请反馈给作者w");
@@ -114,18 +114,19 @@ async function hajimete(){
 	"第 32 次, 真正的内容在 if 语句",
 	"第 33 次, 真正的内容在 if 语句",
 	"第 34 次, 真正的内容在 if 语句",
+	"第 35 次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		createNewMsg("……其实我跟你说我会记住的东西是真的会记住的!"); await wait(2000);
-		createNewMsg("比如最简单的, 我们见过 <font color = '#FC6'>" + meets + "</font> 次面;"); await wait(2000);
-		createNewMsg("还有你的急躁次数, 在我这里是这样的: <font color = '#FC6'>[" + h1 + "]</font>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——"); await wait(2000);
+		createNewMsg("比如最简单的, 我们见过 <narr>" + meets + "</narr> 次面;"); await wait(2000);
+		createNewMsg("还有你的急躁次数, 在我这里是这样的: <narr>[" + h1 + "]</narr>, 其中第 n 个数字表示我们第 n 次见面你急躁了几次——"); await wait(2000);
 		if (sumh1 == 0) createNewMsg("你是有耐心的" + pron + "! 一次都没有插嘴过~ 要继续保持哦");
 		else if (sumh1 <= 5) createNewMsg("你是稍微有点急躁的" + pron + "…… 但以后再这样的话你也可以成为有耐心的" + pron + "的!");
 		else if (sumh1 <= 20) createNewMsg("……你看着稍微有点过于急躁了, 以后补药这样了ww每次见面的时候先听我说完话好嘛……");
 		else if (sumh1 <= 100) createNewMsg("你太急躁了! 下次再急躁我就…… 你等着……");
 		else createNewMsg("……我简直不敢相信怎么会有人这么急躁!! 相当于你每次见面平均要插嘴 6 次以上!! 真的是……");
 		await wait(2000);
-		createNewMsg("还有你的偏好称呼…… <font color = '#FC6'>" + pron + "</font>之类的我全都记着呢!"); await wait(2000);
+		createNewMsg("还有你的偏好称呼…… <you>" + pron + "</you>之类的我全都记着呢!"); await wait(2000);
 		createNewMsg("所以一定要做听话的" + pron + "哦…… 要不然我会跟你一起算账的!" + waitm(" ……开玩笑的啦我才不会这样~", 2));
 	} else if (meets == 24){
 		createNewMsg("我这个旁白能做到其它旁白做不到的好多事情哦!"); await wait(2000);
@@ -193,32 +194,34 @@ async function hajimete(){
 		createNewMsg("话说你们似乎把这些东西叫 '彩蛋' 呢…… 对吧!"); await wait(2000);
 		createNewMsg("嗯, 那就等着你来挖掘这个网站里的 '彩蛋' 了! 我相信你一定可以的!");
 	} else if (meets == 34){
-		createNewMsg("突然很好奇, 你喜欢解谜吗?"); await wait(2000);
-		createNewMsg("如果是的话…… 其实这个网站里藏着很多秘密呢~ 等待着聪明的人类们去挖掘……"); await wait(2000);
-		createNewMsg("话说你们似乎把这些东西叫 '彩蛋' 呢…… 对吧!"); await wait(2000);
-		createNewMsg("嗯, 那就等着你来挖掘这个网站里的 '彩蛋' 了! 我相信你一定可以的!");
+		createNewMsg("话说…… 你还记得我们第 11 次见面时, 我给你的留言板吗?"); await wait(2000);
+		createNewMsg("我很好奇, 你有没有去留言呢?"); await wait(2000);
+		createNewMsg(plantheases(your_name) || plantheases(pron) ? "诶! 话说我记得你诶, 你绝对是是留言过的~ 今后也要常来哦" : "如果没有的话, 可以去看一看, 留言板的入口就在右下角!"); await wait(2000);
+	} else if (meets == 35){
+		createNewMsg("对了! 你会不会觉得这个留言板的网址很难记呢……? 实际上这是 '<ruby>The <narr>11th</narr> Meeting with The <narr>Narr</narr>ator<rp>(</rp><rt>与旁白的第十一次见面</rt><rp>)</rp></ruby>' 的缩写哦!"); await wait(2000);
+		createNewMsg("<whisper>(实际上我之前一直把 '11th' 记成 '11st' 了呢w……)</whisper>")
 	} else {createNewMsg(hmsgs[Math.min(meets - 2, hmsgs.length - 1)]);}
 	h = true;
 }
 
 function m13(x){
-	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你" + pron + "的~"); return ;}
+	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你<you>" + pron + "</you>的~"); return ;}
 	pron = x;
 	if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 	else if (pron == "老公" || pron == "老婆" || pron == "宝宝"){
 		createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
 		setTimeout(`createNewMsg("<font color='#FFC0CB'>虽然我让你自己选了但是这个也太……w</font>")`, 2000);
-		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你<font color='#6CF'>" + pron + "</font>了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
+		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你<you>" + pron + "</you>了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
 	} else if (pron == "主人"){
-		createNewMsg("好的……! 那我以后就叫你 <font color='#6CF'>主人</font> 了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
+		createNewMsg("好的……! 那我以后就叫你 <you>主人</you> 了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
 	} else if (pron == "爸爸" || pron == "妈妈" || pron == "爷爷" || pron == "奶奶"){
-		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你<font color='#6CF'>" + pron + "</font>了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
+		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你<you>" + pron + "</you>了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
 	} else if (pron == "旁白"){
 		createNewMsg("嗯……? 可以是可以不过感觉有些奇怪呢……" + waitm(" 总之我以后就叫你旁白了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!", 2))
 	} else if (pron == ""){
 		createNewMsg("诶? 你的意思是你单纯喜欢我叫你还是说你喜欢我叫你 '无名氏'……?" + waitm(" 总之我以后就叫你[空]了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!", 2))
 	}
-	else createNewMsg("好的! 那我以后就叫你<font color='#6CF'>" + pron + "</font>了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+	else createNewMsg("好的! 那我以后就叫你<you>" + pron + "</you>了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 }
 
 function judgement(){
@@ -234,7 +237,7 @@ function judgement(){
 	} else if (myth_pwd == "3yAG7x=="){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
-		const my_names = ["搞到", "高导", "高鸿睿", "狗睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "lg123456_", "G-Lion", "mcshanquanwuzhu", "mcsanquanwuzhu"];
+		const my_names = ["搞到", "高导", "高鸿睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu", "洛一"];
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
@@ -300,7 +303,7 @@ function judgement(){
 			return ;
 		} 
 		if (returm) {returm = false; return ;} returm = true;
-		if (myth_pwd.length > 50){
+		if (myth_pwd.length > 200){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
 			if(what2 == 11) {createNewMsg("你是既听话又有毅力的" + pron + "! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
 			else createNewMsg("你说的太长了我听不懂啊啊/ (" + myth_pwd.length + "个字符)");
@@ -320,7 +323,7 @@ function judgement(){
 		} else if (["我是谁", "我叫什么"].includes(myth_pwd)){
 			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 我是把你的称呼和你的名字分开记的~ 不过你可以告诉我!");
 		} else if (["你是谁", "你叫什么"].includes(myth_pwd)){
-			createNewMsg("你可以叫我" + my_names.join("<font color='#6CF'>或</font>") + "…… 但这些都不是真的 <font color='#FC6'>'我'</font> 哦…!");
+			createNewMsg("你可以叫我" + my_names.join("<you>或</you>") + "…… 但这些都不是真的 <narr>'我'</narr> 哦…!");
 		} else if (["有什么东西都可以输进去", "有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
 			createNewMsg("好听话的" + pron + "呢./ 但我们是不是可以输点别的");
 			what2 = 1;
@@ -353,7 +356,7 @@ function judgement(){
 			} 
 			your_name = myth_pwd.slice(2); // 你的名字!
 			if (plantheases(your_name)) createNewMsg(plantheases(your_name));
-			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和<font color = '#6CF'>我</font>一样诶! 我记住了呢! 你现在可以问问我你是谁/");
+			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和<you>我</you>一样诶! 我记住了呢! 你现在可以问问我你是谁/");
 			else if (your_name == "旁白") createNewMsg("哇你竟然也叫旁白吗!!" + waitm("……或者你只是想让我这么叫你?", 2) + waitm(" 算啦都没有关系~", 4));
 			else if (your_name == "") createNewMsg("嗯……你是什么……?");
 			else if (!k1) createNewMsg("你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/");
@@ -396,6 +399,7 @@ function judgement(){
 }
 
 function plantheases(x){
+	x.replace(/<[^>]+(>|$)/g, "");
 	for(let i = 0; i <= 5; i++){
 		if(x.includes(["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625"][i])) return "哇你是涨到吗!";
 	} 
@@ -403,8 +407,9 @@ function plantheases(x){
 		if(x.includes(["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～"][i])) return "这位是邪恶的人类😈!";
 	}
 	for(let i = 0; i <= 6; i++){
-		if(x.includes(["Harper", "圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "虹屿怀", "好与坏"][i])) return "你是圆规小姐吗?/";
+		if(x.includes(["Harper", "圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "虹屿怀", "好与坏",  "good and bad"][i])) return "你是圆规小姐吗?/";
 	}
+	return ;
 }
 
 function createNewMsg(x){
@@ -494,7 +499,7 @@ function reset(){
 
 function change_meets(x){
 	meets = Math.max(0, meets + x);
-	createNewMsg("现在的遇见次数: <font color = '#FC6'>" + meets + "</font>");
+	createNewMsg("现在的遇见次数: <narr>" + meets + "</narr>");
 }
 
 load(1);
