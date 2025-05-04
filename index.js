@@ -234,7 +234,7 @@ function judgement(){
 			meets--; save();
 			location.reload();
 		} else createNewMsg("……没有撤销的必要呢~");	
-	} else if (myth_pwd == "3yAG7x=="){
+	} else if (myth_pwd == "3yAG7x==" || myth_pwd == "3akk=186588"){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["搞到", "高导", "高鸿睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu", "洛一"];
@@ -305,7 +305,7 @@ function judgement(){
 		if (returm) {returm = false; return ;} returm = true;
 		if (myth_pwd.length > 200){
 			if (what2 >= 2 && myth_pwd == "qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq") what2++;
-			if(what2 == 11) {createNewMsg("你是既听话又有毅力的" + pron + "! 给你彩蛋, 输入'3yAG7x=='有惊喜"); what2 = 0;}
+			if(what2 == 11) {createNewMsg("你是既听话又有毅力的" + pron + "! 给你彩蛋, 输入 '3yAG7x==' 或者 '3akk=186588' 有惊喜"); what2 = 0;}
 			else createNewMsg("你说的太长了我听不懂啊啊/ (" + myth_pwd.length + "个字符)");
 		} else if (!myth_pwd){
 			createNewMsg("你说了什么吗……?");
