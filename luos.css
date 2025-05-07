@@ -1,0 +1,39 @@
+h4 {
+	line-height: 0.6;
+}
+
+svg {
+	overflow: visible;
+}
+
+narr {
+	color : #FC6
+}
+
+you {
+	color : #6CF
+}
+
+whisper {
+	color : grey;
+	opacity: 0.5;
+}
+
+.showing_text_effect {
+	font-family: "Microsoft YaHei", 微软雅黑;
+	animation: showing_text_effect 2s both;
+	font-size: 20px;
+}
+
+
+#misc{
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+}
+
+
+@keyframes showing_text_effect {
+	from {opacity: 0;}
+	to {opacity: 1;}
+}

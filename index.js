@@ -29,14 +29,14 @@ document.getElementById("msgs").style.height = document.documentElement.clientHe
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
 		if (f12 == 16){
-			createNewMsg("好好好, 这么喜欢F12是吧🫘, 直接送你去 GitHub~");
+			createNewMsg("好好好, 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~");
 			msg[ordmsg - 1].style.color = "red";
 			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
 		} else if (f12 > 16){
 			createNewMsg("……");
 			msg[ordmsg - 1].style.color = "red";
 		} else {
-			createNewMsg("按F12干什么…… GitHub 主页有源码呢/"); 
+			createNewMsg("按 F12 干什么…… GitHub 主页有源码呢/"); 
 			msg[ordmsg - 1].style.color = "#" + (17 * f12).toString(16) + "0000";
 		}
 		f12++;
@@ -62,11 +62,11 @@ function waitm(x, delay){
 }
 
 async function hajimete(){
-	if (meets == 0){meets++;}
+	if (reset_) return ;
 	if (h1.length != meets) h1.push(0);
 	await wait(4000);
 	if (meets == 1){
-		createNewMsg("初次见面的人类初次见面, <narr>>我</narr>是这个网站里的旁白!"); await wait(2000);
+		createNewMsg("初次见面的人类初次见面, <narr>我</narr>是这个网站里的旁白!"); await wait(2000);
 		createNewMsg("这是我们第 <narr>1</narr> 次见面呢, 你应该看见了我的上面有一个输入框吧, 你可以在上面输点什么试试看"); await wait(2000);
 		createNewMsg("希望你能多解锁些对话—— 好的开场白结束了再见!");
 		h = true;
@@ -156,6 +156,7 @@ async function hajimete(){
 		}
 		await wait(2000);
 		createNewMsg("总之我可是很厉害的呢, 还有什么想让我做的可以和作者说哦——");
+		document.title = "你好!";
 	} else if (meets == 28){
 		if (m27) createNewMsg("那么就请说你的开场白吧! 说完了记得发一句  '结束'")
 		else createNewMsg("……其实我本来想偷个懒的嘿嘿 但是你不想说…… 很抱歉这次敷衍了你www下次我一定好好想!")
@@ -237,7 +238,7 @@ function judgement(){
 	} else if (myth_pwd == "3yAG7x==" || myth_pwd == "3akk=186588"){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
-		const my_names = ["搞到", "高导", "高鸿睿", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu", "洛一"];
+		const my_names = ["洛一", "搞到", "高导", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu"];
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
@@ -294,11 +295,14 @@ function judgement(){
 		} else returm = false;
 		if (!h){
 			if (h1.length == meets) h1.splice(meets - 1, 1, h1[meets - 1] + 1);
+			if(h1.length > meets) h1 = h1.slice(0, meets - h1.length);
+			if(h1.length < meets) h1 = h1.concat(Array(meets - h1.length).fill(0));
+			sumh1++;
 			if (meets == 1) {createNewMsg("不要着急啊啊! 第一次见面能不能先等我说完话ww");}
 			else if (sumh1 == 1) createNewMsg("先听我说完开场白好吗……?");
 			else if (sumh1 == 2) createNewMsg("又着急…… 补药这么着急啊啊!");
 			else if (sumh1 <= 10) createNewMsg("……你已经急了 " + sumh1 + " 次了…… 你是没有耐心的" + pron + "!!! 虽然又被你触发了一个对话……");
-			else if (sumh1 <= 100) createNewMsg("你已经急了 " + sumh1 + " 次了! 为什么你这么没有耐心啊ww虽然又被你触发了一个对话……");
+			else if (sumh1 <= 100) createNewMsg("你已经急了 " + sumh1 + " 次了! 为什么你这么没有耐心啊ww 虽然又被你触发了一个对话……");
 			else createNewMsg("你已经急了 " + sumh1 + " 次了. 算了你爱急就急吧w我不管你了.");
 			return ;
 		} 
@@ -453,6 +457,7 @@ function init(){
 }
 
 function load(k){
+	if (meets == 0){meets++;}
 	saves = JSON.parse(localStorage.getItem("narr"));
 	if (saves.meets == 28){ // 吓一下亲爱的人类~
 		m29 = saves; m29__ = true; // 会备份的——
