@@ -25,9 +25,9 @@ var returm = false; // return 不 return?
 var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
 var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "ZHhan25"];
 var wu = ["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～", "yee"];
-var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad"];
+var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60"];
 var pls = zhang.concat(wu).concat(huo)
-var notems = ["长叹一声氦", "某只薛姓小猫", "薛萱锥", "开朗的社恐"].concat(pls);
+var notems = ["长叹一声氦", "某只薛姓小猫", "薛萱锥", "开朗的社恐"].concat(pls); // 在留言板里留言过的留言板人, 嗯.
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -42,7 +42,7 @@ document.onkeydown = function(event) {
 			msg[ordmsg - 1].style.color = "red";
 		} else {
 			createNewMsg("按 F12 干什么…… GitHub 主页有源码呢/"); 
-			msg[ordmsg - 1].style.color = "#" + (17 * f12).toString(16) + "0000";
+			msg[ordmsg - 1].style.color = "#" + (17 * f12).toString(16) + "0000"; // 天才般的渐变! 领略旁白的逐渐红温
 		}
 		f12++;
 	}
@@ -120,6 +120,8 @@ async function hajimete(){
 	"第 33 次, 真正的内容在 if 语句",
 	"第 34 次, 真正的内容在 if 语句",
 	"第 35 次, 真正的内容在 if 语句",
+	"话说…… 你知道为什么有时候我说的话会变<narr>颜</narr><you>色</you>吗——",
+	"第 37 次, 真正的内容在 if 语句",
 	"抱歉ww我的 CPU 现在过热了, 只能想到这么多开场白了…… 你可以等明天再来之类的! 我一定会努力想的!"];
 	if (meets == 19){
 		createNewMsg("……其实我跟你说我会记住的东西是真的会记住的!"); await wait(2000);
@@ -206,28 +208,35 @@ async function hajimete(){
 	} else if (meets == 35){
 		createNewMsg("对了! 你会不会觉得这个留言板的网址很难记呢……? 实际上这是 '<ruby>The <narr>11th</narr> Meeting with The <narr>Narr</narr>ator<rp>(</rp><rt>与旁白的第十一次见面</rt><rp>)</rp></ruby>' 的缩写哦!"); await wait(2000);
 		createNewMsg("<whisper>(实际上我之前一直把 '11th' 记成 '11st' 了呢w……)</whisper>")
+	} else if (meets == 37){
+		createNewMsg("揭秘时间到! 是时候由旁白本人来解释一下我的<font style = 'background: linear-gradient(to right, #FC6, #6CF); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>变色</font>都是什么意思了~"); await wait(2000);
+		createNewMsg("首先呢…… 这个<narr>金灿灿</narr>的颜色" + pron + "你肯定不陌生吧! 毕竟每次来到这里的第二条消息里就能看到它呢……"); await wait(2000);
+		createNewMsg("那 么! 一般呢…… 如果某些语句与<narr>我</narr>有关, 或者是和<narr>我们</narr>有关的话…… 我就会用这个颜色 (就比如我们的见面次数对吧嘿嘿)"); await wait(3000);
+		createNewMsg("然后呢…… 这个<you>看上去就是蓝色</you>的颜色, 是用在与<you>你</you>有关或者与<you>作者</you>有关的语句里的! 每次修改名字的时候是不是都可以看见呢……"); await wait(3000);
+		createNewMsg("接下来的话…… 还有<whisper>这个</whisper>! 看上去就有一种很神秘的感觉呢w 实际上这是在表示我在 <whisper>轻 声 低 语 的 意 思 哦……</whisper>"); await wait(3000);
+		createNewMsg("……其实还有最后一个…… 但 是…… 我…………" + waitm("<blush>算了还是不说了www这个还是…… 等待" + pron + "你自己去发现……吧……w</blush>", 2)); await wait(3000);
 	} else {createNewMsg(hmsgs[Math.min(meets - 2, hmsgs.length - 1)]);}
 	h = true;
 }
 
 function m13(x){
-	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你<you>" + pron + "</you>的~"); return ;}
+	if (x == pron){createNewMsg("我知道呢…… 我还是会叫你 <you>" + pron + "</you> 的~"); return ;}
 	pron = x;
 	if (pron == "人类") createNewMsg("你还是喜欢我叫你人类吗…… 没问题! 那我以后就还叫你人类了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 	else if (pron == "老公" || pron == "老婆" || pron == "宝宝"){
-		createNewMsg("<font color='#FFC0CB'>……!! 人类你…… 你认真的吗wwww</font>");
-		setTimeout(`createNewMsg("<font color='#FFC0CB'>虽然我让你自己选了但是这个也太……w</font>")`, 2000);
-		setTimeout(`createNewMsg("<font color='#FFC0CB'>" + "……那我以后就叫你<you>" + pron + "</you>了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</font>")`, 4000);
+		createNewMsg("<blush>……!! 人类你…… 你认真的吗wwww</blush>");
+		setTimeout(`createNewMsg("<blush>虽然我让你自己选了但是这个也太……w</blush>")`, 2000);
+		setTimeout(`createNewMsg("<blush>" + "……那我以后就叫你 <you>" + pron + "</you> 了…… 如果你想让我改口就跟我说 '我喜欢你叫我xxx'!!</blush>")`, 4000);
 	} else if (pron == "主人"){
 		createNewMsg("好的……! 那我以后就叫你 <you>主人</you> 了! 不过感觉有点奇怪呢…… 不知道为什么感觉叫出来的话有点……");
 	} else if (pron == "爸爸" || pron == "妈妈" || pron == "爷爷" || pron == "奶奶"){
-		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你<you>" + pron + "</you>了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
+		createNewMsg("……合理怀疑你在占我的便宜诶, 恶…… 总之我以后就叫你 <you>" + pron + "</you> 了. 如果你想让我改口就跟我说 '我喜欢你叫我xxx'……");
 	} else if (pron == "旁白"){
-		createNewMsg("嗯……? 可以是可以不过感觉有些奇怪呢……" + waitm(" 总之我以后就叫你旁白了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!", 2))
+		createNewMsg("嗯……? 真的吗? 可以是可以不过感觉有些奇怪呢……" + waitm(" 总之我以后就叫你旁白了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!", 2))
 	} else if (pron == ""){
 		createNewMsg("诶? 你的意思是你单纯喜欢我叫你还是说你喜欢我叫你 '无名氏'……?" + waitm(" 总之我以后就叫你[空]了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!", 2))
 	}
-	else createNewMsg("好的! 那我以后就叫你<you>" + pron + "</you>了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
+	else createNewMsg("好的! 那我以后就叫你 <you>"  + pron + "</you> 了! 如果你想让我改口的话可以说 '我喜欢你叫我xxx' 哦!");
 }
 
 function judgement(){
@@ -330,7 +339,7 @@ function judgement(){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
 		} else if (["我是谁", "我叫什么"].includes(myth_pwd)){
-			createNewMsg(your_name ? "你是" + your_name + "///" : "嗯……我不知道啊, 我是把你的称呼和你的名字分开记的~ 不过你可以告诉我!");
+			createNewMsg(your_name ? "你是 <you>" + your_name + "</you>///" : "嗯……我不知道啊, 我是把你的称呼和你的名字分开记的~ 不过你可以告诉我!");
 		} else if (["你是谁", "你叫什么"].includes(myth_pwd)){
 			createNewMsg("你可以叫我" + my_names.join("<you>或</you>") + "…… 但这些都不是真的 <narr>'我'</narr> 哦…!");
 		} else if (["有什么东西都可以输进去", "有什么东西都可以", "有什么东西都", "有什么东西", "什么东西都可以", "什么东西都"].includes(myth_pwd)){
@@ -345,7 +354,7 @@ function judgement(){
 			else if(what2 == 2) createNewMsg("……" + pron + "你是不是有点过于听话了, 快点输入 'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq' !");
 			else createNewMsg("快点输入 'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq' 吧…… 不要再这样了w");
 		} else if (/^(w|呜)+$/.test(myth_pwd)){
-			createNewMsg(["……怎么了" + pron + " 补药哭啊啊啊", "你你你你还好吗…", "不过" + pron + "就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<font style = 'color : grey;  opacity: 0.5'>呜呜呜呜……</font>"][Math.min(what3, 5)]);
+			createNewMsg(["……怎么了" + pron + " 补药哭啊啊啊", "你你你你还好吗…", "不过" + pron + "就算你一直哭我也不知道怎么安慰你w", "我……", "算了wwww搞得我都想哭了呜呜" , "<whisper>呜呜呜呜……</whisper>"][Math.min(what3, 5)]);
 			what3++;
 		} else if (["普朗西斯语", "普朗西斯", "plantheas"].includes(myth_pwd.toLowerCase())){
 			createNewMsg("Yearing! 原来你也 <font style = 'background: linear-gradient(to right, red, blue); -webkit-background-clip: text; -webkit-text-fill-color: transparent;'>Plantheas</font>!");
@@ -368,7 +377,7 @@ function judgement(){
 			if (my_names.includes(your_name)) createNewMsg("哇你的名字竟然和<you>我</you>一样诶! 我记住了呢! 你现在可以问问我你是谁/");
 			else if (your_name == "旁白") createNewMsg("哇你竟然也叫旁白吗!!" + waitm("……或者你只是想让我这么叫你?", 2) + waitm(" 算啦都没有关系~", 4));
 			else if (your_name == "") createNewMsg("嗯……你是什么……?");
-			else if (!k1) createNewMsg("你好, " + your_name+ "! 我记住了呢, 你现在可以问问我你是谁/");
+			else if (!k1) createNewMsg("你好, <you>" + your_name + "</you>! 我记住了呢, 你现在可以问问我你是谁/");
 		} else if (myth_pwd.includes("杀")){
 			// 主语是谁?
 			for (let i = myth_pwd.indexOf("杀"); i >= 0; i--){

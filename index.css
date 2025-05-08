@@ -15,6 +15,10 @@ whisper {
 	opacity: 0.5;
 }
 
+blush {
+	color : #FFC0CB
+}
+
 .showing_text_effect {
 	font-family: "Microsoft YaHei", 微软雅黑;
 	animation: showing_text_effect 2s both;
