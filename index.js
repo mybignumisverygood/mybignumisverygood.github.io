@@ -491,6 +491,7 @@ function load(k){
 
 function reset(){
 	reset_ = true;
+	h = true;
 	meets = 0;
 	h1 = [];
 	pron = "人类";
