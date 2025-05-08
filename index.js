@@ -23,6 +23,11 @@ var sumh1 = 0;
 
 var returm = false; // return 不 return?
 var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
+var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "ZHhan25"];
+var wu = ["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～", "yee"];
+var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad"];
+var pls = zhang.concat(wu).concat(huo)
+var notems = ["长叹一声氦", "某只薛姓小猫", "薛萱锥", "开朗的社恐"].concat(pls);
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -197,7 +202,7 @@ async function hajimete(){
 	} else if (meets == 34){
 		createNewMsg("话说…… 你还记得我们第 11 次见面时, 我给你的留言板吗?"); await wait(2000);
 		createNewMsg("我很好奇, 你有没有去留言呢?"); await wait(2000);
-		createNewMsg(plantheases(your_name) || plantheases(pron) ? "诶! 话说我记得你诶, 你绝对是是留言过的~ 今后也要常来哦" : "如果没有的话, 可以去看一看, 留言板的入口就在右下角!"); await wait(2000);
+		createNewMsg(notems.includes(your_name) || notems.includes(pron) ? "诶! 话说我记得你诶, 你绝对是是留言过的~ 今后也要常来哦" : "如果没有的话, 可以去看一看, 留言板的入口就在右下角!"); await wait(2000);
 	} else if (meets == 35){
 		createNewMsg("对了! 你会不会觉得这个留言板的网址很难记呢……? 实际上这是 '<ruby>The <narr>11th</narr> Meeting with The <narr>Narr</narr>ator<rp>(</rp><rt>与旁白的第十一次见面</rt><rp>)</rp></ruby>' 的缩写哦!"); await wait(2000);
 		createNewMsg("<whisper>(实际上我之前一直把 '11th' 记成 '11st' 了呢w……)</whisper>")
@@ -405,13 +410,13 @@ function judgement(){
 function plantheases(x){
 	x.replace(/<[^>]+(>|$)/g, "");
 	for(let i = 0; i <= 5; i++){
-		if(x.includes(["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625"][i])) return "哇你是涨到吗!";
+		if(x.includes(zhang[i])) return "哇你是涨到吗!";
 	} 
 	for(let i = 0; i <= 4; i++){
-		if(x.includes(["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～"][i])) return "这位是邪恶的人类😈!";
+		if(x.includes(wu[i])) return "这位是邪恶的人类😈!";
 	}
 	for(let i = 0; i <= 6; i++){
-		if(x.includes(["Harper", "圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "虹屿怀", "好与坏",  "good and bad"][i])) return "你是圆规小姐吗?/";
+		if(x.includes(huo[i])) return "你是圆规小姐吗?/";
 	}
 	return ;
 }
