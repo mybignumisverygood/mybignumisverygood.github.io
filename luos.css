@@ -29,6 +29,14 @@ blush {
 	font-size: 20px;
 }
 
+#intro_line1 {
+	animation: rising_intro 2s linear both;
+}
+#intro_line2 {
+	animation: rising_intro 2s linear both;
+	transform-origin: 30% 0;
+	transform: rotate(180deg);
+}
 
 #misc{
 	position: absolute;
@@ -36,8 +44,12 @@ blush {
 	right: 10px;
 }
 
-
 @keyframes showing_text_effect {
 	from {opacity: 0;}
 	to {opacity: 1;}
+}
+
+@keyframes rising_intro {
+	from {stroke-dasharray: 0% 100%;}
+	to {stroke-dasharray: 100% 100%;}
 }
