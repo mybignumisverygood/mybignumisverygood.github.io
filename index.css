@@ -48,6 +48,10 @@ blush {
 	right: 20px;
 }
 
+#ss{
+	font-size: 40px;
+}
+
 @keyframes showing_text_effect {
 	from {opacity: 0;}
 	to {opacity: 1;}
