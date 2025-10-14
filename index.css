@@ -53,6 +53,10 @@ blush {
 }
 
 @keyframes showing_text_effect {
+	to {transform:translateX(5%)}
+}
+
+@keyframes showing_text_effect {
 	from {opacity: 0;}
 	to {opacity: 1;}
 }

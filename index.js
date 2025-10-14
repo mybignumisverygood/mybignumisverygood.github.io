@@ -292,10 +292,12 @@ async function judgement(){
 				if (myth_pwd == "知道" || myth_pwd == "我知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what[6] = true;}
 				else if (myth_pwd == "不知道" || myth_pwd == "我不知道") createNewMsg("确实. 你当然不会知道w" + waitm(" 没有人类在的时候我就会…… 在网上爬一些语料库之类的, 你可以认为我也会上网!", 2));
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
+				what[5]=false;
 			} else if (meets == 18){
 				if (myth_pwd == "知道" || myth_pwd == "我知道") {createNewMsg("!真的吗真的吗! 那" + pron + "我要测试你! 不过骗我的人类会被我记住的哦……"); what[7] = true;}
 				else if (myth_pwd == "不知道" || myth_pwd == "我不知道") createNewMsg("嗯…… 这个网站其实一开始是作者用来放某个人的图片的哦(好邪恶的作者w)" + waitm(" 不过后来改成了正经的网站, 但是和现在的也不一样呢, 要是你想看的话我可以跟作者说一下~", 2));
 				else createNewMsg("ww你不想回答我吗…… 那算了, 等下次见面再问你别的吧www");
+				what[6]=false;
 			} else if (meets == 27){
 				if (myth_pwd == "要") {m27 = true; createNewMsg("好! 那下一次就让你先说吧——");}
 				else if (myth_pwd == "不要") {m27 = false; createNewMsg("好的, 那下一次就还是我继续说吧——");}
@@ -316,7 +318,7 @@ async function judgement(){
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m16 = true;}
 			what[6] = false;
 		} else if (what[7]){
-			if (myth_pwd.includes("图片")) {m18 = false; createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");}
+			if (myth_pwd.includes("图片")) {m18 = false; console.log("1"); createNewMsg("!你好厉害诶, 竟然真的知道! 看来你和作者的关系很好呢——");}
 			else {createNewMsg("……骗人, 你根本不知道ww 我记住你了w"); m18 = true;}
 			what[7] = false;
 		} else if (myth_pwd.slice(0, 6) == "我喜欢你叫我"){
