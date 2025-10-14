@@ -353,7 +353,7 @@ async function judgement(){
 		} else if (myth_pwd == "再见"){
 			createNewMsg("再见……!");
 			setInterval("window.open('', '_self').close();", 2500);
-		} else if (["我是谁", "我叫什么"].includes(myth_pwd)){
+		} else if (["我是谁", "我叫什么", "我叫啥"].includes(myth_pwd)){
 			createNewMsg(your_name ? "你是 <you>" + your_name + "</you>///" : "嗯……我不知道啊, 我是把你的称呼和你的名字分开记的~ 不过你可以告诉我!");
 		} else if (["你是谁", "你叫什么"].includes(myth_pwd)){
 			createNewMsg("你可以叫我" + my_names.join("<you>或</you>") + "…… 但这些都不是真的 <narr>'我'</narr> 哦…!");
