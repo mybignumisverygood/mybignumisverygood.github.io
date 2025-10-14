@@ -11,7 +11,7 @@ var what = [NaN, false, 0, 0, false, false, false, false, false] // 还是从 1 
 人类的开场白; 8
 */
 
-var meets = 1, startmeets; // 见面次数; 刚加载页面时的刷新次数
+var meets = 0, startmeets; // 见面次数; 刚加载页面时的刷新次数
 var h = false; // 要听我说完开场白哦…
 var h1 = []; // 急躁次数记录表, 记录急躁人类的每一次急躁(?
 var pron = "人类"; // 人类喜欢的称呼……
@@ -487,8 +487,9 @@ function init(){
 }
 
 function load(k){
-	if (meets == 0){meets++;}
 	saves = JSON.parse(localStorage.getItem("narr"));
+	if (saves === null) {init(); save(); saves = JSON.parse(localStorage.getItem("narr"));}
+	
 	if (saves.meets == 28){ // 吓一下亲爱的人类~
 		m29 = saves; m29__ = true; // 会备份的——
 		save();
