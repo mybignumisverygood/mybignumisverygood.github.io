@@ -50,11 +50,10 @@ blush {
 
 #ss{
 	font-size: 40px;
+	animation: ss 4s infinite alternate;
 }
 
-@keyframes showing_text_effect {
-	to {transform:translateX(5%)}
-}
+
 
 @keyframes showing_text_effect {
 	from {opacity: 0;}
@@ -63,4 +62,10 @@ blush {
 
 @keyframes phase1 {
 	to {transform:translateX(5%)}
+}
+
+@keyframes ss {
+	0% {color:#6cf}
+	66% {color:#fc6}
+	100% {color:thistle}
 }
