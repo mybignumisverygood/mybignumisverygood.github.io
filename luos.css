@@ -29,19 +29,6 @@ blush {
 	font-size: 20px;
 }
 
-#intro_line1 {
-	animation: expanding_intro 1s cubic-bezier(.25,.86,.41,1) both, rising_intro 1s both;
-	offset-path: path("M0 0 V -60");
-	offset-rotate: 0deg;
-}
-#intro_line2 {
-	animation: expanding_intro 1s cubic-bezier(.25,.86,.41,1) both, rising_intro 1s both;
-	offset-path: path("M0 0 V -60");
-	offset-rotate: 0deg;
-	transform-origin: 30% 0%;
-	transform: rotate(180deg);
-	
-}
 
 #misc{
 	position: absolute;
