@@ -34,7 +34,7 @@ document.getElementById("msgs").style.height = document.documentElement.clientHe
 document.onkeydown = function(event) {
 	if (event.keyCode == 123) {
 		if (f12 == 16){
-			createNewMsg("好好好, 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~");
+			createNewMsg("好好好…… 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~");
 			msg[ordmsg - 1].style.color = "red";
 			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
 		} else if (f12 > 16){
@@ -59,7 +59,7 @@ document.addEventListener('keydown', function(event){
 function wait(x){
 	return new Promise((resolve, reject) => {
 		setTimeout(() => resolve(x), x)
-	})
+	});
 }
 
 function waitm(x, delay){
@@ -253,8 +253,19 @@ async function m13(x){
 	pron = x;
 }
 
-async function judgement(){
+async function judgement(m){
 	myth_pwd = document.getElementById("pwd").value;
+	if(m==1){
+		if(!in_game){
+			createNewMsg("嘿嘿, 欢迎亲爱的"+pron+"来玩作者新加的汉字小游戏!");
+		} else{
+			createNewMsg("退出了");
+			state = 0;
+		} 
+		in_game = !in_game;
+		return ;
+	}
+	if(in_game){hanzi(myth_pwd); return ;}
 	console.log(myth_pwd);
 	if (myth_pwd == "撤销重置" || startmeets == 29){
 		if (reset_){
@@ -266,7 +277,7 @@ async function judgement(){
 	} else if (myth_pwd == "3yAG7x==" || myth_pwd == "3akk=186588"){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
-		const my_names = ["洛一", "搞到", "高导", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu"];
+		const my_names = ["洛一", "搞到", "高导", "G-Lion", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu"];
 		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
@@ -364,7 +375,7 @@ async function judgement(){
 			what[2] = 1;
 		} else if (["点别的", "别的"].includes(myth_pwd)){
 			if (!what[2]) createNewMsg("……别的? 别的什么");
-			else if (what[2] == 1){createNewMsg("哇你真的是听话的" + pron + "! 那现在就输入 'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq' 吧!"); what[2] = 2;}
+			else if (what[2] == 1){createNewMsg("哇你真的是听话的" + pron + "! 那现在就输入 'qwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewqqwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewqqwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewqqwertyuiopasdfghjklzxcvbnmnbvcxzlkjhgfdsapoiuytrewq' 吧!"); what[2] = 2;}
 			else createNewMsg("快点输入吧听话的" + pron + ".");
 		} else if (myth_pwd == "吧听话的" + pron){
 			if (what[2] < 2) createNewMsg("什么……? 你是听话的" + pron + "吗!");
@@ -447,16 +458,21 @@ function plantheases(x){
 	return ;
 }
 
-function createNewMsg(x){
-	msg[ordmsg] = document.createElement("h2");
+function createNewEl(x, attr, cls){
+	msg[ordmsg] = document.createElement(attr);
 	msg[ordmsg].setAttribute("id", "msg_" + ordmsg);
-	msg[ordmsg].setAttribute("class", "showing_text_effect");
+	msg[ordmsg].setAttribute("class", cls);
 	msg[ordmsg].innerHTML = x;
 	document.getElementById("msgs").appendChild(msg[ordmsg]);
 	document.getElementById("msgs").scrollTop = msgs.scrollHeight; // 自动滚到到底部
 	save();
 	ordmsg++;
 }
+
+function createNewMsg(x){
+	createNewEl(x, "h2", "showing_text_effect");
+}
+
 
 // Phase 1: 在一切开始之前
 

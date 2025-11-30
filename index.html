@@ -5,6 +5,8 @@
     	<meta name = "viewport" content = "width = device-width">
     	<link href = "index.css" rel = "stylesheet" type = "text/css"/>
     	<script type = "text/javascript" src = "index.js" defer></script>
+    	<script type = "text/javascript" src = "hanzi.js" defer></script>
+    
     	<title>你好!</title>
   	</head>
   	<body>
@@ -13,6 +15,8 @@
 	  		<br />
 	  		<a download="普朗西斯语.pdf" href="普朗西斯语.pdf" class = "showing_text_effect">点我下载普朗西斯语PDF版！（推荐，否则格式可能会乱）</a>
 	  		<br />
+	  		<a href="ordinal/index.html" class = "showing_text_effect">点我进入小LNGI!</a>
+	  		<br />
 	  		<b><a download="setsumei syoukai.pdf" href="setsumei syoukai.pdf" id="ss">点我下载数学争霸赛"说明 / 介绍"电子版！（推荐推荐推荐推荐推荐）</a></b>	
 	  		<h2 class = "showing_text_effect", style = "animation-delay: 2s">对了，这里有一个小文字框！有什么东西都可以输进去试试</h2>
 	  		<input id = "pwd", class = "showing_text_effect", style = "animation-delay: 2s" />
@@ -20,6 +24,7 @@
   			<button onclick = "reset()">重置</button>
   			<button onclick = "change_meets(1)">meets+1</button>
   			<button onclick = "change_meets(-1)">meets-1</button>
+  			<button onclick = "judgement(1)">汉字小游戏😈</button>
   		</div>
   		
   		<div id="msgs" style="overflow-y: scroll; -ms-overflow-style: none; scrollbar-width: none;">
