@@ -7,7 +7,6 @@ fundEl = document.getElementById('fund');
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
 const ep2 = ep1.tetr(3);
-
 function EN(x){
 	return ExpantaNum(x);
 }
@@ -19,14 +18,15 @@ var ordivar = EN(0);
 var fundWidth = (fundEl.style.width)/2;
 function fund(){
 	fundEl.style.display = "block";
+	// 让帮助界面居中! 最可怕的一集w
+	fundEl.style.left = "calc(50% - "+fundEl.offsetWidth/2+"px)";
+	fundEl.style.bottom = "calc(50% - "+fundEl.offsetHeight/2+"px)";
 }
 function exit(){
 	fundEl.style.display = "none";
 }
 
 function display(){
-	fundEl.style.left = "calc(50% - "+fundEl.offsetWidth/2+"px)";
-	fundEl.style.bottom = "calc(50% - "+fundEl.offsetHeight/2+"px)";
 	if(ordivar.lt(EN(42337))){
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
@@ -73,7 +73,7 @@ function formaty(x){
 // Beyond ε_ω
 function formaty1(x){
 	var base = number((x.sub(42337).pow(1.1).add(1350)));
-	var sbase = EN('3.04365').tetr(base.mul(2).add(3));
+	var sbase = EN('3.04365').tetr(base.mul(2).add(3)); // 经过计算的神秘数字
 	return [formatWhole(sbase), "ε<sub>"+formaty(number((x.sub(42337).pow(1.1).add(1350))))+"</sub>"];
 }
 	
