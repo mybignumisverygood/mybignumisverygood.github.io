@@ -19,8 +19,8 @@ var fundWidth = (fundEl.style.width)/2;
 function fund(){
 	fundEl.style.display = "block";
 	// 让帮助界面居中! 最可怕的一集w
-	fundEl.style.left = "calc(50% - "+fundEl.offsetWidth/2+"px)";
-	fundEl.style.bottom = "calc(50% - "+fundEl.offsetHeight/2+"px)";
+	fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
+	fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
 }
 function exit(){
 	fundEl.style.display = "none";
