@@ -4,7 +4,7 @@
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width">
     	<title>Ordinal</title>
-    	<link href="index.css" rel="stylesheet" type="text/css" />
+    	<link href="ordinal.css" rel="stylesheet" type="text/css" />
     	
     	<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML" async></script>
 		<script type="text/x-mathjax-config">
@@ -14,11 +14,13 @@
 					displayMath: [['$$', '$$'], ['\\[', '\\]']]
 				}
 			});
+			
 		</script>
-
-    	<script src="index.js" defer></script>
+		
     	<script src="./ExpantaNum.js"></script>
-		<script src="./format-expantanum.js"></script> 
+		<script src="./format-expantanum.js"></script>
+		<script src="ordinal.js" defer></script> 
+    	
   		
   	</head>
   	<body>
@@ -27,8 +29,8 @@
   			本LNGI所使用的基本列如下:<br />
   			$1.\ \omega=\mathrm{sup}\{0,1,2,\cdots\}$<br />
   			$2.\ \omega^\alpha[n]=\omega^{\alpha[n]}其中\alpha为极限序数$<br />
-  			$3.\ \varepsilon_0=\mathrm{sup}\{0,\omega,\omega^\omega,\omega^{\omega^\omega}\cdots\}$<br />
-  			$4.\ \varepsilon_{\alpha+1}=\mathrm{sup}\{0,\varepsilon_\alpha,{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}}\cdots\}$<br />
+  			$3.\ \varepsilon_0=\mathrm{sup}\{1,\omega,\omega^\omega,\omega^{\omega^\omega}\cdots\}$<br />
+  			$4.\ \varepsilon_{\alpha+1}=\mathrm{sup}\{1,\varepsilon_\alpha,{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}}\cdots\}$<br />
   			$5.\ \varepsilon_{\alpha}=\mathrm{sup}\{\varepsilon_\beta|\beta<\alpha\}其中\alpha为极限序数$<br />
   			$6.\ 基本列在到达下标3时会进位$
   			<br /><br />

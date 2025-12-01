@@ -41,12 +41,11 @@ p {
 	display: none;
 	/* 防止序数遮挡帮助 */
 	background: #000;
-	padding: 20px;
 	padding-bottom: 70px;
 	
 	font-family: "SimHei";
 	font-size: 15px;
 	position: absolute;
-	left: calc(50% - 170px); bottom: calc(50% - 150.6915px);
 	line-height: 2em;
 }
+

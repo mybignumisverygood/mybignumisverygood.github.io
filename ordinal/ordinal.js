@@ -2,6 +2,8 @@ ordinum = document.getElementById("ordinum");
 ordinal = document.getElementById("ordinal");
 celm = document.getElementById('setMode');
 displayInterval = setInterval(display, 20);
+fundEl = document.getElementById('fund');
+
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
 const ep2 = ep1.tetr(3);
@@ -14,23 +16,24 @@ function NZ(x){
 	return !x.sub(1).isneg();
 }
 var ordivar = EN(0);
-
+var fundWidth = (fundEl.style.width)/2;
 function fund(){
-	document.getElementById('fund').style.display = "block";
+	fundEl.style.display = "block";
 }
 function exit(){
-	document.getElementById('fund').style.display = "none";
+	fundEl.style.display = "none";
 }
 
 function display(){
+	fundEl.style.left = "calc(50% - "+fundEl.offsetWidth/2+"px)";
+	fundEl.style.bottom = "calc(50% - "+fundEl.offsetHeight/2+"px)";
 	if(ordivar.lt(EN(42337))){
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
 	}else{
-		var base = number((ordivar.sub(42337).pow(1.1).add(1350)));
-		var sbase = EN('3.04365').tetr(base.mul(2).add(3));
-		ordinum.innerHTML = formatWhole(sbase);
-		ordinal.innerHTML = formaty(number(ordivar));
+		var p1 = formaty1(ordivar);
+		ordinum.innerHTML = p1[0];
+		ordinal.innerHTML = p1[1];
 	}
 	ordivar = ordivar.plus(1);
 	
@@ -47,6 +50,7 @@ function formaty(x){
 	// ω+1<=x<ω^2, ω^2=3^2=9
 	} else if (x.lt(9)){
 		return "ω"+(NZ(x.div(3).floor().sub(1))?x.div(3).floor():"")+(NZ(x.mod(3))?"+"+x.mod(3).floor():"");
+	// ω^2<=x<ε_0, ε_0=3^^3=7e12
 	} else if (x.lt(epsilon)){
 		var expo = x.logBase(3).floor();
 		var fac = x.div(EN(3).pow(expo)).floor();
@@ -66,6 +70,13 @@ function formaty(x){
 		return "ε<sub>"+formaty(number((ordivar.sub(42337).pow(1.1).add(1350))))+"</sub>";
 	}
 }
+// Beyond ε_ω
+function formaty1(x){
+	var base = number((x.sub(42337).pow(1.1).add(1350)));
+	var sbase = EN('3.04365').tetr(base.mul(2).add(3));
+	return [formatWhole(sbase), "ε<sub>"+formaty(number((x.sub(42337).pow(1.1).add(1350))))+"</sub>"];
+}
+	
 	
 function autoRun(){
 	if (celm.checked){
