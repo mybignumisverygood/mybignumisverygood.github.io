@@ -47,6 +47,6 @@ p {
 	font-family: "SimHei";
 	font-size: 15px;
 	position: absolute;
-	left: calc(50% - 150px); bottom: calc(50% - 150.6915px);
+	left: calc(50% - 170px); bottom: calc(50% - 150.6915px);
 	line-height: 2em;
 }
