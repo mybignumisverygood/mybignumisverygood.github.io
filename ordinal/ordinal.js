@@ -7,6 +7,8 @@ fundEl = document.getElementById('fund');
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
 const ep2 = ep1.tetr(3);
+var recur;
+
 function EN(x){
 	return ExpantaNum(x);
 }
@@ -30,10 +32,12 @@ function display(){
 	if(ordivar.lt(EN(42337))){ // <ε_ω
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
+		recurDepth = 0;
 	}else{
 		var p1 = formaty1(ordivar);
 		ordinum.innerHTML = formatWhole(p1[0]);
 		ordinal.innerHTML = p1[1];
+		// if(p1[1].match(/ζ/g).length==3){console.log(ordivar); return;}
 	}
 	ordivar = ordivar.plus(1);
 	
@@ -70,6 +74,7 @@ function formaty(x){
 		return "ε<sub>ω</sub>";
 	}
 }
+
 // Beyond ε_ω
 // 现在开始就是数字随序数动了! 虽然…… 好像…… 有点麻烦
 
@@ -79,20 +84,26 @@ function Epsilons(base){ // 什么叫数值逼近之力啊(骄傲)
 }
 
 const zeta = Epsilons(Epsilons(epsilon)); //~FF1.525e13
+const z1 = zeta.tetr(3);
+const z2 = z1.tetr(3);
 
 function formaty1(x){
+	recurDepth++;
 	if(x.lt(EN(59364))){ // <ζ_0
 		if(x.lt(EN(42337))){
 			return [number(x), formaty(number(x))];
 		}
 		var base_x = x.sub(42337).pow(1.1).add(1350);
 		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>"];
-	} else {
-		return [zeta, "ζ<sub>0</sub>=ε<sub>ε<sub>ε<sub>0</sub></sub></sub>"];
+	} else if(x.lt(EN(60887))){
+		var base_x = ExpantaNum.min(x.sub(59354).pow(1.5).add(854), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		return [zeta.pow(formaty1(base_x)[0]), "ζ<sub>0</sub><sup>"+formaty1(base_x)[1]+"<\sup>"];
+	} else{
+		var base_x = ExpantaNum.min(x.sub(60887).pow(1.5).add(854), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		return [z1.pow(formaty1(base_x)[0]), "ζ<sub>1</sub><sup>"+formaty1(base_x)[1]+"<\sup>"];
 	}
 }
-	
-	
+recurDepth = 0;
 function autoRun(){
 	if (celm.checked){
 		displayInterval=setInterval(display,20);

@@ -39,7 +39,7 @@ p {
 
 #fund{
 	display: none;
-	/* 防止序数遮挡帮助 */
+	/* 防止序数遮挡帮助界面 */
 	background: #000;
 	padding-bottom: 70px;
 	
@@ -49,3 +49,8 @@ p {
 	line-height: 2em;
 }
 
+#misc{
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+}

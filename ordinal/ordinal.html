@@ -28,12 +28,16 @@
   		<div id = "fund">
   			本LNGI所使用的基本列如下:<br />
   			$1.\ \omega=\mathrm{sup}\{0,1,2,\cdots\}$<br />
-  			$2.\ \omega^\alpha[n]=\omega^{\alpha[n]}其中\alpha为极限序数$<br />
-  			$3.\ \varepsilon_0=\mathrm{sup}\{1,\omega,\omega^\omega,\omega^{\omega^\omega}\cdots\}$<br />
-  			$4.\ \varepsilon_{\alpha+1}=\mathrm{sup}\{1,\varepsilon_\alpha,{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}}\cdots\}$<br />
-  			$5.\ \varepsilon_{\alpha}=\mathrm{sup}\{\varepsilon_\beta|\beta<\alpha\}其中\alpha为极限序数$<br />
-  			$6.\ \zeta_0=\mathrm{sup}\{1,\varepsilon_0,\varepsilon_{\varepsilon_0},\varepsilon_{\varepsilon_{\varepsilon_0}}\cdots\}$<br />
-  			$7.\ 基本列在到达下标3时会进位$
+  			$2.\ \varepsilon_0=\mathrm{sup}\{0,1,\omega,\omega^\omega,\omega^{\omega^\omega},\cdots\}$<br />
+  			$3.\ \varepsilon_{\alpha+1}=\mathrm{sup}\{\varepsilon_\alpha,\varepsilon_\alpha2,\varepsilon_{\alpha}^2,{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}},\cdots\}$<br />
+  			$4.\ \varepsilon_{\alpha}=\mathrm{sup}\{\varepsilon_\beta|\beta<\alpha\}其中\alpha为极限序数$<br />
+  			$5.\ \zeta_0=\mathrm{sup}\{0,\varepsilon_0,\varepsilon_{\varepsilon_0},\varepsilon_{\varepsilon_{\varepsilon_0}},\cdots\}$<br />
+  			$也就是说,\varepsilon_{\zeta_0+1}=\mathrm{sup}\{\zeta_0,\zeta_02,\zeta_{0}^2,{\zeta_0}^{\zeta_0},{\zeta_0}^{{\zeta_0}^{\zeta_0}},\cdots\},以此类推$<br />
+  			$给出\text{Veblen}函数的部分定义:\ \varphi_0(\alpha)=\omega^\alpha,\varphi_1(\alpha)=\varepsilon_\alpha,\varphi_2(\alpha)=\zeta_\alpha$<br />
+  			$6.\ \varphi_{\alpha+1}(0)=\mathrm{sup}\{0,\varphi_{\alpha}(0),\varphi_{\alpha}(\varphi_{\alpha}(0)),\cdots\}$<br />
+  			$7.\ \varphi_{\alpha+1}(\beta+1)=\mathrm{sup}\{\varphi_{\alpha+1}(\beta),\varphi_{\alpha}(\varphi_{\alpha+1}(\beta)),\varphi_{\alpha}(\varphi_{\alpha}(\varphi_{\alpha+1}(\beta))),\cdots\}其中\alpha>0$<br />
+  			$8.\ \varphi_{\alpha}(\beta)[n]=\varphi_{\alpha}(\beta[n])其中\beta为极限序数$<br />
+  			$9.\ 基本列在到达下标3时会进位,\varepsilon_\alpha除外,在形式上它会在下标4时进位$
   			<br /><br />
   			<button id = "exit", onclick="exit()"><b><font color="#e7e7e7">退出</font></b></button>
   		</div>
@@ -41,5 +45,9 @@
     	<p id="ordinum">0</p>
     	<p id="ordinal">0</p>
     	<p style="display: inline-block;">Auto Run&ensp;</p><input id="setMode" type="checkbox" checked="checked" onclick="autoRun()"/>
+  		<div id="misc">
+			<h4 class="ver">版本 v0.2.1.1 (2025/12/3 0:33)</h4>
+			<h4 class="gg">目前极限: $\small{\sim}\normalsize{\zeta_1}$</h4>
+		</div>
   	</body>
 </html>
