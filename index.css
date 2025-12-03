@@ -54,16 +54,16 @@ blush {
 }
 
 @font-face{
-	font-family:"洛体"; src:url("fonts/LUO-REGULAR.TTF") format('truetype');;
+	font-family:"洛体"; src:url("fonts/LUO-REGULAR.TTF") format('truetype');
 }
 @font-face{
-	font-family:"SimSun"; src:url("fonts/SIMSUN.TTC") format('truetype');;
+	font-family:"SimSun"; src:url("fonts/SIMSUN.TTC") format('truetype');
 }
 @font-face{
-	font-family:"SimSun-ExtB"; src:url("fonts/SIMSUNB.TTF") format('truetype');;
+	font-family:"SimSun-ExtB"; src:url("fonts/SIMSUNB.TTF") format('truetype');
 }
 @font-face{
-	font-family:"SimSun-ExtG"; src:url("fonts/SIMSUNEXTG.TTF") format('truetype');;
+	font-family:"SimSun-ExtG"; src:url("fonts/SIMSUNEXTG.TTF") format('truetype');
 }
 
 .hanzi{
