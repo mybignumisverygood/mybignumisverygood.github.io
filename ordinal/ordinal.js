@@ -7,7 +7,7 @@ fundEl = document.getElementById('fund');
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
 const ep2 = ep1.tetr(3);
-var recur;
+var fundWidth, fundHeight;
 
 function EN(x){
 	return ExpantaNum(x);
@@ -17,18 +17,23 @@ function NZ(x){
 	return !x.sub(1).isneg();
 }
 var ordivar = EN(0);
-var fundWidth = (fundEl.style.width)/2;
 function fund(){
 	fundEl.style.display = "block";
+	fundWidth = fundEl.getBoundingClientRect().width;
+	fundHeight = fundEl.getBoundingClientRect().height;
 	// 让帮助界面居中! 最可怕的一集w
-	fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
-	fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
 }
 function exit(){ // 真是屈才您了呢
 	fundEl.style.display = "none";
 }
 
 function display(){
+	if(fundWidth>0){
+		fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
+		fundEl.style.height = Math.min(document.documentElement.clientHeight-100,fundHeight) + "px";
+		fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
+		fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
+	}
 	if(ordivar.lt(EN(42337))){ // <ε_ω
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
