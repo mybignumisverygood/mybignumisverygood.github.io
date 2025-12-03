@@ -53,6 +53,19 @@ blush {
 	animation: ss 4s infinite alternate;
 }
 
+@font-face{
+	font-family:"洛体"; src:url("LUO-REGULAR.TTF");
+}
+@font-face{
+	font-family:"SimSun"; src:url("SIMSUN.TTC");
+}
+@font-face{
+	font-family:"SimSun-ExtB"; src:url("SIMSUNB.TTF");
+}
+@font-face{
+	font-family:"SimSun-ExtG"; src:url("SIMSUNEXTG.TTF");
+}
+
 .hanzi{
 	font-family: "Times New Roman", 洛体,  SimSun, SimSun-ExtB, SimSun-ExtG;
 	animation: showing_text_effect 2s both;
