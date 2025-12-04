@@ -3,6 +3,7 @@ ordinal = document.getElementById("ordinal");
 celm = document.getElementById('setMode');
 displayInterval = setInterval(display, 20);
 fundEl = document.getElementById('fund');
+timeEl = document.getElementById('time');
 
 const epsilon = EN(3).tetr(3);
 const ep1 = epsilon.tetr(3);
@@ -21,13 +22,25 @@ function fund(){
 	fundEl.style.display = "block";
 	fundWidth = fundEl.getBoundingClientRect().width;
 	fundHeight = fundEl.getBoundingClientRect().height;
+	fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
+	fundEl.style.height = Math.min(document.documentElement.clientHeight-100,fundHeight) + "px";
+	fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
+	fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
 	// 让帮助界面居中! 最可怕的一集w
 }
 function exit(){ // 真是屈才您了呢
 	fundEl.style.display = "none";
 }
 
+function formatTime(sec){
+	let s = sec%60;
+	let m = Math.floor(sec/60%60);
+	let h = Math.floor(sec/3600);
+	return (h?h+"小时":"")+(m?m+"分钟":"")+s+"秒";
+}
+
 function display(){
+	time.innerHTML="你最少需要花费"+formatTime(parseInt(format(ordivar.div(50)).replace(/,/g, '')))+"到达这里";
 	if(fundWidth>0){
 		fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
 		fundEl.style.height = Math.min(document.documentElement.clientHeight-100,fundHeight) + "px";
@@ -101,10 +114,12 @@ function formaty1(x){
 		var base_x = x.sub(42337).pow(1.1).add(1350);
 		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>"];
 	} else if(x.lt(EN(60887))){
-		var base_x = ExpantaNum.min(x.sub(59354).pow(1.5).add(854), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
-		return [zeta.pow(formaty1(base_x)[0]), "ζ<sub>0</sub><sup>"+formaty1(base_x)[1]+"<\sup>"];
+		var base_x = ExpantaNum.min(x.sub(59364).pow(1.5), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		return [zeta.pow(formaty1(base_x)[0]), (!"01".includes(formaty1(base_x)[1]) ?
+												"ζ<sub>0</sub><sup>"+formaty1(base_x)[1]+"<\sup>" :
+												"<font color='#fc6'>ζ<sub>0</sub></font>=ε<sub>ε<sub>ε<sub>0</sub></sub></sub>")];
 	} else{
-		var base_x = ExpantaNum.min(x.sub(60887).pow(1.5).add(854), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		var base_x = ExpantaNum.min(x.sub(60887).pow(1.5).add(854), x.sub(1));
 		return [z1.pow(formaty1(base_x)[0]), "ζ<sub>1</sub><sup>"+formaty1(base_x)[1]+"<\sup>"];
 	}
 }
@@ -115,4 +130,8 @@ function autoRun(){
 	} else {
 		clearInterval(displayInterval,20);
 	}
+}
+
+function cheat(){
+	ordivar = ordivar.add(2000);
 }
