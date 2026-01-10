@@ -10,19 +10,24 @@ var fontLoaded = false, bgmLoaded = false;
 
 bgm.addEventListener("canplaythrough", () => {
 	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
+	if (isMobile()){bgm.pause(); bgm.currentTime = 0;}
 });
-
-bgm.addEventListener("loadedmetadata", () => {
-	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
-});
-
 
 document.fonts.ready.then(() => {
 	fontLoaded = true; document.getElementById("wait").innerHTML="fr"; youCanGetIn();
 });
 
 bgm.addEventListener("pause", () => {button.style.display = "block";});
-bgm.addEventListener("play", () => {main();});
+if (!isMobile()){
+	bgm.addEventListener("play", () => {main();});
+} else {
+	bgm.play(); bgm.muted = true;
+}
+
+function isMobile() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+}
 
 function youCanGetIn(){
 	if(fontLoaded && bgmLoaded){
