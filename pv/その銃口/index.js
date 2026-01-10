@@ -1,7 +1,8 @@
 var bgm = document.getElementById("bgm");
 var button = document.getElementById("play");
 var bottom = document.getElementById("bottom");
-var title = document.getElementById("title");
+var sono = document.getElementById("sono");
+var utau = document.getElementById("utau");
 var currentTime = bgm.currentTime;
 
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
@@ -47,15 +48,18 @@ function centerPos(x){
 async function main(){
 	button.style.display = "none";
 	await wait(offset + beat * 3);
-	centerPos(title);
-	window.addEventListener('resize', () => {centerPos(title);});
-	title.style.visibility = "visible";
+	centerPos(sono);
+	window.addEventListener('resize', () => {centerPos(sono);});
+	sono.style.visibility = "visible";
 	await wait(beat * 16);
-	title.style.fontSize = "5vh"; title.style.letterSpacing = "1vh";
-	title.innerHTML = "歌唱：可不"; centerPos(title);
+	sono.style.visibility = "hidden";
+	
+	centerPos(utau);
+	window.addEventListener('resize', () => {centerPos(utau);});
+	utau.style.visibility = "visible";
 	await wait(beat * 15);
-	title.style.visibility = "hidden";
-	window.removeEventListener('resize', () => {centerPos(title);});
+	utau.style.visibility = "hidden";
+	window.removeEventListener('resize', () => {centerPos(utau);});
 	
 	// Verse 1
 	var lyrics1 = ["敬虔な私だ", "自己を崇拝中です。ひたすら", "だって絶対裏切らないという保証があるから", "", 
@@ -68,10 +72,21 @@ async function main(){
 	// Verse 2
 	var lyrics2 = ["ある日の夜深淵をちょっと見た", "銃口みたいで笑った", "どっかで見たことあった気した", "", 
 	"また今度に深淵があったなら一回覗いとこうか", "ああ、ちょどいい平和で", "なんて幸福", ""];
-	var interval2 = [2, 4, 4, 7, 1, 8, 4, 2];
+	var interval2 = [2, 4, 4, 6.5, 1.5, 8, 4, 2];
 	for (let i=0; i<lyrics2.length; i++){
 		await wait(beat * interval2[i]); bottom.innerHTML = lyrics2[i];
 	}
+	
+	// Verse 3
+	var lyrics3 = ["正しいと思える世界で", "間違いに塗れてみたいな", "ララバイこの歌終わるまで後ろ向いちゃだめだよ", "", 
+	"一番星が輝いてる／細かな未来が待ってる", "軽快なリズムに合わせて共にダンスをしましょう", ""];
+	var interval3 = [2, 4, 4, 7.5, 0.5, 8, 7.5];
+	for (let i=0; i<lyrics3.length; i++){
+		await wait(beat * interval3[i]); bottom.innerHTML = lyrics3[i];
+	}
+	
+	// かんそう！
+	await wait(beat * 0.5); sono.style.visibility = "visible";
 	return 0;
 }
 
