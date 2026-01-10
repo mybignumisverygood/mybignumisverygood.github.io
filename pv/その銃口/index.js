@@ -4,7 +4,6 @@ var bottom = document.getElementById("bottom");
 var sono = document.getElementById("sono");
 var utau = document.getElementById("utau");
 var waitE = document.getElementById("wait");
-var currentTime = bgm.currentTime;
 
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
 
@@ -55,7 +54,12 @@ function centerPos(x){
 async function main(){
 	
 	button.style.display = "none";
-	await wait(offset + beat * 3);
+	if (isMobile()){
+		await wait(offset + beat);
+		await wait(beat * 3 - bgm.currentTime * 1000);
+	} else {
+		await wait(offset + beat * 3);
+	}
 	centerPos(sono);
 	window.addEventListener('resize', () => {centerPos(sono);});
 	sono.style.visibility = "visible";
