@@ -6,7 +6,9 @@ var currentTime = bgm.currentTime;
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
 const vh = window.innerHeight * 0.01, vw = window.innerWidth * 0.01;
 
+bgm.addEventListener("canplaythrough", () => {document.getElementById("wait").style.display = "none"; document.getElementById("main").style.visibility = "visible"});
 bgm.addEventListener("pause", () => {button.style.display = "block";});
+bgm.addEventListener("play", () => {main();});
 
 function centerPos(x){
 	var xWidth = x.getBoundingClientRect().width, xHeight = x.getBoundingClientRect().height;
@@ -15,7 +17,6 @@ function centerPos(x){
 }
 
 async function main(){
-	bgm.play();
 	button.style.display = "none";
 	await wait(offset + beat * 3);
 	centerPos(title);
