@@ -19,6 +19,10 @@ document.fonts.ready.then(() => { // 如果字体都加载完毕
 	fontLoaded = true; waitE.innerHTML += "（字体已加载完毕）"; youCanGetIn();
 });
 
+document.fonts.onloadingdone = () => {
+	fontLoaded = true; waitE.innerHTML += "（字体已加载完毕）"; youCanGetIn();
+};
+
 bgm.addEventListener("pause", () => {button.style.display = "block";});
 if (!isMobile()){ // 要是电脑的话, 直接捕获播放事件就好了
 	bgm.addEventListener("play", () => {main();});
