@@ -27,8 +27,7 @@ if (!isMobile()){
 }
 
 function isMobile() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(userAgent.toLowerCase());
+    return /Mobi|Android|iPhone/i.test(navigator.userAgent);
 }
 
 function youCanGetIn(){
