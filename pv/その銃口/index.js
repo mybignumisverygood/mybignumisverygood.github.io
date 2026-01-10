@@ -54,7 +54,7 @@ function centerPos(x){
 async function main(){
 	
 	button.style.display = "none";
-	if (isMobile()){
+	if (isMobile()){ // 针对移动端大概率出现的音频卡顿（误差在 1beat 以内时）进行的优化, 让它能卡上点
 		await wait(offset + beat);
 		await wait(beat * 3 - bgm.currentTime * 1000);
 	} else {
