@@ -1,3 +1,8 @@
+@font-face{
+	font-family: "MS PMincho";
+	src:url('Mincho.woff2'); format('woff2'); 
+}
+
 body{
 	margin: 0;
 }
