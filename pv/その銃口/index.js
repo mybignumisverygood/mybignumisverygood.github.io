@@ -10,7 +10,7 @@ var fontLoaded = false, bgmLoaded = false;
 
 bgm.addEventListener("canplaythrough", () => {
 	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
-	if (isMobile()){bgm.pause(); bgm.currentTime = 0;}
+	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.addEventListener("play", () => {main();});}
 });
 
 document.fonts.ready.then(() => {
