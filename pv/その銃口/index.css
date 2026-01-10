@@ -1,3 +1,8 @@
+@font-face{
+	font-family: "MS PMincho";
+	src:url('MSMINCHO.TTC'); format('truetype'); 
+}
+
 body{
 	margin: 0;
 }
