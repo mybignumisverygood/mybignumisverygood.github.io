@@ -6,7 +6,7 @@ var currentTime = bgm.currentTime;
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
 const vh = window.innerHeight * 0.01, vw = window.innerWidth * 0.01;
 
-var fontLoaded = false, bgnLoaded = false;
+var fontLoaded = false, bgmLoaded = false;
 
 bgm.addEventListener("canplaythrough", () => {
 	bgmLoaded = true; youCanGetIn();
