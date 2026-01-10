@@ -131,7 +131,3 @@ function autoRun(){
 		clearInterval(displayInterval,20);
 	}
 }
-
-function cheat(){
-	ordivar = ordivar.add(2000);
-}
