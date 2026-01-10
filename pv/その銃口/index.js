@@ -3,6 +3,7 @@ var button = document.getElementById("play");
 var bottom = document.getElementById("bottom");
 var sono = document.getElementById("sono");
 var utau = document.getElementById("utau");
+var waitE = document.getElementById("wait");
 var currentTime = bgm.currentTime;
 
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
@@ -10,18 +11,19 @@ const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移�
 var fontLoaded = false, bgmLoaded = false; // 字体的音乐有没有乖乖加载好呢?
 
 bgm.addEventListener("canplaythrough", () => { // 如果能够不卡顿地播放完整个音频文件
-	bgmLoaded = true; document.getElementById("wait").innerHTML+="音乐已加载完毕"; youCanGetIn();
+	bgmLoaded = true; waitE.innerHTML += "（音乐已加载完毕）"; youCanGetIn();
 	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.addEventListener("play", () => {main();});} // 依旧移动
 });
 
 document.fonts.ready.then(() => { // 如果字体都加载完毕
-	fontLoaded = true; document.getElementById("wait").innerHTML+="字体已加载完毕"; youCanGetIn();
+	fontLoaded = true; waitE.innerHTML += "（字体已加载完毕）"; youCanGetIn();
 });
 
 bgm.addEventListener("pause", () => {button.style.display = "block";});
 if (!isMobile()){ // 要是电脑的话, 直接捕获播放事件就好了
 	bgm.addEventListener("play", () => {main();});
 } else { // 要不然的话还得让它再加载一次才能捕获 canplaythrough…… 糟心啊
+	waitE.innerHTML += "，注意到您正在使用移动设备，加载速度可能会比电脑端要慢一些（实际上，我不推荐使用移动端访问本页面），请见谅w";
 	bgm.load();
 	bgm.play();
 }
