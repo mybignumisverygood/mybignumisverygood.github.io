@@ -3,34 +3,33 @@ var button = document.getElementById("play");
 var bottom = document.getElementById("bottom");
 var title = document.getElementById("title");
 var currentTime = bgm.currentTime;
+
 const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
-const vh = window.innerHeight * 0.01, vw = window.innerWidth * 0.01;
 
-var fontLoaded = false, bgmLoaded = false;
+var fontLoaded = false, bgmLoaded = false; // 字体的音乐有没有乖乖加载好呢?
 
-bgm.addEventListener("canplaythrough", () => {
-	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
-	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.addEventListener("play", () => {main();});}
+bgm.addEventListener("canplaythrough", () => { // 如果能够不卡顿地播放完整个音频文件
+	bgmLoaded = true; document.getElementById("wait").innerHTML+="音乐已加载完毕"; youCanGetIn();
+	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.addEventListener("play", () => {main();});} // 依旧移动
 });
 
-document.fonts.ready.then(() => {
-	fontLoaded = true; document.getElementById("wait").innerHTML="fr"; youCanGetIn();
+document.fonts.ready.then(() => { // 如果字体都加载完毕
+	fontLoaded = true; document.getElementById("wait").innerHTML+="字体已加载完毕"; youCanGetIn();
 });
 
 bgm.addEventListener("pause", () => {button.style.display = "block";});
-if (!isMobile()){
+if (!isMobile()){ // 要是电脑的话, 直接捕获播放事件就好了
 	bgm.addEventListener("play", () => {main();});
-} else {
+} else { // 要不然的话还得让它再加载一次才能捕获 canplaythrough…… 糟心啊
 	bgm.load();
 	bgm.play();
-	//bgm.muted = true;
 }
 
-function isMobile() {
+function isMobile() { // 判断是否为移动端
     return /Mobi|Android|iPhone/i.test(navigator.userAgent);
 }
 
-function youCanGetIn(){
+function youCanGetIn(){ // 如果都加载好了话, 就放你进去吧!
 	if(fontLoaded && bgmLoaded){
 		document.getElementById("wait").style.display = "none";
 		document.getElementById("main").style.visibility = "visible"
@@ -40,7 +39,8 @@ function youCanGetIn(){
 
 function centerPos(x){
 	var xWidth = x.getBoundingClientRect().width, xHeight = x.getBoundingClientRect().height;
-	x.style.left = "calc(50% - " + xWidth / 2 + "px)"; x.style.bottom = "calc(50% - " + xHeight / 2 + "px)";
+	x.style.left = "calc(50% - " + xWidth / 2 + "px)";
+	x.style.bottom = "calc(50% - " + xHeight / 2 + "px)";
 	return [xWidth, xHeight];
 }
 
@@ -57,10 +57,20 @@ async function main(){
 	title.style.visibility = "hidden";
 	window.removeEventListener('resize', () => {centerPos(title);});
 	
-	var lyrics1 = ["敬虔な私だ", "自己を崇拝中です。ひたすら", "だって絶対裏切らないという保証があるから"];
-	var interval1 = [1, 4, 4];
-	for (let i=0; i<=2; i++){
+	// Verse 1
+	var lyrics1 = ["敬虔な私だ", "自己を崇拝中です。ひたすら", "だって絶対裏切らないという保証があるから", "", 
+	"謄本と食事とそれと最低限の自己犠牲", "何も面倒なことはない", "あとは睡眠取るだけ", ""];
+	var interval1 = [1, 4, 4, 7, 1, 8, 4, 2];
+	for (let i=0; i<lyrics1.length; i++){
 		await wait(beat * interval1[i]); bottom.innerHTML = lyrics1[i];
+	}
+	
+	// Verse 2
+	var lyrics2 = ["ある日の夜深淵をちょっと見た", "銃口みたいで笑った", "どっかで見たことあった気した", "", 
+	"また今度に深淵があったなら一回覗いとこうか", "ああ、ちょどいい平和で", "なんて幸福", ""];
+	var interval2 = [2, 4, 4, 7, 1, 8, 4, 2];
+	for (let i=0; i<lyrics2.length; i++){
+		await wait(beat * interval2[i]); bottom.innerHTML = lyrics2[i];
 	}
 	return 0;
 }
