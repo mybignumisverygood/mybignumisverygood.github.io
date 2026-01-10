@@ -135,7 +135,7 @@ async function main(){
 	"側面だけのバケツのように", "眼の前に一人だけ　私", "とりあえずリズムに合わせてここで対話をしましょう", ""];
 	var interval8 = [0.5, 4, 4, 5.5, 2.5, 4, 4, 8];
 	for (let i=0; i<lyrics8.length; i++){
-		await wait(beat * interval7[i]); bottom.innerHTML = lyrics8[i];
+		await wait(beat * interval8[i]); bottom.innerHTML = lyrics8[i];
 	}
 	
 	// 结尾!
