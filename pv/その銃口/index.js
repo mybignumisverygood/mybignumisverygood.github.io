@@ -12,6 +12,11 @@ bgm.addEventListener("canplaythrough", () => {
 	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
 });
 
+bgm.addEventListener("loadedmetadata", () => {
+	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
+});
+
+
 document.fonts.ready.then(() => {
 	fontLoaded = true; document.getElementById("wait").innerHTML="fr"; youCanGetIn();
 });
