@@ -5,7 +5,7 @@ var sono = document.getElementById("sono");
 var utau = document.getElementById("utau");
 var waitE = document.getElementById("wait");
 
-const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
+const bpm = 103, offset = 683, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
 
 var fontLoaded = false, bgmLoaded = false; // 字体的音乐有没有乖乖加载好呢?
 
@@ -56,9 +56,9 @@ async function main(){
 	button.style.display = "none";
 	if (isMobile()){ // 针对移动端大概率出现的音频卡顿（误差在 1beat 以内时）进行的优化, 让它能卡上点
 		await wait(offset + beat);
-		await wait(beat * 3 - bgm.currentTime * 1000);
+		await wait(beat * 2 - bgm.currentTime * 1000);
 	} else { // 没甚必要
-		await wait(offset + beat * 3);
+		await wait(offset + beat * 2);
 	}
 	centerPos(sono);
 	window.addEventListener('resize', () => {centerPos(sono);});
