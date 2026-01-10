@@ -21,7 +21,9 @@ bgm.addEventListener("pause", () => {button.style.display = "block";});
 if (!isMobile()){
 	bgm.addEventListener("play", () => {main();});
 } else {
-	bgm.play(); bgm.muted = true;
+	bgm.load();
+	bgm.play();
+	//bgm.muted = true;
 }
 
 function isMobile() {
