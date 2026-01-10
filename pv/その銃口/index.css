@@ -1,6 +1,6 @@
 @font-face{
 	font-family: "MS PMincho";
-	src:url('MSMINCHO.TTC'); format('truetype'); 
+	src:url('Mincho.woff'); format('woff'); 
 }
 
 body{
