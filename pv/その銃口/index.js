@@ -9,11 +9,11 @@ const vh = window.innerHeight * 0.01, vw = window.innerWidth * 0.01;
 var fontLoaded = false, bgmLoaded = false;
 
 bgm.addEventListener("canplaythrough", () => {
-	bgmLoaded = true; youCanGetIn();
+	bgmLoaded = true; document.getElementById("wait").innerHTML="br"; youCanGetIn();
 });
 
 document.fonts.ready.then(() => {
-	fontLoaded = true; youCanGetIn();
+	fontLoaded = true; document.getElementById("wait").innerHTML="fr"; youCanGetIn();
 });
 
 bgm.addEventListener("pause", () => {button.style.display = "block";});
