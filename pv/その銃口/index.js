@@ -5,7 +5,7 @@ var sono = document.getElementById("sono");
 var utau = document.getElementById("utau");
 var waitE = document.getElementById("wait");
 
-const bpm = 103, offset = 130, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
+const bpm = 103, offset = 140, beat = 60 / bpm * 1000; // BPM, 第一拍偏移时长
 
 var fontLoaded = false, bgmLoaded = false; // 字体的音乐有没有乖乖加载好呢?
 
