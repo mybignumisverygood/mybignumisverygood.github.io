@@ -21,9 +21,9 @@ if (!isMobile()){ // 要是电脑的话, 直接捕获播放事件就好了
 
 bgm.addEventListener("canplaythrough", () => { // 如果能够不卡顿地播放完整个音频文件
 	bgmLoaded = true; waitE.innerHTML += "（音乐已加载完毕）"; youCanGetIn();
-	if (isMobile()){bgm.currentTime = 0; bgm.muted = false; 
+	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.muted = false; 
 		bgm.addEventListener("play", main); 
-		bgm.addEventListener("pause", () => {button.style.display = "block";});} // 依旧移动
+		bgm.addEventListener("ended", () => {button.style.display = "block";});} // 依旧移动
 });
 
 document.fonts.ready.then(() => { // 如果字体都加载完毕
