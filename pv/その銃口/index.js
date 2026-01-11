@@ -11,15 +11,19 @@ var fontLoaded = false, bgmLoaded = false; // 字体的音乐有没有乖乖加�
 
 if (!isMobile()){ // 要是电脑的话, 直接捕获播放事件就好了
 	bgm.addEventListener("play", main);
+	bgm.addEventListener("pause", () => {button.style.display = "block";});
 } else { // 要不然的话还得让它再加载一次才能捕获 canplaythrough…… 糟心啊
 	waitE.innerHTML += "，注意到您正在使用移动设备，加载速度可能会比电脑端要慢一些（实际上，我不推荐使用移动端访问本页面），请见谅w";
+	bgm.muted = true;
 	bgm.load();
 	bgm.play();
 }
 
 bgm.addEventListener("canplaythrough", () => { // 如果能够不卡顿地播放完整个音频文件
 	bgmLoaded = true; waitE.innerHTML += "（音乐已加载完毕）"; youCanGetIn();
-	if (isMobile()){bgm.pause(); bgm.currentTime = 0; bgm.addEventListener("play", main)} // 依旧移动
+	if (isMobile()){bgm.currentTime = 0; bgm.muted = false; 
+		bgm.addEventListener("play", main); 
+		bgm.addEventListener("pause", () => {button.style.display = "block";});} // 依旧移动
 });
 
 document.fonts.ready.then(() => { // 如果字体都加载完毕
@@ -29,8 +33,6 @@ document.fonts.ready.then(() => { // 如果字体都加载完毕
 document.fonts.onloadingdone = () => {
 	fontLoaded = true; waitE.innerHTML += "（字体已加载完毕）"; youCanGetIn();
 };
-
-bgm.addEventListener("pause", () => {button.style.display = "block";});
 
 function isMobile() { // 判断是否为移动端
     return /Mobi|Android|iPhone/i.test(navigator.userAgent);
@@ -52,10 +54,9 @@ function centerPos(x){
 }
 
 async function main(){
-	
 	button.style.display = "none";
-	if (isMobile()){ // 针对移动端大概率出现的音频卡顿（误差在 1beat 以内时）进行的优化, 让它能卡上点
-		await wait(offset + beat);
+	if (isMobile()){ // 针对移动端大概率出现的音频卡顿进行的优化, 让它能卡上点
+		await wait(offset);
 		await wait(beat * 2 - bgm.currentTime * 1000);
 	} else { // 没甚必要
 		await wait(offset + beat * 2);
