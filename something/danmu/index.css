@@ -1,0 +1,42 @@
+body{
+	overflow: hidden;
+}
+
+info {
+	font-size: 1em;
+	line-height: 0.4;
+}
+
+h4 {
+	line-height: 0.6;
+}
+
+#preview{
+	border: 1.5px solid black;
+	border-radius: .2em;
+	width: 40px;
+	height: 20px;
+	background-color: black; 
+}
+
+.color{
+	border: 1.5px solid black;
+	border-radius: .2em;
+	width: 20px;
+	list-style-type: none;
+	height: 20px;
+	display: inline-block;
+	margin-left: 2px;
+}
+
+#colors{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+
+#misc{
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+}
