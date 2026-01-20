@@ -5,12 +5,13 @@ var preview = document.getElementById("preview");
 var setting = {fontSize: "20px"}; // 20px 是默认大小!
 
 rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实时变更预览色块的颜色
-	if (rgb.value == "颜色的16进制RGB值"){
+	if (rgb.value == "颜色的16进制RGB值" || rgb.value == "颜色的16进制rgb值"){
 		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
 		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
-		return ;
+		//rgb.setAttribute("placeholder", "输入???");
+		return 0;
 	} 
 	preview.style.background = "";
 	if (rgb.value.length != 4 && rgb.value.length != 7){
