@@ -8,34 +8,36 @@
     	<title>模拟弹幕</title>
   	</head>
   	<body>
-  		<h4 style="display: inline-block; margin-top: 10px;">输入弹幕!&emsp;</h4>
-  		<input type="text" id="danmu">
-  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
-  		<div>
-  			<h4 style="display: inline-block">在这里选择需要的弹幕样式!</h4>
-  			<button id="toggle" onclick="toggle()">隐藏</button>
-  		</div>
-  		
-  		<div id="setting">
-	  		<info style="display: inline-block; margin: 0px;">颜色</info>
-	  		<input id="rgb" type="text" placeholder="输入颜色的16进制RGB值" value="#ffffff"/>
-	  		<div id="preview" style="display: inline-block; vertical-align: middle;"> </div>
-  			<ul id="colors">
-  				<li class="color" style="background-color: #fe0302"> </li>
-  				<li class="color" style="background-color: #ff7204"> </li>
-  				<li class="color" style="background-color: #ffaa02"> </li>
-  				<li class="color" style="background-color: #ffd302"> </li>
-  				<li class="color" style="background-color: #ffff00"> </li>
-  				<li class="color" style="background-color: #a0ee00"> </li>
-  				<li class="color" style="background-color: #00cd00"> </li>
-  				<li class="color" style="background-color: #019989"> </li>
-  				<li class="color" style="background-color: #4266be"> </li>
-  				<li class="color" style="background-color: #89d5ff"> </li>
-  				<li class="color" style="background-color: #cc0273"> </li>
-  				<li class="color" style="background-color: #222222"> </li>
-  				<li class="color" style="background-color: #9b9b9b"> </li>
-  				<li class="color" style="background-color: #ffffff"> </li>
-  			</ul>
+  		<div style="margin-left: 8px;">
+	  		<h4 style="display: inline-block; margin-top: 10px;">输入弹幕!&emsp;</h4>
+	  		<input type="text" id="danmu">
+	  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
+	  		<div>
+	  			<h4 style="display: inline-block">在这里选择需要的弹幕样式!</h4>
+	  			<button id="toggle" onclick="toggle()">隐藏</button>
+	  		</div>
+	  		
+	  		<div id="setting">
+		  		<info style="display: inline-block; margin: 0px;">颜色</info>
+		  		<input id="rgb" type="text" placeholder="输入颜色的16进制RGB值" value="#ffffff"/>
+		  		<div id="preview" style="display: inline-block; vertical-align: middle;"> </div>
+	  			<ul id="colors">
+	  				<li class="color" style="background-color: #fe0302"> </li>
+	  				<li class="color" style="background-color: #ff7204"> </li>
+	  				<li class="color" style="background-color: #ffaa02"> </li>
+	  				<li class="color" style="background-color: #ffd302"> </li>
+	  				<li class="color" style="background-color: #ffff00"> </li>
+	  				<li class="color" style="background-color: #a0ee00"> </li>
+	  				<li class="color" style="background-color: #00cd00"> </li>
+	  				<li class="color" style="background-color: #019989"> </li>
+	  				<li class="color" style="background-color: #4266be"> </li>
+	  				<li class="color" style="background-color: #89d5ff"> </li>
+	  				<li class="color" style="background-color: #cc0273"> </li>
+	  				<li class="color" style="background-color: #222222"> </li>
+	  				<li class="color" style="background-color: #9b9b9b"> </li>
+	  				<li class="color" style="background-color: #ffffff"> </li>
+	  			</ul>
+	  		</div>
   		</div>
   		
   		<div id="main">

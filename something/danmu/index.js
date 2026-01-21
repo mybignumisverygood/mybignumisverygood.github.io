@@ -30,7 +30,8 @@ for(let i = 0; i < colors.length; i++){
 	};
 }
 
-var goStraight = {opacity: [1], transform: "translateX(100vw)"}; // 从左到右水平滚动
+// 预设动画们!
+var goStraight = [{transform: "translateX(0)"}, {transform: "translateX(100vw)", display: "none"}]; // 从左到右水平滚动
 
 function createDanmu(danmu, setting){
 	var newDanmu = document.createElement("p");
