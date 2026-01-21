@@ -40,6 +40,11 @@ h4 {
 	padding: 0px;
 }
 
+.bigHelp{
+	margin-top: 0px;
+	list-style-type: none;
+}
+
 #misc{
 	position: absolute;
 	bottom: 0px;

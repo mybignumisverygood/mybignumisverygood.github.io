@@ -1,4 +1,4 @@
-var colors = document.getElementsByTagName("li");
+var colors = document.getElementsByClassName("color");
 var main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
 var preview = document.getElementById("preview");
@@ -11,7 +11,7 @@ rgb.addEventListener("input", inputColor);
 
 for(let i = 0; i < colors.length; i++){
 	colors[i].onclick = function (){
-		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
+		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
 		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
 		rgb.value = setting["color"];
 		preview.style.backgroundColor = rgb.value;
@@ -31,7 +31,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		gradient[1] = true;
 		return true;
 	}
-	if (color == "颜色的16进制RGB值" || color == "颜色的16进制rgb值"){ // 小彩蛋
+	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
 		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
 		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
@@ -82,11 +82,21 @@ function createDanmu(danmu, setting){
 	return newDanmu;
 }
 
-function toggle(){
-	var toggleEl = document.getElementById("toggle");
+function toggleSetting(){
+	var toggleEl = document.getElementById("toggleSetting");
 	toggleEl.innerHTML = (toggleEl.innerHTML == "隐藏" ? "显示" : "隐藏");
 	(toggleEl.innerHTML == "隐藏" ?
 	document.getElementById("setting").style.display = "block" :
 	document.getElementById("setting").style.display = "none");
 	return 0;
 }
+
+function toggleHelp(){
+	var toggleEl = document.getElementById("toggleHelp");
+	toggleEl.innerHTML = (toggleEl.innerHTML == "隐藏" ? "显示" : "隐藏");
+	(toggleEl.innerHTML == "隐藏" ?
+	document.getElementById("help").style.display = "block" :
+	document.getElementById("help").style.display = "none");
+	return 0;
+}
+

@@ -14,7 +14,7 @@
 	  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
 	  		<div>
 	  			<h4 style="display: inline-block">在这里选择需要的弹幕样式!</h4>
-	  			<button id="toggle" onclick="toggle()">隐藏</button>
+	  			<button id="toggleSetting" onclick="toggleSetting()">隐藏</button>
 	  		</div>
 	  		
 	  		<div id="setting">
@@ -43,9 +43,17 @@
 	  		</div>
 	  		<hr>
 	  		
-	  		<div id="help">
-	  			<h4>帮助</h4>
-	  			<button id="toggleHelp" onclick="toggleHelp()">显示</button>
+	  		<h4 style="display: inline-block; margin: 0px auto 0px auto;">帮助</h4>
+	  		<button id="toggleHelp" onclick="toggleHelp()">显示</button>
+	  		<div id="help" style="display: none;">
+	  			<ul style="margin-top: 5px; padding-left: 10px;">
+	  				<li class="bigHelp">
+	  					渐变色
+	  					<ul>
+	  						<li class="smallHelp">似乎还没有解锁呢…… 尝试在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里找寻线索并在里面输入特定内容来解锁吧!</li>
+	  					</ul>
+	  				</li>
+	  			</ul>
 	  		</div>
   		</div>
   		
