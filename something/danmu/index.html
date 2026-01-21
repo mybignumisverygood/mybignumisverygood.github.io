@@ -8,9 +8,9 @@
     	<title>模拟弹幕</title>
   	</head>
   	<body>
-  		<div style="margin-left: 8px;">
+  		<div id="control" style="margin-left: 8px;">
 	  		<h4 style="display: inline-block; margin-top: 10px;">输入弹幕!&emsp;</h4>
-	  		<input type="text" id="danmu">
+	  		<input type="text" id="danmu" style="vertical-align: middle;">
 	  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
 	  		<div>
 	  			<h4 style="display: inline-block">在这里选择需要的弹幕样式!</h4>
@@ -19,9 +19,11 @@
 	  		
 	  		<div id="setting">
 		  		<info style="display: inline-block;">颜色</info>
-		  		<input id="rgb" type="text" placeholder="输入颜色的16进制RGB值" value="#000000"/>
-		  		<div id="preview" style="display: inline-block; vertical-align: middle;"> </div>&emsp;
-		  		<info style="vertical-align: middle; color: #cecece"><input type="checkbox" id="gradient" disabled="true">渐变色</info>
+		  		<input id="rgb" type="text" placeholder="输入颜色的16进制RGB值" value="#000000" style="vertical-align: middle;"/>
+		  		<div id="preview"> </div>&emsp;
+		  		<info style="color: #cecece">
+		  			<input type="checkbox" id="gradient" disabled="true" onclick="createGradient()">渐变色
+		  		</info>
 	  			<ul id="colors">
 	  				<li class="color" style="background-color: #fe0302"> </li>
 	  				<li class="color" style="background-color: #ff7204"> </li>
@@ -38,6 +40,12 @@
 	  				<li class="color" style="background-color: #9b9b9b"> </li>
 	  				<li class="color" style="background-color: #ffffff"> </li>
 	  			</ul>
+	  		</div>
+	  		<hr>
+	  		
+	  		<div id="help">
+	  			<h4>帮助</h4>
+	  			<button id="toggleHelp" onclick="toggleHelp()">显示</button>
 	  		</div>
   		</div>
   		

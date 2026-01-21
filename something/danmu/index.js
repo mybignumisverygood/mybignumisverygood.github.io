@@ -7,8 +7,20 @@ var checkGradient = document.getElementById("gradient");
 
 var gradient = [false, false];
 
-rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实时变更预览色块的颜色
-	if ((rgb.value == "???" || rgb.value == "？？？") && gradient[0]){
+rgb.addEventListener("input", inputColor);
+
+for(let i = 0; i < colors.length; i++){
+	colors[i].onclick = function (){
+		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
+		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
+		rgb.value = setting["color"];
+		preview.style.backgroundColor = rgb.value;
+	};
+}
+
+function monocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
+	var color = rgb.value;
+	if ((color == "???" || color == "？？？") && gradient[0]){ // 小彩蛋, 用来解锁渐变色
 		preview.style.background = "linear-gradient(to right, #FC6, #6CF)";
 		setting["background"] = "linear-gradient(to right, #FC6, #6CF)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
@@ -19,7 +31,7 @@ rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实�
 		gradient[1] = true;
 		return true;
 	}
-	if (rgb.value == "颜色的16进制RGB值" || rgb.value == "颜色的16进制rgb值"){
+	if (color == "颜色的16进制RGB值" || color == "颜色的16进制rgb值"){ // 小彩蛋
 		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
 		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
@@ -29,21 +41,25 @@ rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实�
 		return true;
 	} 
 	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
-	if (rgb.value.length != 4 && rgb.value.length != 7){
+	if (color.length != 4 && color.length != 7){
 		preview.style.backgroundColor = "#000"; // 不合理就变黑
 	} else {
-		preview.style.backgroundColor = rgb.value;
+		preview.style.backgroundColor = color;
 	}
 	setting["color"] = preview.style.backgroundColor;
-});
+}
 
-for(let i = 0; i < colors.length; i++){
-	colors[i].onclick = function(){
-		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
-		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
-		rgb.value = setting["color"];
-		preview.style.backgroundColor = rgb.value;
-	};
+function createGradient(){
+	var color = rgb.value;
+	
+}
+
+function inputColor(){
+	if (checkGradient.checked){
+		createGradient();
+	} else {
+		monocolor();
+	}
 }
 
 // 预设动画们!
