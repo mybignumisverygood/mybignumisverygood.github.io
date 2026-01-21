@@ -3,17 +3,31 @@ var main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
 var preview = document.getElementById("preview");
 var setting = {fontSize: "20px"}; // 20px 是默认大小!
+var checkGradient = document.getElementById("gradient");
+
+var gradient = [false, false];
 
 rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实时变更预览色块的颜色
+	if ((rgb.value == "???" || rgb.value == "？？？") && gradient[0]){
+		preview.style.background = "linear-gradient(to right, #FC6, #6CF)";
+		setting["background"] = "linear-gradient(to right, #FC6, #6CF)";
+		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
+		setting["webkitTextFillColor"] = "transparent";
+		rgb.setAttribute("placeholder", "");
+		checkGradient.removeAttribute("disabled");
+		checkGradient.parentNode.style.color = "#000";
+		gradient[1] = true;
+		return true;
+	}
 	if (rgb.value == "颜色的16进制RGB值" || rgb.value == "颜色的16进制rgb值"){
 		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
 		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
 		rgb.setAttribute("placeholder", "输入???");
-		return ;
+		gradient[0] = true;
+		return true;
 	} 
-	console.log(1);
 	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
 	if (rgb.value.length != 4 && rgb.value.length != 7){
 		preview.style.backgroundColor = "#000"; // 不合理就变黑
