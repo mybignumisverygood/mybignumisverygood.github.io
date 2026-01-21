@@ -67,13 +67,14 @@ var goStraight = [{transform: "translateX(0)"}, {transform: "translateX(100vw)",
 
 function createDanmu(danmu, setting){
 	var newDanmu = document.createElement("p");
-	newDanmu.innerHTML = danmu;
+	newDanmu.textContent = danmu;
 	for (let i = 0; i < Object.keys(setting).length; i++){
 		newDanmu.style[Object.entries(setting)[i][0]] = Object.entries(setting)[i][1];
 	}
 	newDanmu.style.margin = "0px";
 	newDanmu.style.top = "calc(" + main.getBoundingClientRect().y + "px + " + Math.random() * 20 + "vh)";
 	newDanmu.style.position =  "absolute";
+	newDanmu.style.width = "max-content";
 	main.appendChild(newDanmu);
 	newDanmu.style.display = "block";
 	newDanmu.animate(goStraight, {duration: 10000, timing: "linear", fill: "forwards"});
