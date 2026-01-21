@@ -1,6 +1,6 @@
 html{
-	touch-action:none;
-	touch-action:pan-y;
+	touch-action: none;
+	touch-action: pan-y;
 }
 
 body{

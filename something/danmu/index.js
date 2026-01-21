@@ -10,12 +10,13 @@ rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实�
 		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
-		//rgb.setAttribute("placeholder", "输入???");
-		return 0;
+		rgb.setAttribute("placeholder", "输入???");
+		return ;
 	} 
-	preview.style.background = "";
+	console.log(1);
+	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
 	if (rgb.value.length != 4 && rgb.value.length != 7){
-		preview.style.backgroundColor = "#FFF"; // 不合理就变白
+		preview.style.backgroundColor = "#000"; // 不合理就变黑
 	} else {
 		preview.style.backgroundColor = rgb.value;
 	}
@@ -24,6 +25,7 @@ rgb.addEventListener("input", () => { // 在那个输入框里输入的话, 实�
 
 for(let i = 0; i < colors.length; i++){
 	colors[i].onclick = function(){
+		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
 		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
 		rgb.value = setting["color"];
 		preview.style.backgroundColor = rgb.value;
