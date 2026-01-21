@@ -63,7 +63,7 @@ function inputColor(){
 }
 
 // 预设动画们!
-var goStraight = [{transform: "translateX(0)"}, {transform: "translateX(50vw)", visibility: "hidden"}]; // 从左到右水平滚动
+var goStraight = [{transform: "translateX(0)"}, {transform: "translateX(100vw)", visibility: "hidden"}]; // 从左到右水平滚动
 
 function createDanmu(danmu, setting){
 	var newDanmu = document.createElement("p");
