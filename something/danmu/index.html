@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-  	<head>
+	<head>
     	<meta charset="utf-8">
     	<meta name = "viewport" content = "width = device-width">
     	<link href = "index.css" rel = "stylesheet" type = "text/css"/>
     	<script type = "text/javascript" src = "index.js" defer> </script>
     	<title>模拟弹幕</title>
-  	</head>
-  	<body>
-  		<div id="control" style="margin-left: 8px;">
+	</head>
+	<body>
+		<div id="control" style="margin-left: 8px;">
 	  		<h4 style="display: inline-block; margin-top: 10px;">发送弹幕!&emsp;</h4>
 	  		<input type="text" id="danmu" style="vertical-align: middle;">
 	  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
@@ -50,7 +50,8 @@
 	  				<li class="bigHelp">
 	  					渐变色
 	  					<ul>
-	  						<li class="smallHelp">似乎还没有解锁呢…… 尝试在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里找寻线索并在里面输入特定内容来解锁吧!</li>
+	  						<li class="smallHelp" id="unlockGradient">似乎还没有解锁呢…… 尝试在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里找寻线索并在里面输入特定内容来解锁吧!</li>
+	  						<button id="hintGradient" onclick="document.getElementById('unlockGradient').innerHTML += '<br />>提示: 听话的用户有彩蛋吃!'; this.style.display = 'none';">我要提示!</button>
 	  					</ul>
 	  				</li>
 	  			</ul>

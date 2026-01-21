@@ -28,8 +28,9 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		rgb.setAttribute("placeholder", "");
 		checkGradient.removeAttribute("disabled");
 		checkGradient.parentNode.style.color = "#000";
+		if (!gradient[1]){document.getElementById("unlockGradient").innerHTML = "<i style='color: #cecece'>" + document.getElementById("unlockGradient").innerHTML + "</i>";}
 		gradient[1] = true;
-		return true;
+		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
 		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
@@ -38,7 +39,12 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		setting["webkitTextFillColor"] = "transparent";
 		rgb.setAttribute("placeholder", "输入???");
 		gradient[0] = true;
-		return true;
+		// 修改帮助那里的文字! 我可是情绪价值人!
+		if (!gradient[1]){
+			document.getElementById("hintGradient").style.display = "none";
+			document.getElementById("unlockGradient").innerHTML += "<br />哇! 你找到了第一个用来解锁渐变色的彩蛋诶! 接下来再重复一次吧……";
+		}
+		return ;
 	} 
 	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
 	if (color.length != 4 && color.length != 7){
