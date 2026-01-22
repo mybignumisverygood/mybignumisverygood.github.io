@@ -21,8 +21,8 @@
 		  		<info style="display: inline-block;">颜色</info>
 		  		<input id="rgb" type="text" placeholder="输入颜色的16进制RGB值" value="#000000" style="vertical-align: middle;"/>
 		  		<div id="preview"> </div>&emsp;
-		  		<info style="color: #cecece">
-		  			<input type="checkbox" id="gradient" disabled="true" onclick="createGradient()">渐变色
+		  		<info>
+		  			<input type="checkbox" id="gradient" disabled="true" onclick="createGradient()"><span class="locked">渐变色</span>
 		  		</info>
 	  			<ul id="colors">
 	  				<li class="color" style="background-color: #fe0302"> </li>
@@ -45,13 +45,14 @@
 	  		
 	  		<h4 style="display: inline-block; margin: 0px auto 0px auto;">帮助</h4>
 	  		<button id="toggleHelp" onclick="toggleHelp()">显示</button>
-	  		<div id="help" style="display: none;">
+	  		<div id="help" style="display: none; height: 200px; overflow-y: auto;">
 	  			<ul style="margin-top: 5px; padding-left: 10px;">
 	  				<li class="bigHelp">
-	  					渐变色
+	  					<span class="locked">渐变色</span>
 	  					<ul>
 	  						<li class="smallHelp" id="unlockGradient">似乎还没有解锁呢…… 尝试在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里找寻线索并在里面输入特定内容来解锁吧!</li>
 	  						<button id="hintGradient" onclick="document.getElementById('unlockGradient').innerHTML += '<br />>提示: 听话的用户有彩蛋吃!'; this.style.display = 'none';">我要提示!</button>
+	  						<li class="smallHelp" id="syntaxGradient">语法: 与CSS内<code>linear-gradient</code>的语法类似, <span class="locked">渐变色</span></li>
 	  					</ul>
 	  				</li>
 	  			</ul>

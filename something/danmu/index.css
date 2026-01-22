@@ -1,8 +1,15 @@
-
 body{
 	margin-left: 0px;
 	overflow: hidden;
 }
+
+code { /* 爱来自 mozilla 站*/
+ 	background-color: #eee;
+ 	border-radius: 3px;
+ 	font-family: courier, monospace;
+	padding: 0 3px;
+}
+
 
 info {
 	vertical-align: middle;
@@ -12,16 +19,6 @@ info {
 
 h4 {
 	line-height: 0.6;
-}
-
-#preview{
-	border: 1.5px solid black;
-	border-radius: .2em;
-	width: 40px;
-	height: 20px;
-	vertical-align: middle;
-	display: inline-block;
-	background-color: black; 
 }
 
 .color{
@@ -34,16 +31,40 @@ h4 {
 	margin-left: 2px;
 }
 
-#colors{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 0px;
+.locked{
+	color: #cecece;
+}
+
+.gradient{
+	background: linear-gradient(to right, #6CF, #FC6);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .bigHelp{
 	margin-top: 0px;
 	list-style-type: none;
 }
+
+
+#preview{
+	border: 1.5px solid black;
+	border-radius: .2em;
+	width: 40px;
+	height: 20px;
+	vertical-align: middle;
+	display: inline-block;
+	background-color: black; 
+}
+
+
+#colors{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+
 
 #misc{
 	position: absolute;

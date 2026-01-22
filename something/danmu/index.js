@@ -3,8 +3,9 @@ var main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
 var preview = document.getElementById("preview");
 var setting = {fontSize: "20px"}; // 20px 是默认大小!
-var checkGradient = document.getElementById("gradient");
 
+var lockeds = document.getElementsByClassName("locked");
+var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
 rgb.addEventListener("input", inputColor);
@@ -30,6 +31,13 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		checkGradient.parentNode.style.color = "#000";
 		if (!gradient[1]){document.getElementById("unlockGradient").innerHTML = "<i style='color: #cecece'>" + document.getElementById("unlockGradient").innerHTML + "</i>";}
 		gradient[1] = true;
+		for(let i = 0; i < lockeds.length; i++){
+			if(lockeds[i].innerHTML == "渐变色"){
+				lockeds[i].classList.add("gradient");
+				lockeds[i].classList.remove("locked");
+				i--;
+			}
+		}
 		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
@@ -38,15 +46,15 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
 		rgb.setAttribute("placeholder", "输入???");
-		gradient[0] = true;
 		// 修改帮助那里的文字! 我可是情绪价值人!
-		if (!gradient[1]){
+		if (!gradient[1] && !gradient[0]){
 			document.getElementById("hintGradient").style.display = "none";
 			document.getElementById("unlockGradient").innerHTML += "<br />哇! 你找到了第一个用来解锁渐变色的彩蛋诶! 接下来再重复一次<span color='#6cf'>刚才的流程</span>吧……";
 		}
+		gradient[0] = true;
 		return ;
 	} 
-	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitTextFillColor"] = "";
+	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
 	if (color.length != 4 && color.length != 7){
 		preview.style.backgroundColor = "#000"; // 不合理就变黑
 	} else {
