@@ -35,7 +35,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 				i--;
 			}
 		}
-		document.getElementById("syntaxGradient").style.display = "block";
+		document.getElementById("syntaxGradient").style.display = "list-item";
 		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
