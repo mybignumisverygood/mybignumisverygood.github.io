@@ -12,7 +12,7 @@ rgb.addEventListener("input", inputColor);
 
 for(let i = 0; i < colors.length; i++){
 	colors[i].onclick = function (){
-		preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
+		gradientStyle("");
 		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
 		rgb.value = setting["color"];
 		preview.style.backgroundColor = rgb.value;
@@ -22,10 +22,7 @@ for(let i = 0; i < colors.length; i++){
 function monocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
 	var color = rgb.value;
 	if ((color == "???" || color == "？？？") && gradient[0]){ // 小彩蛋, 用来解锁渐变色
-		preview.style.background = "linear-gradient(to right, #FC6, #6CF)";
-		setting["background"] = "linear-gradient(to right, #FC6, #6CF)";
-		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
-		setting["webkitTextFillColor"] = "transparent";
+		gradientStyle("to right, #FC6, #6CF");
 		rgb.setAttribute("placeholder", "");
 		checkGradient.removeAttribute("disabled");
 		checkGradient.parentNode.style.color = "#000";
@@ -41,10 +38,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
-		preview.style.background = "linear-gradient(to right, #6CF, #FC6)";
-		setting["background"] = "linear-gradient(to right, #6CF, #FC6)";
-		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
-		setting["webkitTextFillColor"] = "transparent";
+		gradientStyle("to right, #6CF, #FC6");
 		rgb.setAttribute("placeholder", "输入???");
 		// 修改帮助那里的文字! 我可是情绪价值人!
 		if (!gradient[1] && !gradient[0]){
@@ -54,7 +48,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		gradient[0] = true;
 		return ;
 	} 
-	preview.style.background = setting["background"] = setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
+	gradientStyle("");
 	if (color.length != 4 && color.length != 7){
 		preview.style.backgroundColor = "#000"; // 不合理就变黑
 	} else {
@@ -63,9 +57,26 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 	setting["color"] = preview.style.backgroundColor;
 }
 
+function gradientStyle(color){
+	color = "linear-gradient(" + color + ")";
+	setting["background"] = color;
+	if (color){
+		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
+		setting["webkitTextFillColor"] = "transparent";
+	} else {
+		setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
+	}
+	preview.style.background = color;
+}
+
 function createGradient(){
 	var color = rgb.value;
-	
+	color = color.split(",");
+	if (color.length == 1){
+		monocolor(color[0].split(" ")[0]);
+		return ;
+	}
+	gradientStyle("to right, " + color);
 }
 
 function inputColor(){
