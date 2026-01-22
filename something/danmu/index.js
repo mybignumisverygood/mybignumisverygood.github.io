@@ -42,7 +42,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		// 修改帮助那里的文字! 我可是情绪价值人!
 		if (!gradient[1]){
 			document.getElementById("hintGradient").style.display = "none";
-			document.getElementById("unlockGradient").innerHTML += "<br />哇! 你找到了第一个用来解锁渐变色的彩蛋诶! 接下来再重复一次吧……";
+			document.getElementById("unlockGradient").innerHTML += "<br />哇! 你找到了第一个用来解锁渐变色的彩蛋诶! 接下来再重复一次<span color='#6cf'>刚才的流程</span>吧……";
 		}
 		return ;
 	} 
