@@ -11,12 +11,20 @@ var gradient = [false, false];
 rgb.addEventListener("input", inputColor);
 
 for(let i = 0; i < colors.length; i++){
-	colors[i].onclick = function (){
-		gradientStyle("");
-		setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
-		rgb.value = setting["color"];
-		preview.style.backgroundColor = rgb.value;
-	};
+	if (colors[i].parentNode.id == "monocolors"){
+		colors[i].onclick = function (){
+			gradientStyle("");
+			setting["color"] = this.outerHTML.slice(43,50); // 获取点击色块的rgb值, 我简直是天才!
+			rgb.value = setting["color"];
+			preview.style.background = rgb.value;
+		};
+	} else {
+		colors[i].onclick = function (){
+			checkGradient.checked = true;
+			gradientStyle(this.outerHTML.slice(53,73));
+			rgb.value = "#6CF 0%, #FC6 100%";
+		};
+	}
 }
 
 function monocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
@@ -36,6 +44,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 			}
 		}
 		document.getElementById("syntaxGradient").style.display = "list-item";
+		document.getElementById("gradients").style.display = "inline-block";
 		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
@@ -51,21 +60,22 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 	} 
 	gradientStyle("");
 	if (color.length != 4 && color.length != 7){
-		preview.style.backgroundColor = "#000"; // 不合理就变黑
+		preview.style.background = "#000"; // 不合理就变黑
 	} else {
-		preview.style.backgroundColor = color;
+		preview.style.background = color;
 	}
-	setting["color"] = preview.style.backgroundColor;
+	setting["color"] = preview.style.background;
 }
 
 function gradientStyle(color){
-	color = "linear-gradient(" + color + ")";
-	setting["background"] = color;
 	if (color){
+		color = "linear-gradient(" + color + ")";
+		setting["background"] = color;
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
 	} else {
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
+		preview.style.background = "";
 	}
 	preview.style.background = color;
 }
