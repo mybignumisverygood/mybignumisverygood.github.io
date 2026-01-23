@@ -14,7 +14,7 @@
 	  		<button id="hassou" onclick="createDanmu(document.getElementById('danmu').value, setting)">发送!</button>
 	  		<div>
 	  			<h4 style="display: inline-block">在这里选择需要的弹幕样式!</h4>
-	  			<button id="toggleSetting" onclick="toggleSetting()">隐藏</button>
+	  			<button id="toggleSetting" onclick="toggle('toggleSetting')">隐藏</button>
 	  		</div>
 	  		
 	  		<div id="setting">
@@ -42,12 +42,13 @@
 	  			</ul>
 	  			<ul class="colors" id="gradients" style="display: none">
 	  				<li class="color" style="background: linear-gradient(to right, #6CF, #FC6)"> </li>
+	  				<li class="color" style="background: linear-gradient(to right, red , blue)"> </li>
 	  			</ul>
 	  		</div>
 	  		<hr>
 	  		
 	  		<h4 style="display: inline-block; margin: 0px auto 0px auto;">帮助</h4>
-	  		<button id="toggleHelp" onclick="toggleHelp()">显示</button>
+	  		<button id="toggleHelp" onclick="toggle('toggleHelp')">显示</button>
 	  		<div id="help" style="display: none; height: 200px; overflow-y: auto;">
 	  			<ul style="margin-top: 5px; padding-left: 10px;">
 	  				<li class="bigHelp">
