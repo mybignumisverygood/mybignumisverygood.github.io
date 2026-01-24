@@ -22,14 +22,13 @@ h4 {
 }
 
 p {
-	position: relative;
-	height: 0;
+	position: absolute;
 	margin: 0;
 	font-size: 20px;
 	width: max-content;
 }
 
-.color{
+.color {
 	border: 1.5px solid black;
 	border-radius: .2em;
 	width: 20px;
@@ -39,24 +38,24 @@ p {
 	margin-left: 2px;
 }
 
-.locked{
+.locked {
 	color: #cecece;
 }
 
-.gradient{
+.gradient {
 	background: linear-gradient(to right, #6CF, #FC6);
 	background-clip: text;
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
-.bigHelp{
+.bigHelp {
 	margin-top: 0px;
 	list-style-type: none;
 }
 
 
-#preview{
+#preview {
 	border: 1.5px solid black;
 	border-radius: .2em;
 	width: 40px;
@@ -67,15 +66,16 @@ p {
 }
 
 
-.colors{
+.colors {
 	margin-top: 5px;
 	margin-bottom: 0px;
 	padding: 0px;
 }
 
 
-#misc{
+#misc {
 	position: absolute;
 	bottom: 0px;
 	right: 10px;
 }
+

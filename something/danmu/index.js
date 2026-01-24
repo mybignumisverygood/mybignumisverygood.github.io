@@ -34,6 +34,7 @@ function createMonocolor(){ // 在那个输入框里输入单色的话, 实时�
 		gradientStyle("#FC6, #6CF");
 		rgb.setAttribute("placeholder", "");
 		checkGradient.parentNode.style.color = "#000";
+		checkGradient.checked = true;
 		if (!gradient[1]){document.getElementById("unlockGradient").innerHTML = "<i style='color: #cecece'>" + document.getElementById("unlockGradient").innerHTML + "</i>";}
 		gradient[1] = true;
 		for (let i = 0; i < lockeds.length; i++){
@@ -102,7 +103,7 @@ function createDanmu(danmu, setting){
 	newDanmu.style.top = Math.random() * 20 + "vh";
 	main.appendChild(newDanmu);
 	newDanmu.animate(goStraight, {duration: 10000, timing: "linear", fill: "forwards"});
-	setTimeout(function(){newDanmu.remove();}, 10000);
+	setTimeout(function(){newDanmu.remove();}, 11000);
 	return newDanmu;
 }
 
