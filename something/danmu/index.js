@@ -2,13 +2,14 @@ var colors = document.getElementsByClassName("color");
 var main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
 var preview = document.getElementById("preview");
-var setting = {margin: "0px", position: "absolute", width: "max-content", fontSize: "20px"}; // 20px 是默认大小!
+var setting = {}; 
+// 20px 是默认大小!
 
 var lockeds = document.getElementsByClassName("locked");
 var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
-rgb.addEventListener("input", inputColor);
+rgb.addEventListener("input", createGradient);
 
 for (let i = 0; i < colors.length; i++){
 	if (colors[i].parentNode.id == "monocolors"){
@@ -20,19 +21,18 @@ for (let i = 0; i < colors.length; i++){
 		};
 	} else {
 		colors[i].onclick = function (){
-			checkGradient.checked = true;
-			gradientStyle(this.outerHTML.slice(53,73));
-			rgb.value = "#6CF 0%, #FC6 100%";
+			var style = ["#6CF, #FC6", "red, blue", "red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple"][i - 14];
+			gradientStyle(style);
+			rgb.value = style;
 		};
 	}
 }
 
-function monocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
+function createMonocolor(){ // 在那个输入框里输入单色的话, 实时变更预览色块的颜色, 并且修改一下弹幕w
 	var color = rgb.value;
 	if ((color == "???" || color == "？？？") && gradient[0]){ // 小彩蛋, 用来解锁渐变色
-		gradientStyle("to right, #FC6, #6CF");
+		gradientStyle("#FC6, #6CF");
 		rgb.setAttribute("placeholder", "");
-		checkGradient.removeAttribute("disabled");
 		checkGradient.parentNode.style.color = "#000";
 		if (!gradient[1]){document.getElementById("unlockGradient").innerHTML = "<i style='color: #cecece'>" + document.getElementById("unlockGradient").innerHTML + "</i>";}
 		gradient[1] = true;
@@ -48,7 +48,7 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 		return ;
 	}
 	if (["颜色的16进制RGB值", "颜色的16进制rgb值", "颜色的十六进制RGB值", "颜色的十六进制rgb值"].includes(color)){ // 小彩蛋
-		gradientStyle("to right, #6CF, #FC6");
+		gradientStyle("#6CF, #FC6");
 		// 修改帮助那里的文字! 我可是情绪价值人!
 		if (!gradient[1] && !gradient[0]){
 			rgb.setAttribute("placeholder", "输入???");
@@ -69,37 +69,29 @@ function monocolor(){ // 在那个输入框里输入单色的话, 实时变更�
 
 function gradientStyle(color){
 	if (color){
-		color = "linear-gradient(" + color + ")";
+		color = "linear-gradient(to right, " + color + ")";
 		setting["background"] = color;
 		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
 		setting["webkitTextFillColor"] = "transparent";
+		preview.style.background = color;
 	} else {
-		setting["backgroundClip"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
 		preview.style.background = "";
 	}
-	preview.style.background = color;
+	
 }
 
 function createGradient(){
 	var color = rgb.value;
 	color = color.split(",");
 	if (color.length == 1){
-		monocolor(color[0].split(" ")[0]);
+		createMonocolor(color[0].split(" ")[0]);
 		return ;
 	}
-	gradientStyle("to right, " + color);
-}
-
-function inputColor(){
-	if (checkGradient.checked){
-		createGradient();
-	} else {
-		monocolor();
-	}
+	gradientStyle(color);
 }
 
 // 预设动画们!
-var goStraight = [{transform: "translateX(0)"}, {transform: "translateX(100vw)", visibility: "hidden"}]; // 从左到右水平滚动
+var goStraight = [{transform: "translateX(100vw)"}]; // 从左到右水平滚动
 
 function createDanmu(danmu, setting){
 	var newDanmu = document.createElement("p");
@@ -107,10 +99,10 @@ function createDanmu(danmu, setting){
 	for (let i = 0; i < Object.keys(setting).length; i++){ // 将 setting 的设置落实到弹幕上!
 		newDanmu.style[Object.entries(setting)[i][0]] = Object.entries(setting)[i][1];
 	}
-	newDanmu.style.top = "calc(" + main.getBoundingClientRect().y + "px + " + Math.random() * 20 + "vh)";
+	newDanmu.style.top = Math.random() * 20 + "vh";
 	main.appendChild(newDanmu);
-	newDanmu.style.display = "block";
 	newDanmu.animate(goStraight, {duration: 10000, timing: "linear", fill: "forwards"});
+	setTimeout(function(){newDanmu.remove();}, 10000);
 	return newDanmu;
 }
 

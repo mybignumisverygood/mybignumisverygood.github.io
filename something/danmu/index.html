@@ -42,7 +42,8 @@
 	  			</ul>
 	  			<ul class="colors" id="gradients" style="display: none">
 	  				<li class="color" style="background: linear-gradient(to right, #6CF, #FC6)"> </li>
-	  				<li class="color" style="background: linear-gradient(to right, red , blue)"> </li>
+	  				<li class="color" style="background: linear-gradient(to right, red, blue)"> </li>
+	  				<li class="color" style="background: linear-gradient(to right, red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple)"></li>
 	  			</ul>
 	  		</div>
 	  		<hr>
@@ -57,9 +58,9 @@
 	  						<li class="smallHelp" id="unlockGradient">似乎还没有解锁呢…… 尝试在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里找寻线索并在里面输入特定内容来解锁吧!</li>
 	  						<button id="hintGradient" onclick="document.getElementById('unlockGradient').innerHTML += '<br />>提示: 听话的用户有彩蛋吃!'; this.style.display = 'none';">我要提示!</button>
 	  						<li class="smallHelp" id="syntaxGradient" style="display: none">
-	  							语法: 与CSS内<code>linear-gradient</code>的语法类似, <span class="locked">渐变色</span>的语法为形如<code>颜色1 位置1(%), 颜色2 位置2(%)……</code>的字符串, 其中"位置"参数均为百分数, 表示该颜色在渐变色中的位置
+	  							语法: 与CSS内<code>linear-gradient</code>的语法类似, <span class="locked">渐变色</span>的语法为形如<code>颜色1 位置1(%), 颜色2 位置2(%)……</code>的字符串, 其中"位置"参数均为百分数, 表示该颜色在渐变色中的位置, 开头和结尾的"位置"可省略.
 	  							<br />
-	  							示例: 以下字符串定义了一个以红色为起始色, 蓝色为结束色的渐变色: <code onclick="rgb.value = '#ff0000 0%, #0000ff 100%'">#ff0000 0%, #0000ff 100%</code>或<code   onclick="rgb.value = 'red 0%, blue 100%'">red 0%, blue 100%</code>, 
+	  							示例: 以下字符串定义了一个以红色为起始色, 蓝色为结束色的渐变色: <code onclick="rgb.value = '#ff0000, #0000ff'">#ff0000, #0000ff</code>或<code onclick="rgb.value = 'red, blue'">red, blue</code>, 
 	  							勾选<span class="unlock">渐变色</span>选项后在<span style="color: #6cf" onclick="rgb.value = '我在这里!';">颜色输入框</span>里输入就好!
 	  						</li>
 	  					</ul>
