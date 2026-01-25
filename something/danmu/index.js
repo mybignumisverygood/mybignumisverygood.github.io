@@ -9,7 +9,7 @@ var lockeds = document.getElementsByClassName("locked");
 var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
-var lastTouchEnd = 0;
+var lastTouchEnd = 0; // 爱来自 静默虚空, https://www.cnblogs.com/jingmoxukong 禁用缩放
 document.documentElement.addEventListener('touchend', function (event) {
     if (Date.now() - lastTouchEnd <= 300) {
         event.preventDefault();
@@ -17,6 +17,12 @@ document.documentElement.addEventListener('touchend', function (event) {
     lastTouchEnd = now;
 }, {passive: false}
 );
+
+document.documentElement.addEventListener('touchstart', function (event) {
+  if (event.touches.length > 1) {
+    event.preventDefault();
+  }
+}, false);
 
 
 rgb.addEventListener("input", createGradient);
