@@ -11,7 +11,7 @@ var gradient = [false, false];
 
 var lastTouchEnd = 0;
 document.documentElement.addEventListener('touchend', function (event) {
-    if (Date.now(); - lastTouchEnd <= 300) {
+    if (Date.now() - lastTouchEnd <= 300) {
         event.preventDefault();
     }
     lastTouchEnd = now;
