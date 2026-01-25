@@ -9,6 +9,16 @@ var lockeds = document.getElementsByClassName("locked");
 var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
+var lastTouchEnd = 0;
+document.documentElement.addEventListener('touchend', function (event) {
+    if (Date.now(); - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, {passive: false}
+);
+
+
 rgb.addEventListener("input", createGradient);
 
 for (let i = 0; i < colors.length; i++){
