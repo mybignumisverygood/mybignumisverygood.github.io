@@ -3,23 +3,24 @@ var main = document.getElementById("main");
 var rgb = document.getElementById("rgb");
 var preview = document.getElementById("preview");
 var setting = {}; 
-// 20px 是默认大小!
 
 var lockeds = document.getElementsByClassName("locked");
 var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
+
+// 禁用移动端缩放
 var lastTouchEnd = 0; // 爱来自 静默虚空, https://www.cnblogs.com/jingmoxukong 禁用缩放
-document.documentElement.addEventListener('touchend', function (event) {
+document.documentElement.addEventListener('touchend', function (event){
     var now = Date.now();
-    if (now - lastTouchEnd <= 300) {
+    if (now - lastTouchEnd <= 300){
         event.preventDefault();
     }
     lastTouchEnd = now;
 }, false);
 
-document.documentElement.addEventListener('touchstart', function (event) {
-  if (event.touches.length > 1) {
+document.documentElement.addEventListener('touchstart', function (event){
+  if (event.touches.length > 1){
     event.preventDefault();
   }
 }, false);

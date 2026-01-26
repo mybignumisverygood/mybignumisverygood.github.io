@@ -3,7 +3,7 @@ body{
 	overflow: hidden;
 }
 
-code { /* 爱来自 mozilla 站*/
+code { /* 爱来自 mozilla 站 */
  	background-color: #eee;
  	border-radius: 3px;
  	font-family: courier, monospace;
@@ -24,7 +24,7 @@ h4 {
 p {
 	position: absolute;
 	margin: 0;
-	font-size: 20px;
+	font-size: 20px; /* 20px 是默认大小! */
 	width: max-content;
 }
 

@@ -24,27 +24,30 @@
 		  		<info>
 		  			<input type="checkbox" id="gradient" disabled="true" onclick="createGradient()"><span class="locked">渐变色</span>
 		  		</info>
-	  			<ul class="colors" id="monocolors">
-	  				<li class="color" style="background-color: #fe0302"> </li>
-	  				<li class="color" style="background-color: #ff7204"> </li>
-	  				<li class="color" style="background-color: #ffaa02"> </li>
-	  				<li class="color" style="background-color: #ffd302"> </li>
-	  				<li class="color" style="background-color: #ffff00"> </li>
-	  				<li class="color" style="background-color: #a0ee00"> </li>
-	  				<li class="color" style="background-color: #00cd00"> </li>
-	  				<li class="color" style="background-color: #019989"> </li>
-	  				<li class="color" style="background-color: #4266be"> </li>
-	  				<li class="color" style="background-color: #89d5ff"> </li>
-	  				<li class="color" style="background-color: #cc0273"> </li>
-	  				<li class="color" style="background-color: #222222"> </li>
-	  				<li class="color" style="background-color: #9b9b9b"> </li>
-	  				<li class="color" style="background-color: #ffffff"> </li>
-	  			</ul>
-	  			<ul class="colors" id="gradients" style="display: none">
-	  				<li class="color" style="background: linear-gradient(to right, #6CF, #FC6)"> </li>
-	  				<li class="color" style="background: linear-gradient(to right, red, blue)"> </li>
-	  				<li class="color" style="background: linear-gradient(to right, red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple)"></li>
-	  			</ul>
+		  		<div id="colorblocks">
+		  			<ul class="colors" id="monocolors">
+		  				<li class="color" style="background-color: #fe0302"> </li>
+		  				<li class="color" style="background-color: #ff7204"> </li>
+		  				<li class="color" style="background-color: #ffaa02"> </li>
+		  				<li class="color" style="background-color: #ffd302"> </li>
+		  				<li class="color" style="background-color: #ffff00"> </li>
+		  				<li class="color" style="background-color: #a0ee00"> </li>
+		  				<li class="color" style="background-color: #00cd00"> </li>
+		  				<li class="color" style="background-color: #019989"> </li>
+		  				<li class="color" style="background-color: #4266be"> </li>
+		  				<li class="color" style="background-color: #89d5ff"> </li>
+		  				<li class="color" style="background-color: #cc0273"> </li>
+		  				<li class="color" style="background-color: #222222"> </li>
+		  				<li class="color" style="background-color: #9b9b9b"> </li>
+		  				<li class="color" style="background-color: #ffffff"> </li>
+		  			</ul>
+		  			<ul class="colors" id="gradients" style="display: none">
+		  				<li class="color" style="background: linear-gradient(to right, #6CF, #FC6)"> </li>
+		  				<li class="color" style="background: linear-gradient(to right, red, blue)"> </li>
+		  				<li class="color" style="background: linear-gradient(to right, red, orange 17%, yellow 33%, green 50%, cyan 67%, blue 83%, purple)"></li>
+		  			</ul>
+	  			</div>
+		  		<button id="toggleColorblocks" onclick="toggle('toggleColorblocks')" style="display: inline-block; vertical-align: middle">隐藏</button>
 	  		</div>
 	  		<hr>
 	  		
