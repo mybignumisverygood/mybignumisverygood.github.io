@@ -88,12 +88,12 @@ function createMonocolor(){ // 在那个输入框里输入单色的话, 实时�
 function gradientStyle(color){
 	if (color){
 		color = "linear-gradient(to right, " + color + ")";
-		setting["background"] = color;
-		setting["backgroundClip"] = setting["webkitBackgroundClip"] = "text";
+		setting["background"] = color + "text";
 		setting["webkitTextFillColor"] = "transparent";
 		preview.style.background = color;
 	} else {
 		preview.style.background = "";
+		setting["background"] = setting["webkitBackgroundClip"] = setting["webkitTextFillColor"] = "";
 	}
 	
 }
@@ -105,7 +105,9 @@ function createGradient(){
 		createMonocolor(color[0].split(" ")[0]);
 		return ;
 	}
-	gradientStyle(color);
+	if (checkGradient.checked){
+		gradientStyle(color);
+	}
 }
 
 // 预设动画们!
