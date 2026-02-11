@@ -8,7 +8,6 @@ var lockeds = document.getElementsByClassName("locked");
 var checkGradient = document.getElementById("gradient");
 var gradient = [false, false];
 
-
 // 禁用移动端缩放
 var lastTouchEnd = 0; // 爱来自 静默虚空, https://www.cnblogs.com/jingmoxukong 禁用缩放
 document.documentElement.addEventListener('touchend', function (event){
@@ -25,6 +24,26 @@ document.documentElement.addEventListener('touchstart', function (event){
   }
 }, false);
 
+// 禁用 F12
+var f12 = 0;
+document.onkeydown = function(event) {
+	if (event.keyCode == 123) {
+		var iwanttosay = ["不要按F12哦……", ""];
+		if (f12 == 16){
+			createDanmu("好好好…… 这么喜欢 F12 是吧🫘, 直接送你去 GitHub~", {background: "red"});
+			setInterval("location.href = 'https://github.com/mybignumisverygood';", 2500);
+		} else if (f12 > 16){
+			createDanmu("……", {color: "red"});
+		} else {
+			createDanmu("按 F12 干什么…… GitHub 主页有源码呢……/", {color: "#" + (17 * f12).toString(16) + "0000"}); 
+		}
+		f12++;
+	}
+};
+
+document.addEventListener('keydown', function(event){
+	return event.keyCode != 123 || (event.returnValue = false);
+}); // 哈哈……不可以这样哦
 
 rgb.addEventListener("input", createGradient);
 
