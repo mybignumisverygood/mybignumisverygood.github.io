@@ -45,10 +45,12 @@ p {
 	
 	font-family: "SimHei";
 	font-size: 15px;
-	position: absolute;
 	line-height: 2em;
-	overflow: auto;
-	
+	overflow: visible;
+	position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

@@ -1,11 +1,4 @@
-ordinum = document.getElementById("ordinum");
-ordinal = document.getElementById("ordinal");
-celm = document.getElementById('setMode');
 displayInterval = setInterval(display, 20);
-fundEl = document.getElementById('fund');
-timeEl = document.getElementById('time');
-
-var fundWidth, fundHeight;
 
 function EN(x){
 	return ExpantaNum(x);
@@ -15,15 +8,6 @@ function NZ(x){
 	return !x.sub(1).isneg();
 }
 var ordivar = EN(0);
-function fund(){ // 让帮助界面居中! 最可怕的一集w
-	fundEl.style.display = "block";
-	fundWidth = fundEl.getBoundingClientRect().width;
-	fundHeight = fundEl.getBoundingClientRect().height;
-	fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
-	fundEl.style.height = Math.min(document.documentElement.clientHeight,fundHeight) + "px";
-	fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
-	fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
-}
 
 function formatTime(sec){
 	let s = sec%60;
@@ -34,12 +18,6 @@ function formatTime(sec){
 
 function display(){
 	time.innerHTML="你最少需要花费"+formatTime(parseInt(format(ordivar.div(50)).replace(/,/g, '')))+"到达这里";
-	if(fundWidth>0){
-		fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
-		fundEl.style.height = Math.min(document.documentElement.clientHeight-100,fundHeight) + "px";
-		fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
-		fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
-	}
 	if(ordivar.lt(EN(52391))){ // <ε_ω
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
@@ -116,25 +94,24 @@ function Epsilons(base){ // 什么叫数值逼近之力啊(骄傲)
 	return magic.tetr(base.mul(3).add(5));
 }
 
-const zeta = Epsilons(Epsilons(epsilon)); //~FF1.525e13
+const zeta = Epsilons(Epsilons(Epsilons(epsilon))); // ~FFFe8.072e153
 
 function formaty1(x){
-	if(x.lt(EN(590364))){ // <ζ_0
+	if(x.lt(EN(78828))){ // <ζ_0
 		if(x.lt(EN(52391))){
 			return [number(x), formaty(number(x), (ordivar.gt(72524)?3:2))];
 		}
 		var base_x = x.sub(52391).pow(1.1).add(2300);
-		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>"];
-	} else{
-		return "ζ<sub>0</sub>";
+		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>" + (ordivar.lt(54494)?(" ~ "+format(Epsilons(formaty1(base_x)[0].floor()))):"")];
+	} else {
+		return [zeta, "<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153</font>"];
 	}
 }
 
 function autoRun(){
-	if (celm.checked){
+	if (document.getElementById('setMode').checked){
 		displayInterval=setInterval(display,20);
 	} else {
 		clearInterval(displayInterval,20);
 	}
 }
-
