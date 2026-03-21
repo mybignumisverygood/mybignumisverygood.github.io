@@ -69,8 +69,8 @@ function cheat(){
 	ordivar = ordivar.plus(1000);
 }
 
-function formaty(x, m){
-	if (!m){
+function formaty(x, m=0){
+	if (m!=1){
 		recur=x;
 	}
 	if (recur.div(x).gt("1e50")){ // 递归截断
