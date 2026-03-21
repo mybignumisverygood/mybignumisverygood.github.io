@@ -20,7 +20,7 @@ function fund(){ // 让帮助界面居中! 最可怕的一集w
 	fundWidth = fundEl.getBoundingClientRect().width;
 	fundHeight = fundEl.getBoundingClientRect().height;
 	fundEl.style.width = Math.min(document.documentElement.clientWidth,fundWidth) + "px";
-	fundEl.style.height = Math.min(document.documentElement.clientHeight-100,fundHeight) + "px";
+	fundEl.style.height = Math.min(document.documentElement.clientHeight,fundHeight) + "px";
 	fundEl.style.left = "calc(50% - "+fundEl.getBoundingClientRect().width/2+"px)";
 	fundEl.style.bottom = "calc(50% - "+fundEl.getBoundingClientRect().height/2+"px)";
 }
@@ -64,6 +64,10 @@ const ep2 = ep1.tetr(4);
 const ep3 = ep2.tetr(4);
 
 var recur = EN(0);
+
+function cheat(){
+	ordivar = ordivar.plus(1000);
+}
 
 function formaty(x, m){
 	if (!m){
