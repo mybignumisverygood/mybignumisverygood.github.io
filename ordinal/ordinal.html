@@ -3,7 +3,7 @@
   	<head>
     	<meta charset="utf-8">
     	<meta name="viewport" content="width=device-width">
-    	<title>Ordinal</title>
+    	<title>SGH Lngi</title>
     	<link href="ordinal.css" rel="stylesheet" type="text/css" />
     	
     	<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS_HTML" async></script>
@@ -17,8 +17,8 @@
 			
 		</script>
 		
-    	<script src="./ExpantaNum.js"></script>
-		<script src="./format-expantanum.js"></script>
+    	<script src="ExpantaNum.js"></script>
+		<script src="format-expantanum.js"></script>
 		<script src="ordinal.js" defer></script> 
     	
   		
@@ -29,7 +29,7 @@
   			本LNGI所使用的基本列如下:<br />
   			$1.\ \omega=\mathrm{sup}\{0,1,2,\cdots\}$<br />
   			$2.\ \varepsilon_0=\mathrm{sup}\{1,\omega,\omega^\omega,\omega^{\omega^\omega},\cdots\}$<br />
-  			$3.\ 我们对\varepsilon采取一个特殊的定义，\varepsilon_{\alpha+1}=\mathrm{sup}\{\varepsilon_\alpha,\varepsilon_{\alpha}^2,{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}},\cdots\}$<br />
+  			$3.\ 我们对\varepsilon采取一个特殊的基本列，\varepsilon_{\alpha+1}=\mathrm{sup}\{1,\varepsilon_{\alpha},{\varepsilon_\alpha}^{\varepsilon_\alpha},{\varepsilon_\alpha}^{{\varepsilon_\alpha}^{\varepsilon_\alpha}},\cdots\}$<br />
   			$4.\ \varepsilon_{\alpha}=\mathrm{sup}\{\varepsilon_\beta|\beta<\alpha\}其中\alpha为极限序数$<br />
   			$5.\ \zeta_0=\mathrm{sup}\{0,\varepsilon_0,\varepsilon_{\varepsilon_0},\varepsilon_{\varepsilon_{\varepsilon_0}},\cdots\}$<br />
   			$0.\ 基本列在到达下标4时会进位$
@@ -37,15 +37,15 @@
   			<button id = "exit", onclick="fund.style.display = 'none'"><b><font color="#e7e7e7">退出</font></b></button>
   		
   		</div>
-  		<div id = "brs"><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /></div>
+  		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     	<p id="ordinum">0</p>
     	<p id="ordinal">0</p>
     	<p style="display: inline-block;">Auto Run&ensp;</p><input id="setMode" type="checkbox" checked="checked" onclick="autoRun()"/>
   		<p id="time">你最少需要花费0秒到达这里</p>
   		<button id="cheat", onclick="cheat()", style="width:100px; height:100px">"作弊"按钮</button>
   		<div id="misc">
-			<h4 class="ver">版本 v0.3 (2026/3/21)</h4>
-			<h4 class="gg">目前极限: $\small{\sim}\normalsize{\zeta_0}[4]$</h4>
+			<h4 class="ver">版本 v0.3.2653 (2026/3/24)</h4>
+			<h4 class="gg">目前极限: $\normalsize{\varepsilon_{\zeta+1}}[4]\small{\ \sim\ }\normalsize{\text{FFFe8.072e153}}$</h4>
 		</div>
   	</body>
 </html>

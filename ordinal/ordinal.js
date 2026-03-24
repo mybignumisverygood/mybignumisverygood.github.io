@@ -22,11 +22,10 @@ function display(){
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
 		recurDepth = 0;
-	}else{
+	} else {
 		var p1 = formaty1(ordivar);
 		ordinum.innerHTML = formatWhole(p1[0]);
 		ordinal.innerHTML = p1[1];
-		// if(p1[1].match(/ζ/g).length==3){console.log(ordivar); return;}
 	}
 	ordivar = ordivar.plus(1);
 	
@@ -89,9 +88,8 @@ function formaty(x, m=0){
 // Beyond ε_ω
 // 现在开始就是数字随序数动了! 虽然…… 好像…… 有点麻烦
 
-const magic = EN('2.3279574276999582'); // 经过计算的神秘数字, 估算ε_x用
-function Epsilons(base){ // 什么叫数值逼近之力啊(骄傲)
-	return magic.tetr(base.mul(3).add(5));
+function Epsilons(base){ // 不是精确值!
+	return EN(4).tetr(base.mul(3).add(4));
 }
 
 const zeta = Epsilons(Epsilons(Epsilons(epsilon))); // ~FFFe8.072e153
@@ -102,9 +100,20 @@ function formaty1(x){
 			return [number(x), formaty(number(x), (ordivar.gt(72524)?3:2))];
 		}
 		var base_x = x.sub(52391).pow(1.1).add(2300);
-		return [Epsilons(formaty1(base_x)[0]), "ε<sub>"+formaty1(base_x)[1]+"</sub>" + (ordivar.lt(54494)?(" ~ "+format(Epsilons(formaty1(base_x)[0].floor()))):"")];
-	} else {
-		return [zeta, "<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153</font>"];
+		var loop = formaty1(base_x);
+		return [Epsilons(loop[0]), "ε<sub>"+loop[1]+"</sub>" + 
+			(ordivar.lt(54494)?(" ~ "+format(Epsilons(loop[0].floor()))):""
+		)];
+	} else if(x.lt(EN(80667))){ // <ζ_0*2
+		var base_x = ExpantaNum.min(x.sub(78828).pow(1.5), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		var loop = formaty1(base_x);
+		return [zeta, (ordivar.gt(78862) ?
+						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?"+"+loop[1]:""):
+						"<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153</font>")];
+	} else if(x.lt(EN(806905))){
+		var base_x = ExpantaNum.min(x.sub(80695).pow(1.3), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+		var loop = formaty1(base_x);
+		return [zeta, "<font color='orange'>ε<sub>ζ<sub>0</sub>+1</sub> = ζ<sub>0</sub><sup>ζ<sub>0</sub><sup>ζ<sub>0</sub></sup></sup></font>"];
 	}
 }
 
