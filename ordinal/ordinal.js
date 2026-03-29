@@ -1,13 +1,12 @@
 displayInterval = setInterval(display, 20);
 
-function EN(x){
-	return ExpantaNum(x);
-}
-// 判断 "不小于一"
+var EN = ExpantaNum;
+
 function NZ(x){
 	return !x.sub(1).isneg();
 }
 var ordivar = EN(0);
+var recur = EN(0);
 
 function formatTime(sec){
 	let s = sec%60;
@@ -21,7 +20,6 @@ function display(){
 	if(ordivar.lt(EN(52391))){ // <ε_ω
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
-		recurDepth = 0;
 	} else {
 		var p1 = formaty1(ordivar);
 		ordinum.innerHTML = formatWhole(p1[0]);
@@ -40,10 +38,9 @@ const ep1 = epsilon.tetr(4);
 const ep2 = ep1.tetr(4);
 const ep3 = ep2.tetr(4);
 
-var recur = EN(0);
-
 function cheat(){
 	ordivar = ordivar.plus(1000);
+	display();
 }
 
 function formaty(x, m=0){
@@ -58,7 +55,7 @@ function formaty(x, m=0){
 		return "0123"[x.floor()];
 	// ω+1<=x<ω^2, ω^2=3^2=9
 	} else if (x.lt(16)){
-		return "ω"+(NZ(x.div(4).floor().sub(1))?x.div(4).floor():"")+(NZ(x.mod(4))?"+"+x.mod(4).floor():"");
+		return "ω"+(m!=3?(NZ(x.div(4).floor().sub(1))?x.div(4).floor():"")+(NZ(x.mod(4))?"+"+x.mod(4).floor():""):"");
 	// ω^2<=x<ε_0, ε_0=3^^3=7e12
 	} else if (x.lt(epsilon)){
 		var expo = x.logBase(4).floor();
@@ -88,37 +85,43 @@ function formaty(x, m=0){
 // Beyond ε_ω
 // 现在开始就是数字随序数动了! 虽然…… 好像…… 有点麻烦
 
-function Epsilons(base){ // 不是精确值!
-	return EN(4).tetr(base.mul(3).add(4));
+function Epsilons(base, m=0){ // 不是精确值!
+	return m?zeta:EN(4).tetr(base.mul(3).add(4));
 }
 
 const zeta = Epsilons(Epsilons(Epsilons(epsilon))); // ~FFFe8.072e153
 
 function formaty1(x){
-	if(x.lt(EN(78828))){ // <ζ_0
-		if(x.lt(EN(52391))){
+	if (x.lt(78828)){ // <ζ_0
+		if (x.lt(52391)){
 			return [number(x), formaty(number(x), (ordivar.gt(72524)?3:2))];
 		}
-		var base_x = x.sub(52391).pow(1.1).add(2300);
+		var base_x = x.sub(52391).pow(1.1).add(2300).floor();
 		var loop = formaty1(base_x);
 		return [Epsilons(loop[0]), "ε<sub>"+loop[1]+"</sub>" + 
 			(ordivar.lt(54494)?(" ~ "+format(Epsilons(loop[0].floor()))):""
 		)];
-	} else if(x.lt(EN(80667))){ // <ζ_0*2
-		var base_x = ExpantaNum.min(x.sub(78828).pow(1.5), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+	} else if (x.lt(81086)){ // <ζ_0^2
+		var diff = x.lt(80666.4)?78828:80616;
+		var base_x = x.sub(diff).pow(EN(1.5).plus(x.div(80666.4).floor().div(3)));
 		var loop = formaty1(base_x);
 		return [zeta, (ordivar.gt(78862) ?
-						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?"+"+loop[1]:""):
-						"<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153</font>")];
-	} else if(x.lt(EN(806905))){
-		var base_x = ExpantaNum.min(x.sub(80695).pow(1.3), x.sub(1)); // 为了防止发散…… 冲到天上再也回不来了w
+						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?(x.lt(80666.4)?"+":"")+loop[1]:""):
+						"<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153 ~ 4^^^5</font>"), loop[0]];
+	} else if (x.lt(87124)){
+		var base_x = x.sub(80837).pow(1.3);
 		var loop = formaty1(base_x);
-		return [zeta, "<font color='orange'>ε<sub>ζ<sub>0</sub>+1</sub> = ζ<sub>0</sub><sup>ζ<sub>0</sub><sup>ζ<sub>0</sub></sup></sup></font>"];
+		return [zeta, "<font color='yellow'>ζ<sub>0</sub></font><sup>"+loop[1]+"</sup>"];
+	} else {
+		var milestone = "<font color='orange'>ε<sub>ζ<sub>0</sub>+1</sub> = ζ<sub>0</sub><sup>ζ<sub>0</sub><sup>ζ<sub>0</sub></sup></sup></font>";
+		var base_x = x.sub(-489679).pow(0.85);
+		var loop = formaty1(base_x);
+		return [Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2])), "ε<sub>"+loop[1]+"</sub>"];
 	}
 }
 
 function autoRun(){
-	if (document.getElementById('setMode').checked){
+	if (setMode.checked){
 		displayInterval=setInterval(display,20);
 	} else {
 		clearInterval(displayInterval,20);

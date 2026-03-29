@@ -39,6 +39,11 @@ function formatTime(sec){
 	return (h?h+"小时":"")+(m?m+"分钟":"")+s+"秒";
 }
 
+function cheat(){
+	ordivar = ordivar.plus(1000);
+	display();
+}
+
 function display(){
 	time.innerHTML="你最少需要花费"+formatTime(parseInt(format(ordivar.div(50)).replace(/,/g, '')))+"到达这里";
 	if(fundWidth>0){
