@@ -9,6 +9,7 @@ var ordivar = EN(0);
 var recur = EN(0);
 
 function formatTime(sec){
+	if (sec<0){ return "0秒"; }
 	let s = sec%60;
 	let m = Math.floor(sec/60%60);
 	let h = Math.floor(sec/3600);
@@ -38,15 +39,14 @@ const ep1 = epsilon.tetr(4);
 const ep2 = ep1.tetr(4);
 const ep3 = ep2.tetr(4);
 
-function cheat(){
-	ordivar = ordivar.plus(1000);
+function cheat(m){
+	ordivar = ordivar.plus(m);
 	display();
 }
 
 function formaty(x, m=0){
-	if (m!=1){
-		recur=x;
-	}
+	if (x.isNaN()){ return "ω<sub>1</sub>" }
+	if (m!=1){ recur=x; }
 	if (recur.div(x).gt("1e50")){ // 递归截断
 		return "";
 	}

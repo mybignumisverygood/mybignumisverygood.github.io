@@ -1,7 +1,7 @@
 body {
 	background-color: black;
   	color: white;
-  	overflow: hidden;
+  	overflow: auto;
 }
 
 p {
@@ -60,10 +60,10 @@ p {
 	right: 10px;
 }
 
-body{
-	overflow: auto;
-}
-
 body::-webkit-scrollbar {
 	display: none;
+}
+
+.cheat{
+	display:inline-block
 }
