@@ -99,7 +99,7 @@ const zeta = Epsilons(Epsilons(Epsilons(epsilon))); // ~FFFe8.072e153
 // 下面出现的一堆神秘数字 (基本上) 都是精确计算过的结果, 其目的在于使函数递归到合适的序数
 
 function formaty1(x){
-	if (x.lte(78827)){ // <ζ_0 ~ 26m16s
+	if (x.lte(78826)){ // <ζ_0 ~ 26m16s
 		if (x.lte(52390)){
 			return [number(x), formaty(number(x), (ordivar.gt(72524)?3:2))];
 		}
@@ -108,22 +108,22 @@ function formaty1(x){
 		return [Epsilons(loop[0]), "ε<sub>"+loop[1]+"</sub>" + 
 			(ordivar.lt(54494)?(" ~ "+format(Epsilons(loop[0].floor()))):""
 		)];
-	} else if (x.lte(81083)){ // <ζ_0^2 ~ 27m1s
+	} else if (x.lte(81082)){ // <ζ_0^2 ~ 27m1s
 		var milestone = "<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153 ~ 4^^^5</font>";
-		var diff = x.lte(80665)?78827:80615;
-		var base_x = x.sub(diff).pow(EN(1.5).plus(EN(x.gt(80665)+0).div(3)));
+		var diff = x.lte(80664)?78826:80614;
+		var base_x = x.sub(diff).pow(EN(1.5).plus(EN(x.gt(80664)+0).div(3)));
 		var loop = formaty1(base_x);
 		return [zeta, (ordivar.gt(78862) ?
-						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?(x.lte(80665)?"+":"")+loop[1]:""):milestone),
-						 x.lte(80665)?loop[0]:zeta];
-	} else if (x.lte(87120)){ // <ε_{ζ_0+1}
-		var base_x = x.sub(80834).pow(1.3);
+						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?(x.lte(80664)?"+":"")+loop[1]:""):milestone),
+						 x.lte(80664)?loop[0]:zeta];
+	} else if (x.lte(87119)){ // <ε_{ζ_0+1}
+		var base_x = x.sub(80833).pow(1.3);
 		var loop = formaty1(base_x);
 		return [zeta, "<font color='yellow'>ζ<sub>0</sub></font><sup>"+loop[1]+"</sup>", zeta];
-	} else if (x.lte(112191)){
+	} else if (x.lte(112177)){
 		var milestone = "<font color='orange'>ε<sub>ζ<sub>0</sub>+1</sub> = ζ<sub>0</sub><sup>ζ<sub>0</sub><sup>ζ<sub>0</sub></sup></sup></font>";
-		var diff = x.lte(102657)?-489682:73775;
-		var base_x = x.sub(diff).pow(EN(0.85).plus(EN(x.gt(102657)+0).div(4)));
+		var diff = x.lte(102647)?-489684:73765;
+		var base_x = x.sub(diff).pow(EN(0.85).plus(EN(x.gt(102647)+0).div(4)));
 		var loop = formaty1(base_x);
 		return [Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2])), (ordivar.gt(87837)?"ε<sub>"+loop[1]+"</sub>":milestone), 
 				Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2]))];
