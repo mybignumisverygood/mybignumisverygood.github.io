@@ -85,38 +85,51 @@ function formaty(x, m=0){
 // Beyond ε_ω
 // 现在开始就是数字随序数动了! 虽然…… 好像…… 有点麻烦
 
-function Epsilons(base, m=0){ // 不是精确值!
-	return m?zeta:EN(4).tetr(base.mul(3).add(4));
+// Epsilon 序数的计算方式可被看作是一个 "左结合" 的 tetration 函数
+// 也即, ε_α => ( … ((4^^4)^^4) … )^^4 其中有 g_{α+1}(4) 个 "^^"
+// 下面计算 Epsilon 序数的函数从理论上来讲虽然给出的不是精确值但其精度也是极高的所以不要担心 =ω=.
+// (丢失的精度大概相当于 slog 级别, 从理论上来说也是无法察觉的w)
+
+function Epsilons(base){
+	return EN(4).tetr(base.mul(3).add(4));
 }
 
 const zeta = Epsilons(Epsilons(Epsilons(epsilon))); // ~FFFe8.072e153
 
+// 下面出现的一堆神秘数字 (基本上) 都是精确计算过的结果, 其目的在于使函数递归到合适的序数
+
 function formaty1(x){
-	if (x.lt(78828)){ // <ζ_0
-		if (x.lt(52391)){
+	if (x.lte(78827)){ // <ζ_0 ~ 26m16s
+		if (x.lte(52390)){
 			return [number(x), formaty(number(x), (ordivar.gt(72524)?3:2))];
 		}
-		var base_x = x.sub(52391).pow(1.1).add(2300).floor();
+		var base_x = x.sub(52390).pow(1.1).add(2300).floor();
 		var loop = formaty1(base_x);
 		return [Epsilons(loop[0]), "ε<sub>"+loop[1]+"</sub>" + 
 			(ordivar.lt(54494)?(" ~ "+format(Epsilons(loop[0].floor()))):""
 		)];
-	} else if (x.lt(81086)){ // <ζ_0^2
-		var diff = x.lt(80666.4)?78828:80616;
-		var base_x = x.sub(diff).pow(EN(1.5).plus(x.div(80666.4).floor().div(3)));
+	} else if (x.lte(81083)){ // <ζ_0^2 ~ 27m1s
+		var milestone = "<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153 ~ 4^^^5</font>";
+		var diff = x.lte(80665)?78827:80615;
+		var base_x = x.sub(diff).pow(EN(1.5).plus(EN(x.gt(80665)+0).div(3)));
 		var loop = formaty1(base_x);
 		return [zeta, (ordivar.gt(78862) ?
-						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?(x.lt(80666.4)?"+":"")+loop[1]:""):
-						"<font color='yellow'>ζ<sub>0</sub> ~ FFFe8.072e153 ~ 4^^^5</font>"), loop[0]];
-	} else if (x.lt(87124)){
-		var base_x = x.sub(80837).pow(1.3);
+						"<font color='yellow'>ζ<sub>0</sub></font>"+(loop[1]!="0"?(x.lte(80665)?"+":"")+loop[1]:""):milestone),
+						 x.lte(80665)?loop[0]:zeta];
+	} else if (x.lte(87120)){ // <ε_{ζ_0+1}
+		var base_x = x.sub(80834).pow(1.3);
 		var loop = formaty1(base_x);
-		return [zeta, "<font color='yellow'>ζ<sub>0</sub></font><sup>"+loop[1]+"</sup>"];
-	} else {
+		return [zeta, "<font color='yellow'>ζ<sub>0</sub></font><sup>"+loop[1]+"</sup>", zeta];
+	} else if (x.lte(112191)){
 		var milestone = "<font color='orange'>ε<sub>ζ<sub>0</sub>+1</sub> = ζ<sub>0</sub><sup>ζ<sub>0</sub><sup>ζ<sub>0</sub></sup></sup></font>";
-		var base_x = x.sub(-489679).pow(0.85);
+		var diff = x.lte(102657)?-489682:73775;
+		var base_x = x.sub(diff).pow(EN(0.85).plus(EN(x.gt(102657)+0).div(4)));
 		var loop = formaty1(base_x);
-		return [Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2])), "ε<sub>"+loop[1]+"</sub>"];
+		return [Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2])), (ordivar.gt(87837)?"ε<sub>"+loop[1]+"</sub>":milestone), 
+				Epsilons(Epsilons(Epsilons(epsilon)).plus(loop[2]))];
+	} else {
+		var milestone = "<font color='yellow'>ζ<sub>1</sub> = ε<sub>ε<sub>ε<sub>ε<sub><font color='yellow'>ζ<sub>0</sub></font>+1</sub></sub></sub></sub> ~ 4^^^8";
+		return [EN(4).pent(8), milestone];
 	}
 }
 
