@@ -17,7 +17,7 @@ function formatTime(sec){
 }
 
 function display(){
-	time.innerHTML="你最少需要花费"+formatTime(parseInt(format(ordivar.div(50)).replace(/,/g, '')))+"到达这里";
+	time.innerHTML="你最少需要花费"+formatTime(ordivar.div(50).floor().toNumber())+"到达这里";
 	if(ordivar.lt(EN(52391))){ // <ε_ω
 		ordinum.innerHTML = formatWhole(number(ordivar));
 		ordinal.innerHTML = formaty(number(ordivar));
@@ -45,7 +45,7 @@ function cheat(m){
 }
 
 function formaty(x, m=0){
-	if (x.isNaN()){ return "ω<sub>1</sub>" }
+	if (x.isNaN()){ return "ω<sub>1</sub>"; }
 	if (m!=1){ recur=x; }
 	if (recur.div(x).gt("1e50")){ // 递归截断
 		return "";
