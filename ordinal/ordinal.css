@@ -8,6 +8,7 @@ p {
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	margin-top: 0;
 	font-size: 1.5vw;
+	word-wrap: break-word; 
 }
 
 #help{
