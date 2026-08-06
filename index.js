@@ -25,9 +25,15 @@ var returm = false; // return 不 return?
 var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
 var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "ZHhan25"];
 var wu = ["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～", "yee"];
-var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60"];
-var pls = zhang.concat(wu).concat(huo)
-var notems = ["长叹一声氦", "某只薛姓小猫", "薛萱锥", "开朗的社恐"].concat(pls); // 在留言板里留言过的留言板人, 嗯.
+var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60", "琼", "长叹一声氦", "开朗的社恐", "长叹一声h"];
+var pls = zhang.concat(wu).concat(huo);
+var notems = [  "某只薛姓小猫", "薛萱锥",  
+				"浅梦大王", "qm大王", "浅梦.", "浅梦", "贺钦阳", "洛七", "洛七是也",
+				"水美", "wb", "water beauty", "waterbeauty", "海茁尔", "黑猪耳", "hwo",
+				"yita", "^^", "幻想与冲击", ":)", "：）", ":）", "：)",
+				"罐子", "罐子pot", "现代汉语词典通史", "超级宇宙无敌大兔子", "超级无敌大兔子", "无敌大兔子", "大兔子", "小兔子", "兔子",
+				"薇薇安", "atri", "petalfury", "petal fury",
+				"owl^-^", "owl"].concat(pls); // 在留言板里留言过的留言板人, 嗯.
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -209,7 +215,7 @@ async function hajimete(){
 	} else if (meets == 34){
 		createNewMsg("话说…… 你还记得我们第 11 次见面时, 我给你的留言板吗?"); await wait(2000);
 		createNewMsg("我很好奇, 你有没有去留言呢?"); await wait(2000);
-		createNewMsg(notems.includes(your_name) || notems.includes(pron) ? "诶! 话说我记得你诶, 你绝对是是留言过的~ 今后也要常来哦" : "如果没有的话, 可以去看一看, 留言板的入口就在右下角!");
+		createNewMsg(notems.includes(your_name.toLowerCase()) || notems.includes(pron.toLowerCase()) ? "诶! 话说我记得你诶, 你绝对是是留言过的~ 今后也要常来哦" : "如果没有的话, 可以去看一看, 留言板的入口就在右下角!");
 	} else if (meets == 35){
 		createNewMsg("对了! 你会不会觉得这个留言板的网址很难记呢……? 实际上这是 '<ruby>The <narr>11th</narr> Meeting with The <narr>Narr</narr>ator<rp>(</rp><rt>与旁白的第十一次见面</rt><rp>)</rp></ruby>' 的缩写哦!"); await wait(2000);
 		createNewMsg("<whisper>(实际上我之前一直把 '11th' 记成 '11st' 了呢w…… 旁白也会出错的嘛嘿嘿……)</whisper>")
@@ -267,7 +273,7 @@ async function judgement(m){
 	}
 	if(in_game){hanzi(myth_pwd); return ;}
 	console.log(myth_pwd);
-	if (myth_pwd == "撤销重置" || startmeets == 29){
+	if (myth_pwd == "撤消重置" || startmeets == 29){
 		if (reset_){
 			localStorage.setItem("narr", JSON.stringify(saves));
 			load();
@@ -414,9 +420,9 @@ async function judgement(m){
 				if (!i) createNewMsg("不是发生什么了.?");
 			}
 		} else if (myth_pwd.includes("死")){
-			createNewMsg("……提醒你哦, 关于生死的话题还是要好好考虑呢, 而且我可是很抠字眼的… 总之千万别死!");
+			createNewMsg("……提醒你哦, 关于生死的话题还是要好好考虑呢, 而且我可是很抠字眼的… 总之! 千万别死!ww");
 		} else if (myth_pwd.includes("彩蛋")){
-			createNewMsg("你说彩蛋……? 是有的哦, 但是得看你的聪明程度了, 听话又有毅力的" + pron + "有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢");
+			createNewMsg("你说彩蛋……? 是有的哦, 但是得看你的聪明程度了! 听话又有毅力的" + pron + "会有彩蛋哦~ 话说你也可以把触发新对话的过程看作是一个个彩蛋呢!");
 		} else if (myth_pwd.includes("喜欢") || myth_pwd.includes("爱")){
 			var loveOrLove = myth_pwd.includes("喜欢") ? "喜欢" : "爱";
 			var startLoving = myth_pwd.includes("喜欢") ? myth_pwd.indexOf("喜") : myth_pwd.indexOf("爱");
