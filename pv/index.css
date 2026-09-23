@@ -1,0 +1,23 @@
+body {
+	margin: 0;
+	overflow: hidden;
+}
+
+svg {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+p {
+	display: block;
+	position: absolute;
+	margin: 0px;
+	user-select: none;
+	left: 0px;
+	top: 0px;
+}
+
+g {
+	position: absolute;
+}
