@@ -132,7 +132,7 @@ function createGradient(){
 // 预设动画们!
 var goStraight = [{transform: "translateX(100vw)"}]; // 从左到右水平滚动
 
-function createDanmu(danmu, setting){
+function createDanmu(danmu, setting = {}){
 	var newDanmu = document.createElement("p");
 	newDanmu.textContent = danmu;
 	for (let i = 0; i < Object.keys(setting).length; i++){ // 将 setting 的设置落实到弹幕上!
@@ -149,6 +149,6 @@ function toggle(id){
 	var toggleEl = document.getElementById(id);
 	toggleEl.innerHTML = (toggleEl.innerHTML == "隐藏" ? "显示" : "隐藏");
 	(toggleEl.innerHTML == "隐藏" ?
-	document.getElementById(id.slice(6).toLowerCase()).style.display = "block" :
+	document.getElementById(id.slice(6).toLowerCase()).style.display = "block" : // slice(6) 剔除前面的 toggle
 	document.getElementById(id.slice(6).toLowerCase()).style.display = "none");
 }

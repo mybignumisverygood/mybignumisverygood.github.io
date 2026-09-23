@@ -23,17 +23,19 @@ var sumh1 = 0;
 
 var returm = false; // return 不 return?
 var reset_ = false; // reset 没 reset? (哇对仗工整诶!)
-var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "ZHhan25"];
-var wu = ["Wissea", "wissea", "吴亦萱", "物以轩", "yee～～～", "yee"];
-var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60", "琼", "长叹一声氦", "开朗的社恐", "长叹一声h"];
+var zhang = ["涨到", "张导", "张轩宁", "zhang萱琳", "酸酸", "00625", "zhhan25"];
+var wu = ["wissea", "吴亦萱", "物以轩", "yee"];
+var huo = ["圆圈小姐不是圆规小姐", "圆圈小姐就是圆规小姐", "圆圈", "圆圈小姐", "圆规", "圆规小姐", "wdhhbcsztnl",
+			"或隐含", "霍尹涵", "好与坏", "good and bad", "lxlhs60", "琼", 
+			"长叹一声氦", "开朗的社恐", "长叹一声h", "yoitowarui", "好いと悪い", "好いと坏い", "好いと壊い"];
 var pls = zhang.concat(wu).concat(huo);
-var notems = [  "某只薛姓小猫", "薛萱锥",  
+var notems = [  "某只薛姓小猫", "薛萱锥", "xxz",
 				"浅梦大王", "qm大王", "浅梦.", "浅梦", "贺钦阳", "洛七", "洛七是也",
 				"水美", "wb", "water beauty", "waterbeauty", "海茁尔", "黑猪耳", "hwo",
-				"yita", "^^", "幻想与冲击", ":)", "：）", ":）", "：)",
+				"yita", "幻想与冲击",
 				"罐子", "罐子pot", "现代汉语词典通史", "超级宇宙无敌大兔子", "超级无敌大兔子", "无敌大兔子", "大兔子", "小兔子", "兔子",
 				"薇薇安", "atri", "petalfury", "petal fury",
-				"owl^-^", "owl"].concat(pls); // 在留言板里留言过的留言板人, 嗯.
+				"owl"].concat(pls); // 在留言板里留言过的留言板人, 嗯.
 
 document.getElementById("msgs").style.height = document.documentElement.clientHeight - 200 + "px";
 
@@ -284,7 +286,7 @@ async function judgement(m){
 		next_phase();
 	} else { //一堆奇奇怪怪的对话
 		const my_names = ["洛一", "搞到", "高导", "G-Lion", "被Lost我", "我的世界<ruby>彡犭乄丶 <rp>(</rp><rt>shān quǎn wù zhǔ</rt><rp>)</rp></ruby>", "Lg1t6_", "mcshanquanwuzhu"];
-		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~` 啊呀呢哈吖哦喵嗯哇了";
+		const meaningless = "!！@#￥%…&*（）$^()?？，,.。/;；:：'‘’\"”“\\[]{}~～-` 啊呀呢哈吖哦喵嗯哇了";
 		const regEng = /[\u4E00-\u9FA5\uF900-\uFA2D]{1,}/;
 		var ordtmp = ordmsg;
 		if (meets == 29 && !h) return ;
